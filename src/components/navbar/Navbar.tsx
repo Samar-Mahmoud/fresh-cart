@@ -1,5 +1,5 @@
 import Logo from "@/components/common/Logo";
-import TopBar from "./TopBar";
+import TopBar from "@/components/common/TopBar";
 import SearchInput from "./SearchInput";
 import NavMenu from "./NavMenu";
 
