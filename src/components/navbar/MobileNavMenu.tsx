@@ -4,6 +4,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -17,11 +18,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/common/Logo";
-import SearchInput from "./SearchInput";
+import SearchInput from "@/components/common/SearchInput";
 import Link from "next/link";
 import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
+import { Separator } from "../ui/separator";
 
 export default function MobileNavMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,10 +50,13 @@ export default function MobileNavMenu() {
       </DrawerTrigger>
 
       <DrawerContent className="items-stretch">
-        <DrawerHeader className="flex-row items-center justify-between p-4 border-b border-gray-100 bg-gray-50/50">
+        <DrawerHeader className="flex-row items-center justify-between p-4 bg-gray-50/50">
           <DrawerTitle>
             <Logo />
           </DrawerTitle>
+          <DrawerDescription className="invisible">
+            FreshCart Logo
+          </DrawerDescription>
 
           <DrawerClose asChild>
             <Button
@@ -63,15 +68,19 @@ export default function MobileNavMenu() {
           </DrawerClose>
         </DrawerHeader>
 
+        <Separator />
+
         <div className="p-4">
           <SearchInput rounded="rounded-xl" placeholder="Search products..." />
         </div>
 
+        <Separator />
+
         <NavigationMenu
-          className="max-w-none flex-0 flex-col items-stretch border-y border-gray-100"
+          className="max-w-none flex-0 flex-col items-stretch"
           viewport={false}
         >
-          <NavigationMenuList className="p-4 flex-col items-stretch gap-1 border-b border-gray-100">
+          <NavigationMenuList className="p-4 flex-col items-stretch gap-1">
             {/* Home */}
             <NavigationMenuItem>
               <NavigationMenuLink
@@ -121,6 +130,8 @@ export default function MobileNavMenu() {
             </NavigationMenuItem>
           </NavigationMenuList>
 
+          <Separator />
+
           <NavigationMenuList className="p-4 flex-col items-stretch gap-1">
             {/* Wish List */}
             <NavigationMenuItem>
@@ -141,7 +152,7 @@ export default function MobileNavMenu() {
                     />
                   </div>
 
-                  <span className="font-medium text-gray-700">WishList</span>
+                  <span className="font-medium text-gray-700">Wishlist</span>
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -167,6 +178,8 @@ export default function MobileNavMenu() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        <Separator />
 
         <div className="px-4 pb-4 pt-6 flex gap-3">
           {/* Login */}

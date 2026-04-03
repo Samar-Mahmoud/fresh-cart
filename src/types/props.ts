@@ -3,6 +3,6 @@ export interface SearchInputProps {
   rounded?: string;
 }
 
-export interface HeadsetIconProps {
+export interface IconProps {
   size: string;
 }

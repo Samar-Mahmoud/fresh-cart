@@ -1,6 +1,6 @@
-import { HeadsetIconProps } from "@/types/props";
+import { IconProps } from "@/types/props";
 
-export default function HeadSetIcon({ size }: HeadsetIconProps) {
+export default function HeadSetIcon({ size }: IconProps) {
   return (
     <svg
       className={`m-auto ${size}`}

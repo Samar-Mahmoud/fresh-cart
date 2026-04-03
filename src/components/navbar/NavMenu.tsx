@@ -13,6 +13,7 @@ import Link from "next/link";
 import MobileNavMenu from "./MobileNavMenu";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
+import { Separator } from "@/components/ui/separator";
 
 const items: {
   title: string;
@@ -95,7 +96,7 @@ export default function NavMenu() {
 
       <NavigationMenuList className="gap-1 lg:gap-2">
         {/* Support */}
-        <NavigationMenuItem className="hidden lg:flex shrink-0 mr-2 pr-3 border-r border-gray-200 hover:opacity-80 transition-opacity">
+        <NavigationMenuItem className="hidden lg:flex shrink-0 mr-2 pr-3 hover:opacity-80 transition-opacity">
           <NavigationMenuLink asChild className="p-0 hover:bg-transparent">
             <Link className="flex items-center gap-2" href="/contact">
               <div className="size-10 rounded-full text-primary-600 bg-primary-50 flex">
@@ -109,6 +110,8 @@ export default function NavMenu() {
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
+
+        <Separator orientation="vertical" className="hidden lg:flex" />
 
         {/* Wish List */}
         <NavigationMenuItem>
