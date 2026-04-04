@@ -85,11 +85,11 @@ export default function Footer() {
               className="group/link-group flex items-center gap-3 "
             >
               <Phone
-                className=" text-primary-500 fill-primary-500"
+                className=" text-primary-600 fill-primary-600"
                 width="18"
                 height="14"
               />
-              <span className="text-sm font-medium group-hover/link-group:text-primary-500 transition-colors">
+              <span className="text-sm font-medium group-hover/link-group:text-primary-600 transition-colors">
                 +1 (800) 123-4567
               </span>
             </a>
@@ -100,7 +100,7 @@ export default function Footer() {
               className="group/link-group flex items-center gap-3"
             >
               <svg
-                className="text-primary-500"
+                className="text-primary-600"
                 width="18"
                 height="14"
                 viewBox="0 0 18 14"
@@ -112,7 +112,7 @@ export default function Footer() {
                   fill="currentColor"
                 />
               </svg>
-              <span className="text-sm font-medium group-hover/link-group:text-primary-500 transition-colors">
+              <span className="text-sm font-medium group-hover/link-group:text-primary-600 transition-colors">
                 support@freshcart.com
               </span>
             </a>
@@ -120,7 +120,7 @@ export default function Footer() {
             {/* Address */}
             <div className="flex items-center gap-3 ">
               <svg
-                className="text-primary-500"
+                className="text-primary-600"
                 width="18"
                 height="15"
                 viewBox="0 0 18 15"
@@ -144,7 +144,7 @@ export default function Footer() {
             <a
               href="https://www.facebook.com"
               target="_blank"
-              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-600 hover:text-white transition-colors"
+              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-main hover:text-white transition-colors"
             >
               <svg
                 className="m-auto"
@@ -164,7 +164,7 @@ export default function Footer() {
             <a
               href="https://twitter.com"
               target="_blank"
-              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-600 hover:text-white transition-colors"
+              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-main hover:text-white transition-colors"
             >
               <svg
                 className="m-auto"
@@ -184,7 +184,7 @@ export default function Footer() {
             <a
               href="https://instagram.com"
               target="_blank"
-              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-600 hover:text-white transition-colors"
+              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-main hover:text-white transition-colors"
             >
               <svg
                 className="m-auto"
@@ -204,7 +204,7 @@ export default function Footer() {
             <a
               href="https://youtube.com"
               target="_blank"
-              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-600 hover:text-white transition-colors"
+              className="size-10 shrink-0 bg-gray-800 rounded-full flex hover:bg-primary-main hover:text-white transition-colors"
             >
               <svg
                 className="m-auto"
@@ -236,7 +236,7 @@ export default function Footer() {
                 <li key={l.name}>
                   <Link
                     href={l.href}
-                    className="font-medium text-sm hover:text-primary-500 transition-colors"
+                    className="font-medium text-sm hover:text-primary-600 transition-colors"
                   >
                     {l.name}
                   </Link>

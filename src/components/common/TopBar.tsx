@@ -9,7 +9,7 @@ export default function TopBar() {
       <div className="container mx-auto px-4 flex justify-between items-center h-10 text-sm">
         <div className="flex items-center gap-6 text-gray-500">
           {/* Free Shipping */}
-          <span className="flex items-center text-primary-600 gap-2">
+          <span className="flex items-center text-primary-main gap-2">
             <VanIcon size="size-4" />
             <span className="font-medium">Free Shipping on Orders 500 EGP</span>
           </span>
@@ -39,7 +39,7 @@ export default function TopBar() {
             {/* Phone */}
             <a
               href="tel:+18001234567"
-              className="flex items-center gap-1.5 hover:text-primary-600 transition-colors"
+              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
             >
               <Phone className="fill-current" width="15" height="12" />
               <span className="font-medium">+1 (800) 123-4567</span>
@@ -47,7 +47,7 @@ export default function TopBar() {
             {/* Mail */}
             <a
               href="mailto:support@freshcart.com"
-              className="flex items-center gap-1.5 hover:text-primary-600 transition-colors"
+              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
             >
               <Mail width="15" height="12" />
               <span className="font-medium">support@freshcart.com</span>
@@ -60,7 +60,7 @@ export default function TopBar() {
           <div className="flex items-center gap-4">
             {/* Login */}
             <Link
-              className="flex items-center gap-1.5 hover:text-primary-600 transition-colors"
+              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
               href="/login"
             >
               <User width="15" height="12" />
@@ -69,7 +69,7 @@ export default function TopBar() {
 
             {/* Register */}
             <Link
-              className="flex items-center gap-1.5 hover:text-primary-600 transition-colors"
+              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
               href="/register"
             >
               <UserPlus width="15" height="12" />

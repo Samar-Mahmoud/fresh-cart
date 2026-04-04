@@ -7,7 +7,7 @@ export default function StoreBenefits() {
     <div className="bg-primary-50 border-y border-primary-100 px-4 py-6">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="flex items-center gap-3">
-          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-600 flex">
+          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex">
             <VanIcon size="size-6" />
           </div>
 
@@ -22,7 +22,7 @@ export default function StoreBenefits() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-600 flex">
+          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex">
             <RotateCcw className="m-auto size-6" width="23" height="18" />
           </div>
 
@@ -37,7 +37,7 @@ export default function StoreBenefits() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-600 flex">
+          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex">
             <svg
               className="m-auto size-6"
               width="23"
@@ -64,7 +64,7 @@ export default function StoreBenefits() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-600 flex">
+          <div className="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex">
             <HeadSetIcon size="size-6" />
           </div>
 

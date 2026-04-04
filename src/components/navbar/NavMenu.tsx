@@ -46,7 +46,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-600"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
           >
             <Link href="/">Home</Link>
           </NavigationMenuLink>
@@ -56,7 +56,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-600"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
           >
             <Link href="/products">Shop</Link>
           </NavigationMenuLink>
@@ -64,7 +64,7 @@ export default function NavMenu() {
 
         {/* Categories */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-base p-0 font-medium cursor-pointer text-gray-600 hover:text-primary-600 hover:bg-transparent focus:bg-transparent data-popup-open:bg-transparent data-popup-open:hover:bg-transparent data-open:bg-transparent data-open:hover:bg-transparent data-open:focus:bg-transparent">
+          <NavigationMenuTrigger className="text-base p-0 font-medium cursor-pointer text-gray-600 hover:text-primary-main hover:bg-transparent focus:bg-transparent data-popup-open:bg-transparent data-popup-open:hover:bg-transparent data-open:bg-transparent data-open:hover:bg-transparent data-open:focus:bg-transparent">
             Categories
           </NavigationMenuTrigger>
           <NavigationMenuContent className="p-0 py-2 border border-gray-100 min-w-50 group-data-[viewport=false]/navigation-menu:rounded-xl group-data-[viewport=false]/navigation-menu:shadow-xl">
@@ -73,7 +73,7 @@ export default function NavMenu() {
                 <li key={item.title}>
                   <NavigationMenuLink
                     asChild
-                    className="text-base font-medium px-4 py-2.5 hover:bg-primary-50 text-gray-600 hover:text-primary-600 in-data-[slot=navigation-menu-content]:rounded-none"
+                    className="text-base font-medium px-4 py-2.5 hover:bg-primary-50 text-gray-600 hover:text-primary-main in-data-[slot=navigation-menu-content]:rounded-none"
                   >
                     <Link href={item.href}>{item.title}</Link>
                   </NavigationMenuLink>
@@ -87,7 +87,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-600"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
           >
             <Link href="/brands">Brands</Link>
           </NavigationMenuLink>
@@ -99,7 +99,7 @@ export default function NavMenu() {
         <NavigationMenuItem className="hidden lg:flex shrink-0 mr-2 pr-3 hover:opacity-80 transition-opacity">
           <NavigationMenuLink asChild className="p-0 hover:bg-transparent">
             <Link className="flex items-center gap-2" href="/contact">
-              <div className="size-10 rounded-full text-primary-600 bg-primary-50 flex">
+              <div className="size-10 rounded-full text-primary-main bg-primary-50 flex">
                 <HeadsetIcon size="size-5" />
               </div>
 
@@ -118,7 +118,7 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/wishlist"
-              className="text-gray-500 hover:text-primary-600 size-11.25 rounded-full flex hover:bg-gray-100"
+              className="text-gray-500 hover:text-primary-main size-11.25 rounded-full flex hover:bg-gray-100"
             >
               <Heart className="m-auto size-5" width="25" height="20" />
             </Link>
@@ -130,7 +130,7 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/cart"
-              className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-600"
+              className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-main"
             >
               <CartIcon />
             </Link>
@@ -142,7 +142,7 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/profile"
-              className="hidden lg:flex text-gray-500 hover:text-primary-600 size-11.25 rounded-full hover:bg-gray-100"
+              className="hidden lg:flex text-gray-500 hover:text-primary-main size-11.25 rounded-full hover:bg-gray-100"
             >
               <svg
                 className="m-auto size-5"

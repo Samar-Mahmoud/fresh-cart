@@ -37,7 +37,7 @@ export default function MobileNavMenu() {
       <DrawerTrigger asChild>
         <Button
           size="icon-lg"
-          className="lg:hidden ml-1 rounded-full flex bg-primary-600 hover:bg-primary-700"
+          className="lg:hidden ml-1 rounded-full flex bg-primary-main hover:bg-primary-700"
         >
           <MenuIcon
             className="m-auto"
@@ -85,7 +85,7 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link href="/" onClick={handleNavigate}>
                   Home
@@ -97,7 +97,7 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link href="/products" onClick={handleNavigate}>
                   Shop
@@ -109,7 +109,7 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link href="/categories" onClick={handleNavigate}>
                   Categories
@@ -121,7 +121,7 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link href="/brands" onClick={handleNavigate}>
                   Brands
@@ -137,7 +137,7 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link
                   className="flex items-center gap-3"
@@ -161,14 +161,14 @@ export default function MobileNavMenu() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 asChild
-                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
+                className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link
                   className="flex items-center gap-3"
                   href="/cart"
                   onClick={handleNavigate}
                 >
-                  <div className="size-9 rounded-full bg-primary-50 flex text-primary-600">
+                  <div className="size-9 rounded-full bg-primary-50 flex text-primary-main">
                     <CartIcon />
                   </div>
 
@@ -184,7 +184,7 @@ export default function MobileNavMenu() {
         <div className="px-4 pb-4 pt-6 flex gap-3">
           {/* Login */}
           <Link
-            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors"
+            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold bg-primary-main text-white hover:bg-primary-700 transition-colors"
             href="/login"
             onClick={handleNavigate}
           >
@@ -192,7 +192,7 @@ export default function MobileNavMenu() {
           </Link>
           {/* Register */}
           <Link
-            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold border-2 border-primary-600 text-primary-600 hover:bg-primary-50 transition-colors"
+            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold border-2 border-primary-main text-primary-main hover:bg-primary-50 transition-colors"
             href="/register"
             onClick={handleNavigate}
           >
@@ -206,13 +206,13 @@ export default function MobileNavMenu() {
           href="/contact"
           onClick={handleNavigate}
         >
-          <div className="size-10 rounded-full text-primary-600 bg-primary-100 flex">
+          <div className="size-10 rounded-full text-primary-main bg-primary-100 flex">
             <HeadsetIcon size="size-6" />
           </div>
 
           <div className="text-sm font-semibold ">
             <div className="text-gray-700">Need Help?</div>
-            <div className="font-semibold text-primary-600">
+            <div className="font-semibold text-primary-main">
               Contact Support
             </div>
           </div>
