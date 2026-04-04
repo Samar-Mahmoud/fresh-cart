@@ -3,7 +3,6 @@ import { Exo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { cn } from "@/lib/utils";
-import StoreBenefits from "@/components/common/StoreBenefits";
 import Footer from "@/components/common/Footer";
 
 const exo = Exo({
@@ -26,7 +25,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <Navbar />
         {children}
-        <StoreBenefits />
         <Footer />
       </body>
     </html>

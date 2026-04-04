@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface SearchInputProps {
   placeholder: string;
   rounded?: string;
@@ -5,4 +7,14 @@ export interface SearchInputProps {
 
 export interface IconProps {
   size: string;
+}
+
+export interface StoreBenefitProps {
+  iconClasses: string;
+  wrapperClasses?: string;
+  benefits: {
+    title: string;
+    description: string;
+    icon: { node: React.ReactNode; style?: string };
+  }[];
 }
