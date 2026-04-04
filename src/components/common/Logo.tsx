@@ -9,7 +9,6 @@ export default function Logo() {
         src={logo}
         alt="FreshCart Logo"
         className="h-6 lg:h-8 w-auto text-transparent"
-        loading="eager"
       />
     </Link>
   );
