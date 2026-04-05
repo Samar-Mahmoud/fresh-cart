@@ -55,7 +55,7 @@ export default function Slider() {
       <CarouselContent className="h-full px-4 py-20">
         {slides.map(({ title, description, action }) => (
           <CarouselItem key={title} className="h-full flex items-center">
-            <div className="container px-4 md:px-21.5 xl:px-0 xl:mx-auto py-8.5 space-y-4">
+            <div className="container px-4 lg:px-21.5 2xl:px-0 mx-auto py-8.5 space-y-4">
               <h2 className="font-bold text-3xl text-white max-w-[384px]">
                 {title}
               </h2>
@@ -63,13 +63,13 @@ export default function Slider() {
               <div className="flex gap-2">
                 <Link
                   href="/products"
-                  className="text-primary-500 border-2 border-transparent bg-white rounded-lg px-6 py-2 font-semibold hover:scale-[1.05] transition-transform"
+                  className="shrink-0 text-primary-500 border-2 border-transparent bg-white rounded-lg px-6 py-2 font-semibold hover:scale-[1.05] transition-transform"
                 >
                   Shop Now
                 </Link>
                 <Link
                   href={action.href}
-                  className="text-white border-2 border-white/50 rounded-lg px-6 py-2 font-semibold hover:scale-[1.05] transition-transform"
+                  className="shrink-0 text-white border-2 border-white/50 rounded-lg px-6 py-2 font-semibold hover:scale-[1.05] transition-transform"
                 >
                   {action.label}
                 </Link>

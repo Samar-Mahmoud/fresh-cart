@@ -7,13 +7,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+  Separator,
+} from "@/components/ui";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import MobileNavMenu from "./MobileNavMenu";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
-import { Separator } from "@/components/ui/separator";
 
 const items: {
   title: string;

@@ -8,14 +8,13 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
-import {
+  Button,
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+  Separator,
+} from "@/components/ui";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput";
@@ -23,7 +22,6 @@ import Link from "next/link";
 import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
-import { Separator } from "../ui/separator";
 
 export default function MobileNavMenu() {
   const [isOpen, setIsOpen] = useState(false);
