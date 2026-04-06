@@ -10,6 +10,7 @@ import CategoryCard from "@/components/home/CategoryCard";
 import ProductCard from "@/components/home/ProductCard";
 import { getCategories } from "@/services/categories";
 import { getProducts } from "@/services/products";
+import Subscription from "@/components/home/newsletter/Subscription";
 
 const benefits: {
   title: string;
@@ -72,7 +73,7 @@ export default async function Home() {
         <section className="mb-28">
           <header className="flex flex-col sm:flex-row sm:items-center justify-between mb-8">
             <div className="py-8 flex items-center gap-3">
-              <div className="h-8 w-1.5 bg-linear-to-r from-[#00bc7d] to-[#007a55] rounded-full"></div>
+              <div className="h-8 w-1.5 bg-linear-to-r from-emerald-500 to-emerald-700 rounded-full"></div>
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">
                 Shop By
                 <span className="bg-primary-800 bg-clip-text text-transparent">
@@ -100,7 +101,7 @@ export default async function Home() {
         </section>
 
         {/* Products */}
-        <section className="mb-28">
+        <section className="mb-10">
           <header className="py-8 flex items-center gap-3 mb-8">
             <div className="h-8 w-1.5 bg-linear-to-r from-[#00bc7d] to-[#007a55] rounded-full"></div>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">
@@ -117,6 +118,10 @@ export default async function Home() {
               <ProductCard key={prod._id} {...prod} />
             ))}
           </div>
+        </section>
+
+        <section className="py-16">
+          <Subscription />
         </section>
       </div>
     </main>

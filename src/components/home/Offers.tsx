@@ -29,7 +29,10 @@ const offers: {
     off: "40% OFF",
     code: "ORGANIC40",
     btn: "Shop Now",
-    style: { card: "from-[#00bc7d] to-[#007a55]", text: "text-primary-800" },
+    style: {
+      card: "from-emerald-500 to-emerald-700",
+      text: "text-primary-800",
+    },
   },
   {
     badge: "✨ New Arrivals",
