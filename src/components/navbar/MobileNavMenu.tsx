@@ -16,8 +16,8 @@ import {
   Separator,
 } from "@/components/ui";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
-import Logo from "@/components/common/Logo";
-import SearchInput from "@/components/common/ProductSearch";
+import Logo from "@/components/shared/Logo";
+import SearchInput from "@/components/shared/ProductSearch";
 import Link from "next/link";
 import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";

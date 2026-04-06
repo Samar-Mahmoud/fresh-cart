@@ -3,7 +3,7 @@ import { Exo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { cn } from "@/lib/utils";
-import Footer from "@/components/common/Footer";
+import Footer from "@/components/shared/Footer";
 
 const exo = Exo({
   variable: "--font-exo",

@@ -1,4 +1,4 @@
-import StoreBenefits from "@/components/common/StoreBenefits";
+import StoreBenefits from "@/components/shared/StoreBenefits";
 import HeadSetIcon from "@/components/icons/HeadsetIcon";
 import ShieldIcon from "@/components/icons/ShieldIcon";
 import VanIcon from "@/components/icons/VanIcon";
@@ -7,7 +7,7 @@ import { ArrowRight, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import Offers from "@/components/home/Offers";
 import CategoryCard from "@/components/home/CategoryCard";
-import ProductCard from "@/components/home/ProductCard";
+import ProductCard from "@/components/shared/ProductCard";
 import { getCategories } from "@/services/categories";
 import { getProducts } from "@/services/products";
 import Subscription from "@/components/home/newsletter/Subscription";
