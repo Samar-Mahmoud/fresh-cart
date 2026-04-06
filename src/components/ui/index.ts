@@ -6,3 +6,4 @@ export * from "./drawer";
 export * from "./navigation-menu";
 export * from "./separator";
 export * from "./input";
+export * from "./spinner";
