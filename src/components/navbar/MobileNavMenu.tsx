@@ -17,7 +17,7 @@ import {
 } from "@/components/ui";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/common/Logo";
-import SearchInput from "@/components/common/SearchInput";
+import SearchInput from "@/components/common/ProductSearch";
 import Link from "next/link";
 import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";

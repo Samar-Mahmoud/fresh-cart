@@ -21,7 +21,13 @@ export default function ProductCard({
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-60">
-        <Image src={imageCover} alt={title} fill className="object-contain" />
+        <Image
+          src={imageCover}
+          alt={title}
+          fill
+          className="object-contain"
+          sizes="240"
+        />
 
         {priceAfterDiscount && (
           <Badge className="absolute top-3.25 left-3 bg-red-500 rounded-md text-white py-1">

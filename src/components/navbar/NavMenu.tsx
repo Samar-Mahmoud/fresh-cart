@@ -46,7 +46,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main focus:bg-transparent"
           >
             <Link href="/">Home</Link>
           </NavigationMenuLink>
@@ -56,7 +56,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main focus:bg-transparent"
           >
             <Link href="/products">Shop</Link>
           </NavigationMenuLink>
@@ -87,7 +87,7 @@ export default function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
-            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main"
+            className="text-base p-0 font-medium hover:bg-transparent text-gray-600 hover:text-primary-main focus:bg-transparent"
           >
             <Link href="/brands">Brands</Link>
           </NavigationMenuLink>

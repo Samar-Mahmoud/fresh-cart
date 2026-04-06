@@ -3,18 +3,20 @@
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchInputProps } from "@/types/props";
+import { Input } from "@/components/ui";
+import Form from "next/form";
 
-export default function SearchInput({
+export default function ProductSearch({
   rounded = "rounded-full",
   placeholder,
 }: SearchInputProps) {
   return (
-    <form className="flex flex-1 max-w-2xl">
+    <Form className="flex flex-1 max-w-2xl" action="/search">
       <div className="relative w-full">
-        <input
+        <Input
+          name="q"
           placeholder={placeholder}
-          className={`w-full ps-5 pt-3 pe-12 pb-3.25 ${rounded} placeholder:text-gray-400  border border-gray-200 bg-gray-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 transition-all text-sm`}
-          defaultValue=""
+          className={`ps-5 pt-3 pe-12 pb-3.25 h-auto ${rounded} placeholder:text-gray-400 border-gray-200 bg-gray-50/50 focus:bg-white  focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 transition-all text-sm`}
         />
 
         <Button
@@ -25,6 +27,6 @@ export default function SearchInput({
           <Search width="18" height="14" strokeWidth="3" color="white" />
         </Button>
       </div>
-    </form>
+    </Form>
   );
 }
