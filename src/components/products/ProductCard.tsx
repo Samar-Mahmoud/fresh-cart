@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Eye, Heart, Plus, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { Badge, Button } from "@/components/ui";
-import Ratings from "./Ratings";
+import Rating from "./Rating";
 
 export default function ProductCard({
   _id,
@@ -64,15 +64,15 @@ export default function ProductCard({
         </Link>
 
         <div className="flex items-center gap-2">
-          <Ratings ratingsAverage={ratingsAverage} />
-          <span className="text-xs text-gray-500">
+          <Rating rating={ratingsAverage} />
+          <span className="text-xs text-gray-500 shrink-0">
             {ratingsAverage} ({ratingsQuantity})
           </span>
         </div>
 
         <div className="flex items-center justify-between gap-2">
           {priceAfterDiscount ? (
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-lg font-bold text-primary-main ">
                 {priceAfterDiscount} EGP
               </span>

@@ -1,20 +1,3 @@
-export interface ProductsResponse {
-  results: number;
-  metadata: Metadata;
-  data: Product[];
-}
-
-export interface ProductResponse {
-  data: Product;
-}
-
-export interface Metadata {
-  currentPage: number;
-  numberOfPages: number;
-  limit: number;
-  nextPage: number;
-}
-
 export interface Product {
   sold: number;
   images: string[];
@@ -34,6 +17,7 @@ export interface Product {
   updatedAt: string;
   id: string;
   priceAfterDiscount?: number;
+  reviews: Review[];
 }
 
 export interface Subcategory {
@@ -55,4 +39,19 @@ export interface Brand {
   name: string;
   slug: string;
   image: string;
+}
+
+export interface Review {
+  _id: string;
+  review: string;
+  rating: number;
+  product: string;
+  user: User;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  _id: string;
+  name: string;
 }

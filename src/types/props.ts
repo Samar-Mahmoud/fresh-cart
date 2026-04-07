@@ -31,3 +31,12 @@ export interface ProductQuantityProps {
   quantity: Product["quantity"];
   price: Product["price"];
 }
+
+export interface ProductTabsProps {
+  description: Product["description"];
+  subcategory: Product["subcategory"];
+  categoryName: Product["category"]["name"];
+  brandName: Product["brand"]["name"];
+  sold: Product["sold"];
+  reviews: Product["reviews"];
+}

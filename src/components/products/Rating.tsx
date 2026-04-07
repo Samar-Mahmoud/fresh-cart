@@ -1,13 +1,8 @@
 import { Star } from "lucide-react";
-import React from "react";
 
-export default function Ratings({
-  ratingsAverage,
-}: {
-  ratingsAverage: number;
-}) {
-  const fullStars = Math.floor(ratingsAverage);
-  const hasHalfStar = ratingsAverage - fullStars > 0;
+export default function Rating({ rating }: { rating: number }) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars > 0;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (

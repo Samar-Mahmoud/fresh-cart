@@ -1,6 +1,7 @@
 import ShieldIcon from "@/components/icons/ShieldIcon";
 import ProductQuantity from "@/components/products/ProductQuantity";
-import Ratings from "@/components/products/Ratings";
+import ProductTabs from "@/components/products/ProductTabs";
+import Rating from "@/components/products/Rating";
 import ImagesSlider from "@/components/products/slider/ImagesSlider";
 import StoreBenefits from "@/components/shared/StoreBenefits";
 import {
@@ -11,6 +12,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  Separator,
 } from "@/components/ui";
 import { getProduct } from "@/services/products";
 import { Circle, RotateCcw } from "lucide-react";
@@ -78,7 +80,14 @@ export default async function ProductDetails({
     priceAfterDiscount,
     description,
     quantity,
+    sold,
+    reviews,
   } = await getProduct(id);
+
+  const rating = {
+    average: reviews.length > 0 ? ratingsAverage : 0,
+    count: reviews.length > 0 ? ratingsQuantity : 0,
+  };
 
   return (
     <section className="p-4">
@@ -144,10 +153,10 @@ export default async function ProductDetails({
       </Breadcrumb>
 
       <div className="p-4">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-14">
-          <div className="lg:w-1/4">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-14 relative">
+          <section className="lg:w-1/4 lg:sticky top-0">
             <ImagesSlider images={images} title={title} />
-          </div>
+          </section>
 
           <section className="rounded-xl shadow-sm p-4 flex flex-col flex-1">
             <div className="flex gap-2 mb-4">
@@ -167,10 +176,14 @@ export default async function ProductDetails({
             </h1>
 
             <div className="flex gap-3 items-center mb-4">
-              <Ratings ratingsAverage={ratingsAverage} />
+              <Rating rating={rating.average} />
 
               <div className="text-sm font-medium text-gray-600">
-                {ratingsAverage} ({ratingsQuantity} reviews)
+                (
+                {rating.count > 0
+                  ? `${rating.count} reviews`
+                  : "No Reviews Yet"}
+                )
               </div>
             </div>
 
@@ -204,7 +217,9 @@ export default async function ProductDetails({
               In Stock
             </Badge>
 
-            <p className="pt-5 border-t border-gray-100 mb-6 text-base font-medium text-gray-600">
+            <Separator className="bg-gray-100" />
+
+            <p className="pt-5 mb-6 text-base font-medium text-gray-600">
               {description}
             </p>
 
@@ -214,7 +229,9 @@ export default async function ProductDetails({
               price={priceAfterDiscount ?? price}
             />
 
-            <div className="pt-6 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+            <Separator className="bg-gray-100" />
+
+            <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
               <StoreBenefits
                 benefits={benefits}
                 iconClasses="size-10 flex rounded-full bg-primary-100 text-primary-main"
@@ -223,7 +240,16 @@ export default async function ProductDetails({
           </section>
         </div>
 
-        {/* TODO: Product details */}
+        <section className="rounded-lg shadow-sm">
+          <ProductTabs
+            brandName={brandName}
+            categoryName={categoryName}
+            description={description}
+            sold={sold}
+            subcategory={subcategory}
+            reviews={reviews}
+          />
+        </section>
 
         {/* TODO: Suggestions */}
       </div>

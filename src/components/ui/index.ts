@@ -9,3 +9,5 @@ export * from "./input";
 export * from "./spinner";
 export * from "./breadcrumb";
 export * from "./skeleton";
+export * from "./tabs";
+export * from "./empty";
