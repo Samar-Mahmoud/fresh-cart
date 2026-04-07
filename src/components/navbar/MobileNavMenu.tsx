@@ -17,7 +17,7 @@ import {
 } from "@/components/ui";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/shared/Logo";
-import SearchInput from "@/components/shared/ProductSearch";
+import ProductSearch from "@/components/products/ProductSearch";
 import Link from "next/link";
 import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
@@ -69,7 +69,10 @@ export default function MobileNavMenu() {
         <Separator />
 
         <div className="p-4">
-          <SearchInput rounded="rounded-xl" placeholder="Search products..." />
+          <ProductSearch
+            rounded="rounded-xl"
+            placeholder="Search products..."
+          />
         </div>
 
         <Separator />
@@ -167,7 +170,7 @@ export default function MobileNavMenu() {
                   onClick={handleNavigate}
                 >
                   <div className="size-9 rounded-full bg-primary-50 flex text-primary-main">
-                    <CartIcon />
+                    <CartIcon className="m-auto size-5" />
                   </div>
 
                   <span className="font-medium text-gray-700">Cart</span>

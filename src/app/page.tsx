@@ -7,7 +7,7 @@ import { ArrowRight, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import Offers from "@/components/home/Offers";
 import CategoryCard from "@/components/home/CategoryCard";
-import ProductCard from "@/components/shared/ProductCard";
+import ProductCard from "@/components/products/ProductCard";
 import { getCategories } from "@/services/categories";
 import { getProducts } from "@/services/products";
 import Subscription from "@/components/home/newsletter/Subscription";
@@ -61,11 +61,13 @@ export default async function Home() {
       <Slider />
 
       <section className="px-4 py-8 bg-gray-50 mb-10">
-        <StoreBenefits
-          benefits={benefits}
-          iconClasses="size-12 shrink-0 rounded-full flex"
-          wrapperClasses="p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow"
-        />
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StoreBenefits
+            benefits={benefits}
+            iconClasses="size-12 shrink-0 rounded-full flex"
+            wrapperClasses="p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow"
+          />
+        </div>
       </section>
 
       <div className="container mx-auto px-4">

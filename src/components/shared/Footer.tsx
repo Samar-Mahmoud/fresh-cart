@@ -99,11 +99,13 @@ const benefits: StoreBenefitProps["benefits"] = [
 export default function Footer() {
   return (
     <>
-      <div className="bg-primary-50 border-y border-primary-100 px-4 py-6">
-        <StoreBenefits
-          benefits={benefits}
-          iconClasses="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex"
-        />
+      <div className="bg-primary-50 border-y border-primary-100 px-4 py-6 ">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StoreBenefits
+            benefits={benefits}
+            iconClasses="size-12 shrink-0 rounded-xl bg-primary-100 text-primary-main flex"
+          />
+        </div>
       </div>
 
       <footer className="bg-gray-900">

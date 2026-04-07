@@ -132,7 +132,7 @@ export default function NavMenu() {
               href="/cart"
               className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-main"
             >
-              <CartIcon />
+              <CartIcon className="m-auto size-5" />
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>

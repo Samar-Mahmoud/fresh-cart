@@ -18,7 +18,7 @@ export default function MobileApp() {
       ></div>
 
       <CardHeader className="px-8 gap-0">
-        <Badge className="mb-5 bg-emerald-500/20 text-emerald-400 font-semibold px-3 py-1.5 border-emerald-500/30 h-auto">
+        <Badge className="mb-5 bg-emerald-500/20 text-emerald-400 font-semibold px-3 py-1.5 border-emerald-500/30">
           📱 MOBILE APP
         </Badge>
 

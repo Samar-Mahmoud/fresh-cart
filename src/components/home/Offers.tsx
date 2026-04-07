@@ -54,7 +54,7 @@ export default function Offers() {
           className={`relative gap-0 text-white py-8 rounded-xl bg-linear-to-br ${style.card} before:size-40 before:rounded-full before:absolute before:-top-20 before:-right-20 before:bg-white/10 after:size-40 after:rounded-full after:absolute after:-bottom-20 after:-left-20 after:bg-white/10`}
         >
           <CardHeader className="px-8 mb-4 gap-0">
-            <Badge className="h-auto mb-4 px-3 py-1 bg-white/20 text-sm">
+            <Badge className="mb-4 px-3 py-1 bg-white/20 text-sm">
               {badge}
             </Badge>
 

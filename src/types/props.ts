@@ -6,7 +6,8 @@ export interface SearchInputProps {
 }
 
 export interface IconProps {
-  size: string;
+  size?: string;
+  className?: string;
 }
 
 export interface StoreBenefitProps {

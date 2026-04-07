@@ -1,7 +1,9 @@
-export default function CartIcon() {
+import { IconProps } from "@/types/props";
+
+export default function CartIcon({ className }: IconProps) {
   return (
     <svg
-      className="m-auto size-5"
+      className={className}
       width="25"
       height="21"
       viewBox="0 0 25 21"

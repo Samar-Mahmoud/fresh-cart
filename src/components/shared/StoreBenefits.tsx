@@ -6,7 +6,7 @@ export default function StoreBenefits({
   wrapperClasses = "",
 }: StoreBenefitProps) {
   return (
-    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <>
       {benefits.map(({ title, description, icon }) => (
         <div
           key={title}
@@ -22,6 +22,6 @@ export default function StoreBenefits({
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
