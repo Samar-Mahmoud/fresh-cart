@@ -8,3 +8,4 @@ export * from "./separator";
 export * from "./input";
 export * from "./spinner";
 export * from "./breadcrumb";
+export * from "./skeleton";

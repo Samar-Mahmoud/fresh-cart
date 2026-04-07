@@ -1,4 +1,4 @@
-import ProductCard from "@/components/shared/ProductCard";
+import ProductCard from "@/components/products/ProductCard";
 import { getProducts } from "@/services/products";
 import Link from "next/link";
 import {
@@ -29,9 +29,11 @@ export default async function Products() {
                   </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
+
               <BreadcrumbSeparator>
                 <span className="text-white/40">/</span>
               </BreadcrumbSeparator>
+
               <BreadcrumbItem>
                 <BreadcrumbPage className="text-white font-medium text-sm">
                   All Products
