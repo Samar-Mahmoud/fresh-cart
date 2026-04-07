@@ -2,10 +2,7 @@ import { useCarousel } from "@/components/ui/carousel";
 import { ImagesSliderProps } from "@/types/props";
 import Image from "next/image";
 
-export default function ImagesSliderNavigation({
-  images,
-  title,
-}: ImagesSliderProps) {
+export default function ImagesNavigation({ images, title }: ImagesSliderProps) {
   const { scrollSnaps, goTo, selectedSnap } = useCarousel();
 
   return (

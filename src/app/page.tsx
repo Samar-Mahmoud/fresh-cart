@@ -105,7 +105,7 @@ export default async function Home() {
         {/* Products */}
         <section className="mb-10">
           <header className="py-8 flex items-center gap-3 mb-8">
-            <div className="h-8 w-1.5 bg-linear-to-r from-[#00bc7d] to-[#007a55] rounded-full"></div>
+            <div className="h-8 w-1.5 bg-linear-to-r from-emerald-500 to-emerald-700 rounded-full"></div>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">
               Featured
               <span className="bg-primary-800 bg-clip-text text-transparent">

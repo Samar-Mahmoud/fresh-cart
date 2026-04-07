@@ -14,8 +14,8 @@ export default function loading() {
         <Skeleton className="w-18 h-4" />
       </div>
 
-      <div className="p-4 flex flex-col items-center lg:flex-row lg:items-start gap-8">
-        <div className="max-w-md lg:w-1/4 lg:max-w-none p-4 rounded-xl shadow-sm">
+      <div className="p-4 flex flex-col lg:flex-row gap-8">
+        <div className="lg:w-1/4 p-4 rounded-xl shadow-sm">
           <Skeleton className="w-full h-72" />
 
           <div className="overflow-hidden h-28.5 flex items-center justify-center">

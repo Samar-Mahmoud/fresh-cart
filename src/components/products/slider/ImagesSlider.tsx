@@ -6,7 +6,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import SliderNavigation from "./SliderNavigation";
+import ImagesNavigation from "./ImagesNavigation";
 import { ImagesSliderProps } from "@/types/props";
 
 export default function ImagesSlider({ images, title }: ImagesSliderProps) {
@@ -26,7 +26,7 @@ export default function ImagesSlider({ images, title }: ImagesSliderProps) {
         ))}
       </CarouselContent>
 
-      <SliderNavigation images={images} title={title} />
+      <ImagesNavigation images={images} title={title} />
     </Carousel>
   );
 }

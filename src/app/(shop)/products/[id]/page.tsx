@@ -3,6 +3,7 @@ import ProductQuantity from "@/components/products/ProductQuantity";
 import ProductTabs from "@/components/products/ProductTabs";
 import Rating from "@/components/products/Rating";
 import ImagesSlider from "@/components/products/slider/ImagesSlider";
+import ProductsSlider from "@/components/products/slider/ProductsSlider";
 import StoreBenefits from "@/components/shared/StoreBenefits";
 import {
   Badge,
@@ -14,7 +15,7 @@ import {
   BreadcrumbSeparator,
   Separator,
 } from "@/components/ui";
-import { getProduct } from "@/services/products";
+import { getProduct, getProducts } from "@/services/products";
 import { Circle, RotateCcw } from "lucide-react";
 import Link from "next/link";
 
@@ -88,6 +89,8 @@ export default async function ProductDetails({
     average: reviews.length > 0 ? ratingsAverage : 0,
     count: reviews.length > 0 ? ratingsQuantity : 0,
   };
+
+  const products = await getProducts();
 
   return (
     <section className="p-4">
@@ -240,7 +243,7 @@ export default async function ProductDetails({
           </section>
         </div>
 
-        <section className="rounded-lg shadow-sm">
+        <section className="rounded-lg shadow-sm mb-18">
           <ProductTabs
             brandName={brandName}
             categoryName={categoryName}
@@ -251,7 +254,9 @@ export default async function ProductDetails({
           />
         </section>
 
-        {/* TODO: Suggestions */}
+        <section className="space-y-6 mb-2">
+          <ProductsSlider products={products} />
+        </section>
       </div>
     </section>
   );
