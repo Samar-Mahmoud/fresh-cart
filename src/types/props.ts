@@ -1,4 +1,5 @@
 import React from "react";
+import { Product } from "./products";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -18,4 +19,15 @@ export interface StoreBenefitProps {
     description: string;
     icon: { node: React.ReactNode; style?: string };
   }[];
+}
+
+export interface ImagesSliderProps {
+  images: Product["images"];
+  title: Product["title"];
+}
+
+export interface ProductQuantityProps {
+  id: Product["_id"];
+  quantity: Product["quantity"];
+  price: Product["price"];
 }

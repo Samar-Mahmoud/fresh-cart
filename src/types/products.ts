@@ -4,6 +4,10 @@ export interface ProductsResponse {
   data: Product[];
 }
 
+export interface ProductResponse {
+  data: Product;
+}
+
 export interface Metadata {
   currentPage: number;
   numberOfPages: number;
