@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import React from "react";
 
 export default function Header({
   title,
@@ -15,26 +16,31 @@ export default function Header({
   description,
   page,
   children,
+  links = [{ label: "Home", href: "/" }],
 }: HeaderProps) {
   return (
     <header className={`bg-linear-to-br ${classes}`}>
       <div className="container mx-auto px-4 py-10 lg:py-14 space-y-6">
         <Breadcrumb>
           <BreadcrumbList className="gap-2 sm:gap-2 mb-6">
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link
-                  className="text-white/70 hover:text-white transition-colors text-sm"
-                  href="/"
-                >
-                  Home
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+            {links.map(({ href, label }) => (
+              <React.Fragment key={label}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link
+                      className="text-white/70 hover:text-white transition-colors text-sm"
+                      href={href}
+                    >
+                      {label}
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
 
-            <BreadcrumbSeparator>
-              <span className="text-white/40">/</span>
-            </BreadcrumbSeparator>
+                <BreadcrumbSeparator>
+                  <span className="text-white/40">/</span>
+                </BreadcrumbSeparator>
+              </React.Fragment>
+            ))}
 
             <BreadcrumbItem>
               <BreadcrumbPage className="text-white font-medium text-sm">

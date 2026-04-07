@@ -46,5 +46,6 @@ export interface HeaderProps {
   description: string;
   classes: string;
   page?: string;
+  links?: { label: string; href: string }[];
   children: React.ReactNode;
 }

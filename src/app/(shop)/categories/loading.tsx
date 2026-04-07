@@ -13,7 +13,7 @@ export default function loading() {
           >
             <Skeleton className="aspect-square rounded-xl mb-4" />
 
-            <Skeleton className="h-4 w-full mx-auto" />
+            <Skeleton className="h-4 w-full" />
           </div>
         ))}
       </div>

@@ -2,15 +2,19 @@ import ProductCard from "@/components/products/ProductCard";
 import { getProducts } from "@/services/products";
 import { Brand } from "@/types/brands";
 import Header from "@/components/shared/Header";
+import { SubCategory } from "@/types/categories";
 
 export default async function Products({
   searchParams,
 }: {
-  searchParams: Promise<{ brand?: Brand["_id"] }>;
+  searchParams: Promise<{
+    brand?: Brand["_id"];
+    subcategory?: SubCategory["_id"];
+  }>;
 }) {
-  const { brand } = await searchParams;
+  const { brand, subcategory } = await searchParams;
 
-  const products = await getProducts(brand);
+  const products = await getProducts(brand, subcategory);
 
   return (
     <section className="min-h-screen">
