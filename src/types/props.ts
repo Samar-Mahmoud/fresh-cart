@@ -40,3 +40,11 @@ export interface ProductTabsProps {
   sold: Product["sold"];
   reviews: Product["reviews"];
 }
+
+export interface HeaderProps {
+  title: string;
+  description: string;
+  classes: string;
+  page?: string;
+  children: React.ReactNode;
+}
