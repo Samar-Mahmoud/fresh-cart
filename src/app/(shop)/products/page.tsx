@@ -9,9 +9,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Brand } from "@/types/brands";
 
-export default async function Products() {
-  const products = await getProducts();
+export default async function Products({
+  searchParams,
+}: {
+  searchParams: Promise<{ brand?: Brand["_id"] }>;
+}) {
+  const { brand } = await searchParams;
+
+  const products = await getProducts(brand);
 
   return (
     <section className="min-h-screen">
