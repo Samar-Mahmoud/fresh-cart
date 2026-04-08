@@ -24,15 +24,15 @@ const sections: {
       { name: "Brands", href: "/brands" },
       {
         name: "Electronics",
-        href: "/products?category=6439d58a0049ad0b52b9003f",
-      },
-      {
-        name: "Men's Fashion",
         href: "/products?category=6439d2d167d9aa4ca970649f",
       },
       {
-        name: "Women's Fashion",
+        name: "Men's Fashion",
         href: "/products?category=6439d5b90049ad0b52b90048",
+      },
+      {
+        name: "Women's Fashion",
+        href: "/products?category=6439d58a0049ad0b52b9003f",
       },
     ],
   },

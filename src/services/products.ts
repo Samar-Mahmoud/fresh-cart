@@ -7,7 +7,7 @@ export async function getProducts({
   brand,
   category,
   subcategory,
-}: ProductsFilters) {
+}: ProductsFilters = {}) {
   const q = [];
   if (brand) {
     q.push(`brand=${brand}`);
