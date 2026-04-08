@@ -72,6 +72,7 @@ export default function MobileNavMenu() {
           <ProductSearch
             rounded="rounded-xl"
             placeholder="Search products..."
+            onSearch={handleNavigate}
           />
         </div>
 

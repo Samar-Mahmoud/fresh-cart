@@ -9,6 +9,7 @@ import Form from "next/form";
 export default function ProductSearch({
   rounded = "rounded-full",
   placeholder,
+  onSearch,
 }: SearchInputProps) {
   return (
     <Form className="flex flex-1 max-w-2xl" action="/search">
@@ -23,6 +24,7 @@ export default function ProductSearch({
           type="submit"
           size="icon"
           className={`absolute right-[6.16px] top-1.25 ${rounded} bg-primary-main hover:bg-primary-700`}
+          onClick={onSearch}
         >
           <Search width="18" height="14" strokeWidth="3" color="white" />
         </Button>

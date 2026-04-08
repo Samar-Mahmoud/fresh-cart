@@ -4,6 +4,7 @@ import { Product } from "./products";
 export interface SearchInputProps {
   placeholder: string;
   rounded?: string;
+  onSearch?: () => void;
 }
 
 export interface IconProps {
