@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Product } from "@/types/products";
-import ProductCard from "../ProductCard";
+import ProductCard from "../Card";
 
 export default function ProductsSlider({ products }: { products: Product[] }) {
   return (

@@ -35,14 +35,14 @@ export default function ProductCard({
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           <Button
             size="icon-sm"
-            className="bg-white rounded-full shadow-sm text-gray-600 hover:text-red-500"
+            className="bg-white rounded-full shadow-sm text-gray-600 hover:bg-white hover:text-red-500"
           >
             <Heart className="size-4" />
           </Button>
 
           <Button
             size="icon-sm"
-            className="bg-white rounded-full shadow-sm text-gray-600 hover:text-primary-600"
+            className="bg-white rounded-full shadow-sm text-gray-600 hover:bg-white hover:text-primary-600"
           >
             <RotateCcw className="size-4" />
           </Button>
@@ -63,7 +63,7 @@ export default function ProductCard({
           {title}
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <Rating rating={ratingsAverage} />
           <span className="text-xs text-gray-500 shrink-0">
             {ratingsAverage} ({ratingsQuantity})

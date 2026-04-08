@@ -1,4 +1,4 @@
-import ProductCard from "@/components/products/ProductCard";
+import ProductCard from "@/components/products/Card";
 import { getProducts } from "@/services/products";
 import Header from "@/components/shared/Header";
 import { BoxIcon, Filter, FolderOpen, XIcon } from "lucide-react";

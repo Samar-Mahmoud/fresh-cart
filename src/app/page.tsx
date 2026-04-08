@@ -7,7 +7,7 @@ import { ArrowRight, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import Offers from "@/components/home/Offers";
 import CategoryCard from "@/components/home/CategoryCard";
-import ProductCard from "@/components/products/ProductCard";
+import ProductCard from "@/components/products/Card";
 import { getCategories } from "@/services/categories";
 import { getProducts } from "@/services/products";
 import Subscription from "@/components/home/newsletter/Subscription";

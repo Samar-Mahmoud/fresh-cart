@@ -17,7 +17,7 @@ export default function ProductSearch({
         <Input
           name="q"
           placeholder={placeholder}
-          className={`ps-5 pt-3 pe-12 pb-3.25 h-auto ${rounded} placeholder:text-gray-400 border-gray-200 bg-gray-50/50 focus:bg-white  focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600 transition-all text-sm`}
+          className={`ps-5 pt-3 pe-12 pb-3.25 h-auto ${rounded} placeholder:text-gray-400 border-gray-200 bg-gray-50/50 focus:bg-white transition-all text-sm`}
         />
 
         <Button

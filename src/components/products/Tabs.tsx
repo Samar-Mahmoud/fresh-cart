@@ -3,7 +3,7 @@ import VanIcon from "@/components/icons/VanIcon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 import { ProductTabsProps } from "@/types/props";
 import { Check, RotateCcw, Star } from "lucide-react";
-import ProductReviews from "./ProductReviews";
+import ProductReviews from "./Reviews";
 
 export default function ProductTabs({
   description,

@@ -5,7 +5,7 @@ import SubmitButton from "./SubmitButton";
 export default function SubscriptionForm() {
   return (
     <Form className="space-y-3" action="">
-      <div className="grid grid-cols-12 gap-3">
+      <div className="grid grid-cols-12 gap-3 px-1">
         <Input
           required
           type="email"
