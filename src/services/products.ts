@@ -1,17 +1,19 @@
 import { Response } from "@/types";
-import { Brand } from "@/types/brands";
-import { SubCategory } from "@/types/categories";
-import { Product } from "@/types/products";
+import { Product, ProductsFilters } from "@/types/products";
 
 const PRODUCTS = `${process.env.BASE_URL}/v1/products`;
 
-export async function getProducts(
-  brand?: Brand["_id"],
-  subcategory?: SubCategory["_id"],
-) {
+export async function getProducts({
+  brand,
+  category,
+  subcategory,
+}: ProductsFilters) {
   const q = [];
   if (brand) {
     q.push(`brand=${brand}`);
+  }
+  if (category) {
+    q.push(`category=${category}`);
   }
   if (subcategory) {
     q.push(`subcategory=${subcategory}`);
