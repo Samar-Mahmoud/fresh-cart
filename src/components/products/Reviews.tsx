@@ -1,14 +1,8 @@
 import Rating from "@/components/products/Rating";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-  Separator,
-} from "@/components/ui";
+import { Button, Separator } from "@/components/ui";
 import { Product } from "@/types/products";
 import { Star } from "lucide-react";
+import EmptyState from "../shared/Empty";
 
 export default async function ProductReviews({
   reviews,
@@ -78,26 +72,16 @@ export default async function ProductReviews({
       <Separator className="bg-gray-200 mb-6" />
 
       {reviews.length === 0 ? (
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia
-              variant="icon"
-              className="text-primary-main bg-primary-50/50"
-            >
-              <Star />
-            </EmptyMedia>
-            <EmptyTitle className="text-gray-700">No Reviews Yet</EmptyTitle>
-            <EmptyDescription className="text-gray-500">
-              Customer reviews will be displayed here.
-            </EmptyDescription>
-          </EmptyHeader>
-          {/* TODO */}
-          {/* <EmptyContent>
+        <EmptyState
+          icon={<Star />}
+          title="No Reviews Yet"
+          description="Customer reviews will be displayed here."
+          action={
             <Button className="bg-primary-main text-white hover:bg-primary-700 rounded-lg">
               Write a Review
             </Button>
-          </EmptyContent> */}
-        </Empty>
+          }
+        />
       ) : (
         <div className="p-4 space-y-4">
           {reviews.map(({ user: { name }, review, rating }, index) => (

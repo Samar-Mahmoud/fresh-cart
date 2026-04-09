@@ -5,16 +5,9 @@ import { BoxIcon, Filter, FolderOpen, XIcon } from "lucide-react";
 import Link from "next/link";
 import BrandIcon from "@/components/icons/BrandIcon";
 import Image from "next/image";
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui";
 import { getHeaderData } from "@/lib/products";
 import { ProductsFilters } from "@/types/products";
+import EmptyState from "@/components/shared/Empty";
 
 export default async function Products({
   searchParams,
@@ -107,30 +100,19 @@ export default async function Products({
             ))}
           </div>
         ) : (
-          <Empty>
-            <EmptyHeader>
-              <EmptyMedia
-                variant="icon"
-                className="size-18 text-gray-400 bg-gray-100 rounded-full"
-              >
-                <BoxIcon className="size-8 " />
-              </EmptyMedia>
-              <EmptyTitle className="text-gray-900 font-bold">
-                No Products Found
-              </EmptyTitle>
-              <EmptyDescription className="text-gray-500 font-semibold">
-                No Products match your current filters
-              </EmptyDescription>
-            </EmptyHeader>
-            <EmptyContent>
+          <EmptyState
+            icon={<BoxIcon className="size-8 " />}
+            title="No Products Found"
+            description="No Products match your current filters"
+            action={
               <Link
                 href="/products"
                 className="py-3 px-6 font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white rounded-lg"
               >
                 View All Products
               </Link>
-            </EmptyContent>
-          </Empty>
+            }
+          />
         )}
       </div>
     </section>

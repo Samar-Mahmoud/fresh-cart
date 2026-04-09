@@ -65,11 +65,13 @@ export default async function SearchResults({
             <ProductSearchFilters categories={categories} brands={brands} />
           </aside>
 
-          <ProductList
-            products={products}
-            brands={brands}
-            categories={categories}
-          />
+          <main className="space-y-6 flex-1">
+            <ProductList
+              products={products}
+              brands={brands}
+              categories={categories}
+            />
+          </main>
         </div>
       </div>
     </section>

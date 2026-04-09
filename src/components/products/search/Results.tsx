@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Button,
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui";
+import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/products/Card";
 import { Search } from "lucide-react";
 import { List } from "lucide-react";
@@ -16,6 +8,7 @@ import MobileSearchFilters from "@/components/products/search/MobileSearchFilter
 import SortBy from "@/components/products/SortBy";
 import { SearchResultsProps } from "@/types/props";
 import { useState } from "react";
+import EmptyState from "@/components/shared/Empty";
 
 export default function Results({
   products,
@@ -24,8 +17,8 @@ export default function Results({
 }: SearchResultsProps) {
   const [view, setView] = useState<"grid" | "rows">("grid");
 
-  return (
-    <main className="space-y-6 flex-1">
+  return products.length > 0 ? (
+    <>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-4">
           <div className="lg:hidden">
@@ -63,38 +56,26 @@ export default function Results({
         <SortBy />
       </div>
 
-      {products.length > 0 ? (
-        <div
-          className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
-        >
-          {products.map((prod) => (
-            <ProductCard key={prod._id} {...prod} />
-          ))}
-        </div>
-      ) : (
-        <Empty className="p-24">
-          <EmptyHeader>
-            <EmptyMedia
-              variant="icon"
-              className="size-18 text-gray-400 bg-gray-100 rounded-full"
-            >
-              <Search className="size-8 " />
-            </EmptyMedia>
-            <EmptyTitle className="text-gray-900 font-bold">
-              No Products Found
-            </EmptyTitle>
-            <EmptyDescription className="text-gray-500 font-semibold">
-              Try adjusting your search or filters to find what you&apos;re
-              looking for.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button className="py-3 px-6 font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white rounded-lg">
-              Clear Filters
-            </Button>
-          </EmptyContent>
-        </Empty>
-      )}
-    </main>
+      <div
+        className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
+      >
+        {products.map((prod) => (
+          <ProductCard key={prod._id} {...prod} />
+        ))}
+      </div>
+    </>
+  ) : (
+    <div className="p-13">
+      <EmptyState
+        icon={<Search className="size-8 " />}
+        title="No Products Found"
+        description="Try adjusting your search or filters to find what you're looking for."
+        action={
+          <Button className="py-3 px-6 font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white rounded-lg">
+            Clear Filters
+          </Button>
+        }
+      />
+    </div>
   );
 }
