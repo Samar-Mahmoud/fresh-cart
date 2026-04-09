@@ -142,7 +142,7 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/profile"
-              className="hidden lg:flex text-gray-500 hover:text-primary-main size-11.25 rounded-full hover:bg-gray-100"
+              className="text-gray-500 hover:text-primary-main size-11.25 rounded-full hover:bg-gray-100"
             >
               <svg
                 className="m-auto size-5"

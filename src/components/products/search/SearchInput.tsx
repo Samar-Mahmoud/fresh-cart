@@ -9,16 +9,16 @@ export default function SearchInput() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const defaultValue = searchParams.get("q") ?? "";
+  const defaultValue = searchParams.get("keyword") ?? "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const params = new URLSearchParams(searchParams.toString());
 
-    const q = e.target.value;
-    if (q) {
-      params.set("q", q);
+    const keyword = e.target.value;
+    if (keyword) {
+      params.set("keyword", keyword);
     } else {
-      params.delete("q");
+      params.delete("keyword");
     }
 
     router.replace(`/search?${params.toString()}`);

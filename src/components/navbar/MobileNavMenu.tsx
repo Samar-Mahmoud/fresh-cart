@@ -19,12 +19,12 @@ import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/shared/Logo";
 import ProductSearch from "@/components/products/search/SearchForm";
 import Link from "next/link";
-import { useState } from "react";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
+import useDrawerHandler from "@/hooks/useDrawerHandler";
 
 export default function MobileNavMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, setIsOpen } = useDrawerHandler();
 
   const handleNavigate = () => {
     setIsOpen(false);
@@ -35,7 +35,7 @@ export default function MobileNavMenu() {
       <DrawerTrigger asChild>
         <Button
           size="icon-lg"
-          className="lg:hidden ml-1 rounded-full flex bg-primary-main hover:bg-primary-700"
+          className="xl:hidden ml-1 rounded-full flex bg-primary-main hover:bg-primary-700"
         >
           <MenuIcon
             className="m-auto"
