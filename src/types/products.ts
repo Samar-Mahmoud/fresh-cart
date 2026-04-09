@@ -39,8 +39,8 @@ export interface User {
 }
 
 export interface ProductsFilters {
-  brand?: Brand["_id"];
-  category?: Category["_id"];
+  brand?: Brand["_id"] | Brand["_id"][];
+  category?: Category["_id"] | Category["_id"][];
   subcategory?: SubCategory["_id"];
   keyword?: string;
   "price[gte]"?: string;

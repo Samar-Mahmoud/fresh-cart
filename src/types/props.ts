@@ -57,3 +57,7 @@ export interface SearchFiltersProps {
   categories: Category[];
   brands: Brand[];
 }
+
+export interface SearchResultsProps extends SearchFiltersProps {
+  products: Product[];
+}
