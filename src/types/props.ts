@@ -1,5 +1,7 @@
 import React from "react";
 import { Product } from "./products";
+import { Brand } from "./brands";
+import { Category } from "./categories";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -49,4 +51,9 @@ export interface HeaderProps {
   page?: string;
   links?: { label: string; href: string }[];
   children: React.ReactNode;
+}
+
+export interface SearchFiltersProps {
+  categories: Category[];
+  brands: Brand[];
 }

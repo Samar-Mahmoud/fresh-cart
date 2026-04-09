@@ -3,21 +3,14 @@ import { Product, ProductsFilters } from "@/types/products";
 
 const PRODUCTS = `${process.env.BASE_URL}/v1/products`;
 
-export async function getProducts({
-  brand,
-  category,
-  subcategory,
-}: ProductsFilters = {}) {
-  const q = [];
-  if (brand) {
-    q.push(`brand=${brand}`);
-  }
-  if (category) {
-    q.push(`category=${category}`);
-  }
-  if (subcategory) {
-    q.push(`subcategory=${subcategory}`);
-  }
+export async function getProducts(filters: ProductsFilters = {}) {
+  const q: string[] = [];
+  Object.entries(filters).forEach(([key, value]) => {
+    if (!value) return;
+    const valueArr = Array.isArray(value) ? value : [value];
+    valueArr.forEach((v) => q.push(`${key}=${v}`));
+  });
+
   const res = await fetch(
     `${PRODUCTS}${q.length > 0 ? `?${q.join("&")}` : ""}`,
   );

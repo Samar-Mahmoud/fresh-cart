@@ -16,7 +16,7 @@ export default function ProductCard({
   ratingsQuantity,
 }: Product) {
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-60">
         <Image
           src={imageCover}

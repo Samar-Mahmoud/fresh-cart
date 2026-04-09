@@ -11,3 +11,7 @@ export * from "./breadcrumb";
 export * from "./skeleton";
 export * from "./tabs";
 export * from "./empty";
+export * from "./select";
+export * from "./field";
+export * from "./checkbox";
+export * from "./label";
