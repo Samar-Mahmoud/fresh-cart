@@ -15,3 +15,4 @@ export * from "./select";
 export * from "./field";
 export * from "./checkbox";
 export * from "./label";
+export * from "./progress";
