@@ -13,6 +13,16 @@
   --color-primary-600: #22c55e;
   --color-primary-700: #15803d;
   --color-primary-800: #009966;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0);
+    }
+    50% {
+      transform: translateY(-20px) rotate(10deg);
+    }
+  }
 }
 
 @theme inline {
