@@ -2,7 +2,6 @@ import React from "react";
 import { Product } from "./products";
 import { Brand } from "./brands";
 import { Category } from "./categories";
-import { Metadata } from ".";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -59,13 +58,11 @@ export interface SearchFiltersProps {
   brands: Brand[];
 }
 
-export interface SearchResultsProps extends SearchFiltersProps {
-  products: Product[];
-  filters: Partial<{
+export interface SearchFilterBadgesProps {
+  badges: Partial<{
     keyword: { value: string };
     category: { value: string; label: string }[];
     brand: { value: string; label: string }[];
     price: { value: string };
   }>;
-  metadata?: Metadata;
 }

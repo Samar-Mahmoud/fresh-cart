@@ -55,7 +55,7 @@ export default function Slider() {
       <CarouselContent className="h-full px-4 py-20">
         {slides.map(({ title, description, action }) => (
           <CarouselItem key={title} className="h-full flex items-center">
-            <div className="container px-4 lg:px-21.5 2xl:px-0 mx-auto py-8.5 space-y-4">
+            <div className="container px-4  mx-auto py-8.5 space-y-4">
               <h2 className="font-bold text-3xl text-white max-w-[384px]">
                 {title}
               </h2>

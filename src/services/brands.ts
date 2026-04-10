@@ -4,7 +4,7 @@ import { Brand } from "@/types/brands";
 const BRANDS = `${process.env.BASE_URL}/v1/brands`;
 
 export async function getBrands() {
-  const res = await fetch(BRANDS);
+  const res = await fetch(BRANDS, { cache: "force-cache" });
   const data: Response<Brand[]> = await res.json();
   return data.data;
 }

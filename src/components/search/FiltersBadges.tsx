@@ -1,9 +1,11 @@
+"use client";
+
 import { Badge } from "@/components/ui";
-import { SearchResultsProps } from "@/types/props";
+import { SearchFilterBadgesProps } from "@/types/props";
 import { Filter, XIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const styles: Record<keyof SearchResultsProps["filters"], string> = {
+const styles: Record<keyof SearchFilterBadgesProps["badges"], string> = {
   keyword: "bg-gray-100 text-gray-700",
   category: "bg-primary-100 text-primary-700",
   brand: "bg-violet-100 text-violet-700",
@@ -11,14 +13,14 @@ const styles: Record<keyof SearchResultsProps["filters"], string> = {
 };
 
 export default function FiltersBadges({
-  filters,
+  badges,
 }: {
-  filters: SearchResultsProps["filters"];
+  badges: SearchFilterBadgesProps["badges"];
 }) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const badges = Object.entries(filters);
+  const badgesEntries = Object.entries(badges);
 
   const handleClear = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -47,12 +49,12 @@ export default function FiltersBadges({
         Active:
       </span>
 
-      {badges.flatMap(([key, value]) => {
+      {badgesEntries.flatMap(([key, value]) => {
         const items = Array.isArray(value) ? value : [value];
         return items.map((badge) => (
           <Badge
             key={badge.value}
-            className={`cursor-pointer ${styles[key as keyof SearchResultsProps["filters"]]}`}
+            className={`cursor-pointer ${styles[key as keyof SearchFilterBadgesProps["badges"]]}`}
             onClick={() => handleClear(key, badge.value)}
           >
             {"label" in badge ? `${badge.label}` : badge.value}
@@ -61,9 +63,9 @@ export default function FiltersBadges({
         ));
       })}
 
-      {!filters.price && <Badge className={styles.price}>0 - ∞ EGP</Badge>}
+      {!badges.price && <Badge className={styles.price}>0 - ∞ EGP</Badge>}
 
-      {badges.length > 0 && (
+      {badgesEntries.length > 0 && (
         <span
           className="text-xs underline ml-4 cursor-pointer text-gray-500 hover:text-red-700 transition-colors"
           onClick={() => router.replace(`/search`)}

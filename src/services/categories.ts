@@ -5,7 +5,7 @@ const CATEGORY = `${process.env.BASE_URL}/v1/categories`;
 const SUBCATEGORY = `${process.env.BASE_URL}/v1/subcategories`;
 
 export async function getCategories() {
-  const res = await fetch(CATEGORY);
+  const res = await fetch(CATEGORY, { cache: "force-cache" });
   const data: Response<Category[]> = await res.json();
   return data.data;
 }

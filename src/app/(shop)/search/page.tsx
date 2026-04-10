@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import ProductSearchInput from "@/components/search/SearchInput";
 import ProductSearchFilters from "@/components/search/SearchFilters";
 import {
@@ -7,31 +8,38 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  Spinner,
 } from "@/components/ui";
 import { getBrands } from "@/services/brands";
 import { getCategories } from "@/services/categories";
 import Link from "next/link";
-import ProductList from "@/components/search/Results";
 import { ProductsFilters } from "@/types/products";
-import { getProducts } from "@/services/products";
-import { SearchResultsProps } from "@/types/props";
+import { SearchFilterBadgesProps } from "@/types/props";
+import MobileSearchFilters from "@/components/search/MobileSearchFilters";
+import SortBy from "@/components/products/SortBy";
+import ViewButtons from "@/components/search/ViewButtons";
+import FiltersBadges from "@/components/search/FiltersBadges";
+import { ViewProvider } from "@/context/SearchView";
+const Products = React.lazy(() => import("@/components/search/Products"));
 
-export default async function SearchResults({
+export default async function Search({
   searchParams,
 }: {
   searchParams: Promise<ProductsFilters>;
 }) {
   const filters = await searchParams;
-  const { keyword, category, brand } = filters;
+  const {
+    keyword,
+    category,
+    brand,
+    "price[gte]": gte,
+    "price[lte]": lte,
+  } = filters;
 
-  const { data: products, metadata } = await getProducts({
-    ...filters,
-    limit: 12,
-  });
   const categories = await getCategories();
   const brands = await getBrands();
 
-  const badges: SearchResultsProps["filters"] = {
+  const badges: SearchFilterBadgesProps["badges"] = {
     keyword: keyword ? { value: keyword } : undefined,
     category: category
       ? (Array.isArray(category) ? category : [category]).map((catId) => {
@@ -46,12 +54,14 @@ export default async function SearchResults({
         })
       : undefined,
     price:
-      filters["price[lte]"] || filters["price[gte]"]
-        ? {
-            value: `${filters["price[gte]"] || 0} - ${filters["price[lte]"] || "∞"} EGP`,
-          }
-        : undefined,
+      lte || gte ? { value: `${gte || 0} - ${lte || "∞"} EGP` } : undefined,
   };
+
+  const filtersKey = new URLSearchParams(
+    Object.entries(filters).flatMap(([k, v]) =>
+      Array.isArray(v) ? v.map((val) => [k, val]) : [[k, String(v ?? "")]],
+    ),
+  ).toString();
 
   return (
     <section className="min-h-screen">
@@ -92,15 +102,37 @@ export default async function SearchResults({
             <ProductSearchFilters categories={categories} brands={brands} />
           </aside>
 
-          <main className="space-y-6 flex-1">
-            <ProductList
-              products={products}
-              brands={brands}
-              categories={categories}
-              filters={badges}
-              metadata={metadata}
-            />
-          </main>
+          <ViewProvider>
+            <main className="space-y-6 flex-1">
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-4">
+                  <div className="lg:hidden">
+                    <MobileSearchFilters
+                      categories={categories}
+                      brands={brands}
+                    />
+                  </div>
+
+                  <ViewButtons />
+                </div>
+
+                <SortBy />
+              </div>
+
+              <FiltersBadges badges={badges} />
+
+              <Suspense
+                key={filtersKey}
+                fallback={
+                  <div className="h-75 flex items-center justify-center">
+                    <Spinner className="size-6 text-primary-main" />
+                  </div>
+                }
+              >
+                <Products filters={filters} />
+              </Suspense>
+            </main>
+          </ViewProvider>
         </div>
       </div>
     </section>
