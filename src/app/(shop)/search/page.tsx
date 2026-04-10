@@ -14,6 +14,7 @@ import Link from "next/link";
 import ProductList from "@/components/products/search/Results";
 import { ProductsFilters } from "@/types/products";
 import { getProducts } from "@/services/products";
+import { SearchResultsProps } from "@/types/props";
 
 export default async function SearchResults({
   searchParams,
@@ -21,10 +22,33 @@ export default async function SearchResults({
   searchParams: Promise<ProductsFilters>;
 }) {
   const filters = await searchParams;
+  const { keyword, category, brand } = filters;
 
   const products = await getProducts(filters);
   const categories = await getCategories();
   const brands = await getBrands();
+
+  const badges: SearchResultsProps["filters"] = {
+    keyword: keyword ? { value: keyword } : undefined,
+    category: category
+      ? (Array.isArray(category) ? category : [category]).map((catId) => {
+          const category = categories.find((c) => c._id === catId)!;
+          return { value: catId, label: category.name };
+        })
+      : undefined,
+    brand: brand
+      ? (Array.isArray(brand) ? brand : [brand]).map((brandId) => {
+          const brand = brands.find((b) => b._id === brandId)!;
+          return { value: brandId, label: brand.name };
+        })
+      : undefined,
+    price:
+      filters["price[lte]"] || filters["price[gte]"]
+        ? {
+            value: `${filters["price[gte]"] || 0} - ${filters["price[lte]"] || "∞"} EGP`,
+          }
+        : undefined,
+  };
 
   return (
     <section className="min-h-screen">
@@ -70,6 +94,7 @@ export default async function SearchResults({
               products={products}
               brands={brands}
               categories={categories}
+              filters={badges}
             />
           </main>
         </div>

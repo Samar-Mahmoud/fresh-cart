@@ -9,15 +9,18 @@ import SortBy from "@/components/products/SortBy";
 import { SearchResultsProps } from "@/types/props";
 import { useState } from "react";
 import EmptyState from "@/components/shared/Empty";
+import FiltersBadges from "./FiltersBadges";
+import Link from "next/link";
 
 export default function Results({
   products,
   brands,
   categories,
+  filters,
 }: SearchResultsProps) {
   const [view, setView] = useState<"grid" | "rows">("grid");
 
-  return products.length > 0 ? (
+  return (
     <>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-4">
@@ -56,26 +59,33 @@ export default function Results({
         <SortBy />
       </div>
 
-      <div
-        className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
-      >
-        {products.map((prod) => (
-          <ProductCard key={prod._id} {...prod} />
-        ))}
-      </div>
+      <FiltersBadges filters={filters} />
+
+      {products.length > 0 ? (
+        <div
+          className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
+        >
+          {products.map((prod) => (
+            <ProductCard key={prod._id} {...prod} />
+          ))}
+        </div>
+      ) : (
+        <div className="p-13">
+          <EmptyState
+            icon={<Search className="size-8 " />}
+            title="No Products Found"
+            description="Try adjusting your search or filters to find what you're looking for."
+            action={
+              <Link
+                href="/search"
+                className="py-3 px-6 font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white rounded-lg"
+              >
+                Clear Filters
+              </Link>
+            }
+          />
+        </div>
+      )}
     </>
-  ) : (
-    <div className="p-13">
-      <EmptyState
-        icon={<Search className="size-8 " />}
-        title="No Products Found"
-        description="Try adjusting your search or filters to find what you're looking for."
-        action={
-          <Button className="py-3 px-6 font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white rounded-lg">
-            Clear Filters
-          </Button>
-        }
-      />
-    </div>
   );
 }

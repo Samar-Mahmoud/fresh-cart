@@ -60,4 +60,10 @@ export interface SearchFiltersProps {
 
 export interface SearchResultsProps extends SearchFiltersProps {
   products: Product[];
+  filters: Partial<{
+    keyword: { value: string };
+    category: { value: string; label: string }[];
+    brand: { value: string; label: string }[];
+    price: { value: string };
+  }>;
 }

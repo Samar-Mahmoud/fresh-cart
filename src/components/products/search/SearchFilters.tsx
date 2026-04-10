@@ -62,7 +62,7 @@ export default function SearchFilters({
 
   const handleChange = (key: string, value: string): void => {
     const params = new URLSearchParams(searchParams.toString());
-    if (params.get(key) === value) {
+    if (!value || params.get(key) === value) {
       params.delete(key);
     } else {
       params.set(key, value);
@@ -88,8 +88,11 @@ export default function SearchFilters({
   return (
     <div className="space-y-6">
       <FieldSet className="gap-4">
-        <FieldLegend className="font-bold text-gray-900">
+        <FieldLegend className="font-bold text-gray-900 flex justify-between items-center w-full">
           Categories
+          <span className="text-primary-main text-xs font-medium">
+            {current.categories.length} selected
+          </span>
         </FieldLegend>
         <FieldGroup className="max-h-52 gap-2 overflow-auto">
           {categories.map((cat) => (
@@ -126,10 +129,8 @@ export default function SearchFilters({
                 name="price[gte]"
                 type="number"
                 min={0}
-                defaultValue={
-                  current.gte && !Number.isNaN(+current.gte)
-                    ? +current.gte
-                    : undefined
+                value={
+                  current.gte && !Number.isNaN(+current.gte) ? +current.gte : ""
                 }
                 placeholder="0"
                 className="flex-1 rounded-lg border-gray-200 bg-white placeholder:text-gray-700/50 placeholder:font-medium"
@@ -145,10 +146,8 @@ export default function SearchFilters({
                 name="price[lte]"
                 type="number"
                 min={0}
-                defaultValue={
-                  current.lte && !Number.isNaN(+current.lte)
-                    ? +current.lte
-                    : undefined
+                value={
+                  current.lte && !Number.isNaN(+current.lte) ? +current.lte : ""
                 }
                 placeholder="No limit"
                 className="flex-1 rounded-lg border-gray-200 bg-white placeholder:text-gray-700/50 placeholder:font-medium"
@@ -174,7 +173,12 @@ export default function SearchFilters({
       <Separator className="bg-gray-100" />
 
       <FieldSet className="gap-4">
-        <FieldLegend className="font-bold text-gray-900">Brands</FieldLegend>
+        <FieldLegend className="font-bold text-gray-900 flex items-center justify-between w-full">
+          Brands
+          <span className="text-primary-main text-xs font-medium">
+            {current.brands.length} selected
+          </span>
+        </FieldLegend>
         <FieldGroup className="max-h-52 gap-2 overflow-auto">
           {brands.map((brand) => (
             <Field key={brand._id} orientation="horizontal">
