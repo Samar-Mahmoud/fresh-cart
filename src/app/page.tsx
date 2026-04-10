@@ -54,7 +54,7 @@ const benefits: {
 
 export default async function Home() {
   const categories = await getCategories();
-  const products = await getProducts();
+  const { data: products } = await getProducts();
 
   return (
     <main>

@@ -1,6 +1,6 @@
 import Logo from "@/components/shared/Logo";
 import TopBar from "@/components/shared/TopBar";
-import SearchInput from "@/components/products/search/SearchForm";
+import SearchInput from "@/components/search/SearchForm";
 import NavMenu from "./NavMenu";
 
 export default function Navbar() {

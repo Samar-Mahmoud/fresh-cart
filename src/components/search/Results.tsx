@@ -4,19 +4,21 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/products/Card";
 import { Search } from "lucide-react";
 import { List } from "lucide-react";
-import MobileSearchFilters from "@/components/products/search/MobileSearchFilters";
+import MobileSearchFilters from "@/components/search/MobileSearchFilters";
 import SortBy from "@/components/products/SortBy";
 import { SearchResultsProps } from "@/types/props";
 import { useState } from "react";
 import EmptyState from "@/components/shared/Empty";
 import FiltersBadges from "./FiltersBadges";
 import Link from "next/link";
+import Pagination from "./Pagination";
 
 export default function Results({
   products,
   brands,
   categories,
   filters,
+  metadata,
 }: SearchResultsProps) {
   const [view, setView] = useState<"grid" | "rows">("grid");
 
@@ -62,13 +64,17 @@ export default function Results({
       <FiltersBadges filters={filters} />
 
       {products.length > 0 ? (
-        <div
-          className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
-        >
-          {products.map((prod) => (
-            <ProductCard key={prod._id} {...prod} />
-          ))}
-        </div>
+        <>
+          <div
+            className={`grid gap-4 ${view === "grid" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}
+          >
+            {products.map((prod) => (
+              <ProductCard key={prod._id} {...prod} />
+            ))}
+          </div>
+
+          <Pagination metadata={metadata} />
+        </>
       ) : (
         <div className="p-13">
           <EmptyState

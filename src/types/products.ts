@@ -45,4 +45,5 @@ export interface ProductsFilters {
   keyword?: string;
   "price[gte]"?: string;
   "price[lte]"?: string;
+  limit?: number;
 }

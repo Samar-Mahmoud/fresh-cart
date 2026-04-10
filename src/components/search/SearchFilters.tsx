@@ -67,6 +67,7 @@ export default function SearchFilters({
     } else {
       params.set(key, value);
     }
+    params.delete("page");
     router.replace(`/search?${params.toString()}`);
   };
 
@@ -81,7 +82,7 @@ export default function SearchFilters({
     } else {
       params.append(key, value);
     }
-
+    params.delete("page");
     router.replace(`/search?${params.toString()}`);
   };
 

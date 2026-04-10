@@ -90,7 +90,7 @@ export default async function ProductDetails({
     count: reviews.length > 0 ? ratingsQuantity : 0,
   };
 
-  const products = await getProducts();
+  const { data: products } = await getProducts();
 
   return (
     <section className="p-4">

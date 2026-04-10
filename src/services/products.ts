@@ -15,7 +15,7 @@ export async function getProducts(filters: ProductsFilters = {}) {
     `${PRODUCTS}${q.length > 0 ? `?${q.join("&")}` : ""}`,
   );
   const data: Response<Product[]> = await res.json();
-  return data.data;
+  return data;
 }
 
 export async function getProduct(id: Product["_id"]) {

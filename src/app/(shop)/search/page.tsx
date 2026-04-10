@@ -1,5 +1,5 @@
-import ProductSearchInput from "@/components/products/search/SearchInput";
-import ProductSearchFilters from "@/components/products/search/SearchFilters";
+import ProductSearchInput from "@/components/search/SearchInput";
+import ProductSearchFilters from "@/components/search/SearchFilters";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +11,7 @@ import {
 import { getBrands } from "@/services/brands";
 import { getCategories } from "@/services/categories";
 import Link from "next/link";
-import ProductList from "@/components/products/search/Results";
+import ProductList from "@/components/search/Results";
 import { ProductsFilters } from "@/types/products";
 import { getProducts } from "@/services/products";
 import { SearchResultsProps } from "@/types/props";
@@ -24,7 +24,10 @@ export default async function SearchResults({
   const filters = await searchParams;
   const { keyword, category, brand } = filters;
 
-  const products = await getProducts(filters);
+  const { data: products, metadata } = await getProducts({
+    ...filters,
+    limit: 12,
+  });
   const categories = await getCategories();
   const brands = await getBrands();
 
@@ -95,6 +98,7 @@ export default async function SearchResults({
               brands={brands}
               categories={categories}
               filters={badges}
+              metadata={metadata}
             />
           </main>
         </div>

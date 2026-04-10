@@ -16,7 +16,11 @@ export default async function Products({
 }) {
   const { brand, category, subcategory } = await searchParams;
 
-  const products = await getProducts({ brand, category, subcategory });
+  const { data: products } = await getProducts({
+    brand,
+    category,
+    subcategory,
+  });
 
   const { description, image, links, title } = await getHeaderData({
     brand,
