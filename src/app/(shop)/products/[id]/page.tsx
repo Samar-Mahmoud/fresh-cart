@@ -18,6 +18,7 @@ import {
 import { getProduct, getProducts } from "@/services/products";
 import { Circle, RotateCcw } from "lucide-react";
 import Link from "next/link";
+import VanFastIcon from "@/components/icons/VanFastIcon";
 
 const benefits: {
   title: string;
@@ -28,22 +29,7 @@ const benefits: {
     title: "Free Delivery",
     description: "orders over 550",
     icon: {
-      node: (
-        <svg
-          className="m-auto"
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="40" height="40" rx="20" fill="#DCFCE7" />
-          <path
-            d="M12 15C12 13.8969 12.8969 13 14 13H23C24.1031 13 25 13.8969 25 15V16H26.5844C27.1156 16 27.625 16.2094 28 16.5844L29.4156 18C29.7906 18.375 30 18.8844 30 19.4156V24C30 25.1031 29.1031 26 28 26H27.8969C27.5719 27.1531 26.5094 28 25.25 28C23.9906 28 22.9312 27.1531 22.6031 26H19.3969C19.0719 27.1531 18.0094 28 16.75 28C15.4906 28 14.4313 27.1531 14.1031 26H14C12.8969 26 12 25.1031 12 24V22.5H10.75C10.3344 22.5 10 22.1656 10 21.75C10 21.3344 10.3344 21 10.75 21H14.25C14.6656 21 15 20.6656 15 20.25C15 19.8344 14.6656 19.5 14.25 19.5H10.75C10.3344 19.5 10 19.1656 10 18.75C10 18.3344 10.3344 18 10.75 18H16.25C16.6656 18 17 17.6656 17 17.25C17 16.8344 16.6656 16.5 16.25 16.5H10.75C10.3344 16.5 10 16.1656 10 15.75C10 15.3344 10.3344 15 10.75 15H12ZM28 21V19.4156L26.5844 18H25V21H28ZM18 25.25C18 24.9185 17.8683 24.6005 17.6339 24.3661C17.3995 24.1317 17.0815 24 16.75 24C16.4185 24 16.1005 24.1317 15.8661 24.3661C15.6317 24.6005 15.5 24.9185 15.5 25.25C15.5 25.5815 15.6317 25.8995 15.8661 26.1339C16.1005 26.3683 16.4185 26.5 16.75 26.5C17.0815 26.5 17.3995 26.3683 17.6339 26.1339C17.8683 25.8995 18 25.5815 18 25.25ZM25.25 26.5C25.5815 26.5 25.8995 26.3683 26.1339 26.1339C26.3683 25.8995 26.5 25.5815 26.5 25.25C26.5 24.9185 26.3683 24.6005 26.1339 24.3661C25.8995 24.1317 25.5815 24 25.25 24C24.9185 24 24.6005 24.1317 24.3661 24.3661C24.1317 24.6005 24 24.9185 24 25.25C24 25.5815 24.1317 25.8995 24.3661 26.1339C24.6005 26.3683 24.9185 26.5 25.25 26.5Z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      node: <VanFastIcon />,
     },
   },
   {
@@ -93,7 +79,7 @@ export default async function ProductDetails({
   const { data: products } = await getProducts();
 
   return (
-    <section className="p-4">
+    <main className="p-4">
       <Breadcrumb className="mb-10">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -234,12 +220,12 @@ export default async function ProductDetails({
 
             <Separator className="bg-gray-100" />
 
-            <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+            <ul className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
               <StoreBenefits
                 benefits={benefits}
                 iconClasses="size-10 flex rounded-full bg-primary-100 text-primary-main"
               />
-            </div>
+            </ul>
           </section>
         </div>
 
@@ -258,6 +244,6 @@ export default async function ProductDetails({
           <ProductsSlider products={products} />
         </section>
       </div>
-    </section>
+    </main>
   );
 }

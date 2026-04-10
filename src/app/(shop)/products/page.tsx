@@ -29,7 +29,7 @@ export default async function Products({
   });
 
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen">
       <Header
         classes="from-primary-main via-primary-600 to-[#4ade80]"
         title={title}
@@ -119,6 +119,6 @@ export default async function Products({
           />
         )}
       </div>
-    </section>
+    </main>
   );
 }

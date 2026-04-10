@@ -8,15 +8,15 @@ export default function NotFound() {
     <main className="min-h-screen bg-[#fafbfc] flex items-center justify-center px-2 py-16 relative overflow-hidden">
       {/* Background */}
       <div>
-        <div className="absolute top-[10%] left-[5%] text-[#bbf7d0] motion-safe:animate-[float_6s_ease-in-out_infinite]">
+        <div className="absolute top-[10%] left-[5%] text-primary-200 motion-safe:animate-[float_6s_ease-in-out_infinite]">
           <Apple className="size-10 fill-current" />
         </div>
 
-        <div className="absolute top-[20%] right-[10%] text-[#bbf7d0] motion-safe:animate-[float_8s_ease-in-out_infinite_1s]">
+        <div className="absolute top-[20%] right-[10%] text-primary-200 motion-safe:animate-[float_8s_ease-in-out_infinite_1s]">
           <Carrot className="size-10" />
         </div>
 
-        <div className="absolute bottom-[25%] left-[8%] text-[#bbf7d0] motion-safe:animate-[float_7s_ease-in-out_infinite_0.5s]">
+        <div className="absolute bottom-[25%] left-[8%] text-primary-200 motion-safe:animate-[float_7s_ease-in-out_infinite_0.5s]">
           <svg className="size-10" viewBox="0 0 448 512" aria-hidden="true">
             <path
               fill="currentColor"
@@ -25,7 +25,7 @@ export default function NotFound() {
           </svg>
         </div>
 
-        <div className="absolute bottom-[15%] right-[15%] text-[#bbf7d0] motion-safe:animate-[float_9s_ease-in-out_infinite_2s]">
+        <div className="absolute bottom-[15%] right-[15%] text-primary-200 motion-safe:animate-[float_9s_ease-in-out_infinite_2s]">
           <svg className="size-10" viewBox="0 0 512 512" aria-hidden="true">
             <path
               fill="currentColor"

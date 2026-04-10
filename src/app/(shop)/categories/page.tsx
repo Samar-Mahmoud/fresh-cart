@@ -8,7 +8,7 @@ export default async function Categories() {
   const categories = await getCategories();
 
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen">
       <Header
         classes="from-primary-main via-primary-600 to-[#4ade80]"
         title="All Categories"
@@ -58,6 +58,6 @@ export default async function Categories() {
           </Link>
         ))}
       </div>
-    </section>
+    </main>
   );
 }

@@ -64,7 +64,7 @@ export default async function Search({
   ).toString();
 
   return (
-    <section className="min-h-screen">
+    <div className="min-h-screen">
       <header className="px-4 py-6">
         <div className="container mx-auto space-y-4">
           <Breadcrumb>
@@ -135,6 +135,6 @@ export default async function Search({
           </ViewProvider>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

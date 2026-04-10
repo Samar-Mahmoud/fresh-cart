@@ -9,7 +9,7 @@ export default async function Brands() {
   const brands = await getBrands();
 
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen">
       <Header
         classes="from-violet-600 via-violet-500 to-purple-400"
         page="Brands"
@@ -52,6 +52,6 @@ export default async function Brands() {
           </Link>
         ))}
       </div>
-    </section>
+    </main>
   );
 }

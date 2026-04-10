@@ -11,12 +11,9 @@ import ProductCard from "@/components/products/Card";
 import { getCategories } from "@/services/categories";
 import { getProducts } from "@/services/products";
 import Subscription from "@/components/home/newsletter/Subscription";
+import { StoreBenefitProps } from "@/types/props";
 
-const benefits: {
-  title: string;
-  description: string;
-  icon: { node: React.ReactNode; style: string };
-}[] = [
+const benefits: StoreBenefitProps["benefits"] = [
   {
     title: "Free Shipping",
     description: "On orders over 500 EGP",
@@ -61,13 +58,13 @@ export default async function Home() {
       <Slider />
 
       <section className="px-4 py-8 bg-gray-50 mb-10">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ul className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StoreBenefits
             benefits={benefits}
             iconClasses="size-12 shrink-0 rounded-full flex"
             wrapperClasses="p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow"
           />
-        </div>
+        </ul>
       </section>
 
       <div className="container mx-auto px-4">
