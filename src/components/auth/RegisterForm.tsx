@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,30 +21,28 @@ import {
 } from "@/components/ui";
 import Link from "next/link";
 import { UserPlus } from "lucide-react";
-
-const formSchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  password: z.string(),
-  rePassword: z.string(),
-  phone: z.string(),
-});
+import { schema, RegisterSchema } from "@/schema/register";
+import { getPasswordStrength } from "@/lib/auth";
 
 export function RegisterForm() {
-  const form = useForm({
-    resolver: zodResolver(formSchema),
+  const { control, watch, handleSubmit } = useForm<RegisterSchema>({
+    resolver: zodResolver(schema),
     defaultValues: {
       name: "",
       email: "",
       password: "",
       rePassword: "",
       phone: "",
+      terms: false,
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  const password = watch("password");
+  const strength = getPasswordStrength(password);
+
+  const onSubmit = (data: RegisterSchema) => {
     console.log(data);
-  }
+  };
 
   return (
     <Card className="px-6 pt-10 pb-14 gap-2 rounded-2xl">
@@ -96,11 +93,12 @@ export function RegisterForm() {
           <span className="px-4 font-medium text-base text-gray-700">or</span>
         </div>
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+          {/* Name */}
           <FieldGroup>
             <Controller
               name="name"
-              control={form.control}
+              control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-2">
                   <FieldLabel
@@ -117,18 +115,19 @@ export function RegisterForm() {
                     placeholder="Ali"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
+                  />
                 </Field>
               )}
             />
           </FieldGroup>
-
+          {/* Email */}
           <FieldGroup>
             <Controller
               name="email"
-              control={form.control}
+              control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-2">
                   <FieldLabel
@@ -145,18 +144,19 @@ export function RegisterForm() {
                     placeholder="ali@example.com"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
+                  />
                 </Field>
               )}
             />
           </FieldGroup>
-
+          {/* Password */}
           <FieldGroup>
             <Controller
               name="password"
-              control={form.control}
+              control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-2">
                   <FieldLabel
@@ -169,18 +169,24 @@ export function RegisterForm() {
                     {...field}
                     id="password"
                     name="password"
+                    type="password"
                     aria-invalid={fieldState.invalid}
                     placeholder="create a strong password"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
+                  />
                   <div>
                     <div className="flex gap-2 items-center">
-                      <Progress className="h-1 flex-1 bg-gray-200" />
+                      <Progress
+                        value={strength.value}
+                        className="h-1 flex-1 bg-gray-200"
+                        bgColor={strength.color}
+                      />
                       <span className="txet-sm font-medium text-gray-700">
-                        Weak
+                        {strength.level}
                       </span>
                     </div>
                     <FieldDescription className="text-xs font-medium text-gray-500">
@@ -191,11 +197,11 @@ export function RegisterForm() {
               )}
             />
           </FieldGroup>
-
+          {/* Confirm Password */}
           <FieldGroup>
             <Controller
               name="rePassword"
-              control={form.control}
+              control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-2">
                   <FieldLabel
@@ -208,22 +214,24 @@ export function RegisterForm() {
                     {...field}
                     id="rePassword"
                     name="rePassword"
+                    type="password"
                     aria-invalid={fieldState.invalid}
                     placeholder="confirm your password"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
+                  />
                 </Field>
               )}
             />
           </FieldGroup>
-
+          {/* Phone Number */}
           <FieldGroup>
             <Controller
               name="phone"
-              control={form.control}
+              control={control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-2">
                   <FieldLabel
@@ -237,47 +245,51 @@ export function RegisterForm() {
                     id="phone"
                     name="phone"
                     aria-invalid={fieldState.invalid}
-                    placeholder="confirm your password"
+                    placeholder="+20 123 456 7890"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
+                  />
                 </Field>
               )}
             />
           </FieldGroup>
-
+          {/*  Terms of Service & Privacy Policy */}
           <FieldGroup>
             <Controller
-              name="phone"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field
-                  orientation="horizontal"
-                  data-invalid={fieldState.invalid}
-                  className="gap-3"
-                >
-                  <Checkbox
-                    {...field}
-                    id="terms"
-                    name="terms"
-                    className="size-3.25 rounded-[2.5px] bg-white border-[#767676]"
+              name="terms"
+              control={control}
+              render={({ field: { value, onChange }, fieldState }) => (
+                <Field data-invalid={fieldState.invalid} className="gap-2">
+                  <div className="flex items-center gap-3">
+                    <Checkbox
+                      checked={value}
+                      onCheckedChange={onChange}
+                      id="terms"
+                      name="terms"
+                      className="size-3.25 rounded-[2.5px] bg-white border-[#767676]"
+                    />
+                    <FieldLabel
+                      htmlFor="terms"
+                      className="inline-block text-gray-700 text-base font-medium"
+                    >
+                      I agree to the{" "}
+                      <Link href="/terms" className="text-primary-main">
+                        Terms of Service
+                      </Link>{" "}
+                      and{" "}
+                      <Link href="/privacy" className="text-primary-main">
+                        Privacy Policy
+                      </Link>{" "}
+                      *
+                    </FieldLabel>
+                  </div>
+                  <FieldError
+                    errors={[fieldState.error]}
+                    className="font-medium text-xs"
                   />
-                  <FieldLabel
-                    htmlFor="terms"
-                    className="inline-block text-gray-700 text-base font-medium"
-                  >
-                    I agree to the{" "}
-                    <Link href="/terms" className="text-primary-main">
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link href="/privacy" className="text-primary-main">
-                      Privacy Policy
-                    </Link>{" "}
-                    *
-                  </FieldLabel>
                 </Field>
               )}
             />
@@ -290,7 +302,7 @@ export function RegisterForm() {
         </form>
       </CardContent>
 
-      <CardFooter className="pt-10 border-t border-gray-300/30">
+      <CardFooter className="pt-10 px-0 border-t border-gray-300/30 flex-col">
         <p className="text-base font-medium text-gray-700 text-center">
           Already have an account?{" "}
           <Link href="/login" className="text-primary-main">

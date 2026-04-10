@@ -14,7 +14,7 @@ export async function getHeaderData({
   const links: HeaderProps["links"] = [{ label: "Home", href: "/" }];
 
   if (brand) {
-    const { name, image: brandImage } = await getBrand(brand);
+    const { name, image: brandImage } = await getBrand(brand as string);
     links.push({ label: "Brands", href: "brands" });
     title = name;
     description = `Shop ${name} products`;
@@ -25,7 +25,9 @@ export async function getHeaderData({
     title = name;
     description = `Browse ${name} products`;
   } else if (category) {
-    const { name, image: categoryImage } = await getCategory(category);
+    const { name, image: categoryImage } = await getCategory(
+      category as string,
+    );
     links.push({ label: "Categories", href: "categories" });
     title = name;
     description = `Browse ${name} products`;
