@@ -20,7 +20,7 @@ import SortBy from "@/components/products/SortBy";
 import ViewButtons from "@/components/search/ViewButtons";
 import FiltersBadges from "@/components/search/FiltersBadges";
 import { ViewProvider } from "@/context/SearchView";
-const Products = React.lazy(() => import("@/components/search/Products"));
+import Products from "@/components/search/Products";
 
 export default async function Search({
   searchParams,
