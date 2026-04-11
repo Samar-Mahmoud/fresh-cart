@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/shared/Footer";
+import { Toaster } from "sonner";
 
 const exo = Exo({
   variable: "--font-exo",
@@ -26,6 +27,17 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+
+        <Toaster
+          toastOptions={{
+            classNames: {
+              toast: "border-none!",
+              success: "bg-primary-main! text-white! text-base! font-medium!",
+              error: "bg-red-500! text-white! text-base! font-medium!",
+              description: "text-white! text-xs! font-medium!",
+            },
+          }}
+        />
       </body>
     </html>
   );

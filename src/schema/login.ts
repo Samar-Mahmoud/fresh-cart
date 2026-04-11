@@ -6,4 +6,4 @@ export const schema = z.object({
   signed: z.boolean(),
 });
 
-export type LoginSchema = z.infer<typeof schema>;
+export type LoginData = z.infer<typeof schema>;

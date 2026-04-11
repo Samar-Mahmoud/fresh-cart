@@ -17,3 +17,4 @@ export * from "./field";
 export * from "./checkbox";
 export * from "./label";
 export * from "./progress";
+export * from "./sonner";

@@ -13,8 +13,6 @@ export default function SearchInput() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const defaultValue = searchParams.get("keyword") ?? "";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -35,7 +33,7 @@ export default function SearchInput() {
           className="ps-12 py-3.5 pe-4 h-auto placeholder:text-gray-700/50 placeholder:text-sm text-base"
           placeholder="Search for products..."
           onChange={handleChange}
-          defaultValue={defaultValue}
+          value={searchParams.get("keyword") ?? ""}
         />
         <InputGroupAddon className="pl-0">
           <Search className="size-5 text-gray-700/50" />

@@ -18,14 +18,23 @@ import {
   Checkbox,
   Progress,
   FieldDescription,
+  Spinner,
 } from "@/components/ui";
 import Link from "next/link";
 import { UserPlus } from "lucide-react";
-import { schema, RegisterSchema } from "@/schema/register";
+import { schema, RegisterData } from "@/schema/register";
 import { getPasswordStrength } from "@/lib/auth";
+import { registerAction } from "@/actions/auth";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
-  const { control, watch, handleSubmit } = useForm<RegisterSchema>({
+  const {
+    control,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<RegisterData>({
     resolver: zodResolver(schema),
     defaultValues: {
       name: "",
@@ -37,11 +46,21 @@ export function RegisterForm() {
     },
   });
 
+  const router = useRouter();
+
   const password = watch("password");
   const strength = getPasswordStrength(password);
 
-  const onSubmit = (data: RegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterData) => {
+    const res = await registerAction(data);
+    if (res.isError) {
+      toast.error("Registeration Failed", {
+        description: res.message,
+      });
+    } else {
+      toast.success(res.message);
+      router.replace("/");
+    }
   };
 
   return (
@@ -140,6 +159,7 @@ export function RegisterForm() {
                     {...field}
                     id="email"
                     name="email"
+                    type="email"
                     aria-invalid={fieldState.invalid}
                     placeholder="ali@example.com"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
@@ -244,6 +264,7 @@ export function RegisterForm() {
                     {...field}
                     id="phone"
                     name="phone"
+                    type="tel"
                     aria-invalid={fieldState.invalid}
                     placeholder="+20 123 456 7890"
                     className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
@@ -295,8 +316,11 @@ export function RegisterForm() {
             />
           </FieldGroup>
 
-          <Button className="h-10 w-full gap-2 rounded-lg bg-primary-main text-white font-semibold text-base">
-            <UserPlus className="fill-current" />
+          <Button
+            className="h-10 w-full gap-2 rounded-lg bg-primary-main text-white font-semibold text-base"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? <Spinner /> : <UserPlus className="fill-current" />}
             Create My Account
           </Button>
         </form>

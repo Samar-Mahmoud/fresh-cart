@@ -1,10 +1,8 @@
-export const getPasswordStrength = (
-  password: string,
-): {
+export function getPasswordStrength(password: string): {
   level: "Weak" | "Fair" | "Good" | "Strong";
   value: number;
   color: string;
-} => {
+} {
   const len = password.length;
   const hasUpper = /[A-Z]/.test(password);
   const hasLower = /[a-z]/.test(password);
@@ -21,4 +19,4 @@ export const getPasswordStrength = (
     return { level: "Fair", value: 33, color: "bg-yellow-500" };
   }
   return { level: "Weak", value: len === 0 ? 0 : 10, color: "bg-red-400" };
-};
+}

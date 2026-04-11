@@ -16,6 +16,7 @@ export default function Login() {
               className="object-contain"
               alt="fresh vegetables and fruits shopping cart illustration, modern clean style, green theme"
               src={LoginImage}
+              sizes="384"
             />
           </div>
 

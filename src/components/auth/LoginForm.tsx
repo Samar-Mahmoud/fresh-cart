@@ -18,17 +18,27 @@ import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
+  Spinner,
 } from "@/components/ui";
 import Link from "next/link";
 import { Eye, EyeOff, Star } from "lucide-react";
-import { schema, LoginSchema } from "@/schema/login";
+import { schema, LoginData } from "@/schema/login";
 import MailIcon from "../icons/MailIcon";
 import { useState } from "react";
+import { loginAction } from "@/actions/auth";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
   const [viewPassword, setViewPassword] = useState(false);
 
-  const { control, handleSubmit } = useForm<LoginSchema>({
+  const router = useRouter();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<LoginData>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: "",
@@ -37,8 +47,19 @@ export function LoginForm() {
     },
   });
 
-  const onSubmit = (data: LoginSchema) => {
-    console.log(data);
+  const onSubmit = async (data: LoginData) => {
+    const res = await loginAction(data);
+    if (res.isError) {
+      toast.error(res.message, {
+        description:
+          "Double-check your details and try again, or reset your password.",
+      });
+    } else {
+      toast.success("Logged in successfully", {
+        description: res.message,
+      });
+      router.replace("/");
+    }
   };
 
   return (
@@ -60,6 +81,7 @@ export function LoginForm() {
           <Button className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50">
             <svg
               className="size-5"
+              data-icon="inline-start"
               width="23"
               height="18"
               viewBox="0 0 23 18"
@@ -76,6 +98,7 @@ export function LoginForm() {
           <Button className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50">
             <svg
               className="size-5"
+              data-icon="inline-start"
               width="23"
               height="18"
               viewBox="0 0 23 18"
@@ -116,6 +139,7 @@ export function LoginForm() {
                       {...field}
                       id="email"
                       name="email"
+                      type="email"
                       aria-invalid={fieldState.invalid}
                       placeholder="Enter your email"
                       className="p-0 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
@@ -220,7 +244,11 @@ export function LoginForm() {
             />
           </FieldGroup>
 
-          <Button className="h-auto w-full py-3 rounded-xl bg-primary-main text-white font-semibold text-lg">
+          <Button
+            className="h-auto w-full py-3 rounded-xl bg-primary-main text-white font-semibold text-lg"
+            disabled={isSubmitting}
+          >
+            {isSubmitting && <Spinner data-icon="inline-start" />}
             Sign In
           </Button>
         </form>

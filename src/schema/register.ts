@@ -29,4 +29,4 @@ export const schema = z
     path: ["rePassword"],
   });
 
-export type RegisterSchema = z.infer<typeof schema>;
+export type RegisterData = z.infer<typeof schema>;
