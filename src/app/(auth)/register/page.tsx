@@ -29,7 +29,7 @@ const benefits: StoreBenefitProps["benefits"] = [
   },
 ];
 
-export default function page() {
+export default function Register() {
   return (
     <main className="min-h-screen py-10">
       <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-12">

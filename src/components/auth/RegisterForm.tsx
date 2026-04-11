@@ -57,7 +57,7 @@ export function RegisterForm() {
 
       <CardContent className="px-0 pt-0 pb-2">
         <div className="py-8 flex items-center gap-2">
-          <Button className="px-4 py-2 flex-1 bg-transparent border-gray-300 rounded-lg gap-2 text-gray-900 font-semibold text-base hover:bg-primary-50/50">
+          <Button className="h-auto px-4 py-2 flex-1 bg-transparent border-gray-300 rounded-lg gap-2 text-gray-900 font-semibold text-base hover:bg-primary-50/50">
             <svg
               width="20"
               height="16"
@@ -72,7 +72,7 @@ export function RegisterForm() {
             </svg>
             Google
           </Button>
-          <Button className="px-4 py-2 flex-1 bg-transparent border-gray-300 rounded-lg gap-2 text-gray-900 font-semibold text-base hover:bg-primary-50/50">
+          <Button className="h-auto px-4 py-2 flex-1 bg-transparent border-gray-300 rounded-lg gap-2 text-gray-900 font-semibold text-base hover:bg-primary-50/50">
             <svg
               width="20"
               height="16"
