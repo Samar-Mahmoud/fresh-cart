@@ -1,9 +1,12 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { SearchInputProps } from "@/types/props";
-import { Input } from "@/components/ui";
+import {
+  InputGroup,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import Form from "next/form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -26,21 +29,22 @@ export default function ProductSearch({
 
   return (
     <Form className="flex flex-1 max-w-2xl" action={handleSubmit}>
-      <div className="relative w-full">
-        <Input
+      <InputGroup
+        className={`pe-[6.16px] ps-0 py-0 h-auto ${rounded} border-gray-200 bg-gray-50/50 focus:bg-white  has-[>[data-align=inline-end]]:[&>input]:pr-[6.16px]`}
+      >
+        <InputGroupInput
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className={`ps-5 pt-3 pe-12 pb-3.25 h-auto ${rounded} placeholder:text-gray-400 border-gray-200 bg-gray-50/50 focus:bg-white transition-all text-sm`}
+          className={`ps-5 pt-3 pb-3.25 h-auto placeholder:text-gray-400 text-sm`}
         />
-
-        <Button
-          size="icon"
-          className={`absolute right-[6.16px] top-1.25 ${rounded} bg-primary-main hover:bg-primary-700`}
+        <InputGroupButton
+          type="submit"
+          className={`size-9 ${rounded} bg-primary-main hover:bg-primary-700`}
         >
           <Search width="18" height="14" strokeWidth="3" color="white" />
-        </Button>
-      </div>
+        </InputGroupButton>
+      </InputGroup>
     </Form>
   );
 }

@@ -1,6 +1,10 @@
 "use client";
 
-import { Input } from "@/components/ui";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
@@ -25,14 +29,18 @@ export default function SearchInput() {
   };
 
   return (
-    <div className="relative w-full max-w-2xl">
-      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700/50" />
-      <Input
-        className="ps-12 py-3.5 pe-4 h-auto rounded-xl placeholder:text-gray-700/50 placeholder:text-sm border-gray-200 bg-gray-white focus:bg-white transition-all text-base"
-        placeholder="Search for products..."
-        onChange={handleChange}
-        defaultValue={defaultValue}
-      />
+    <div className="w-full max-w-2xl">
+      <InputGroup className="ps-4 py-0 pe-0 h-auto rounded-xl border-gray-200 bg-gray-white focus:bg-white has-[>[data-align=inline-start]]:[&>input]:pl-3">
+        <InputGroupInput
+          className="ps-12 py-3.5 pe-4 h-auto placeholder:text-gray-700/50 placeholder:text-sm text-base"
+          placeholder="Search for products..."
+          onChange={handleChange}
+          defaultValue={defaultValue}
+        />
+        <InputGroupAddon className="pl-0">
+          <Search className="size-5 text-gray-700/50" />
+        </InputGroupAddon>
+      </InputGroup>
     </div>
   );
 }
