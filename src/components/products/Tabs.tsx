@@ -1,6 +1,6 @@
 import ShieldIcon from "@/components/icons/ShieldIcon";
 import VanIcon from "@/components/icons/VanIcon";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductTabsProps } from "@/types/props";
 import { Check, RotateCcw, Star } from "lucide-react";
 import ProductReviews from "./Reviews";

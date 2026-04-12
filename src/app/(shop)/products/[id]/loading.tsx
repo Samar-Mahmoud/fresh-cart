@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronRightIcon } from "lucide-react";
 
 export default function loading() {

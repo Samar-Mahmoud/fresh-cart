@@ -1,5 +1,6 @@
 import Rating from "@/components/products/Rating";
-import { Button, Separator } from "@/components/ui";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import { Product } from "@/types/products";
 import { Star } from "lucide-react";
 import EmptyState from "../shared/Empty";

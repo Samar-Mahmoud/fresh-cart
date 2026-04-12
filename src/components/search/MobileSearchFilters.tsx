@@ -4,13 +4,13 @@ import {
   Drawer,
   DrawerContent,
   DrawerTrigger,
-  Button,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
   DrawerClose,
-  Separator,
-} from "@/components/ui";
+} from "@/components/ui/drawer";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import { SlidersHorizontal, XIcon } from "lucide-react";
 import SearchFilters from "./SearchFilters";
 import { SearchFiltersProps } from "@/types/props";

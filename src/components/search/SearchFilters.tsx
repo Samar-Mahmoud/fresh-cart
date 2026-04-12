@@ -1,16 +1,16 @@
 "use client";
 
 import {
-  Button,
-  Checkbox,
   Field,
   FieldGroup,
   FieldLabel,
   FieldLegend,
   FieldSet,
-  Input,
-  Separator,
-} from "@/components/ui";
+} from "@/components/ui/field";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import { SearchFiltersProps } from "@/types/props";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

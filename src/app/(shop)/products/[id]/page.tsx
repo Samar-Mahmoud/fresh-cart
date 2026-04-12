@@ -6,15 +6,15 @@ import ImagesSlider from "@/components/products/slider/ImagesSlider";
 import ProductsSlider from "@/components/products/slider/ProductsSlider";
 import StoreBenefits from "@/components/shared/StoreBenefits";
 import {
-  Badge,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  Separator,
-} from "@/components/ui";
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 import { getProduct, getProducts } from "@/services/products";
 import { Circle, RotateCcw } from "lucide-react";
 import Link from "next/link";

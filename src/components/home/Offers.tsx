@@ -1,14 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import {
-  Badge,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui";
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const offers: {
   badge: string;

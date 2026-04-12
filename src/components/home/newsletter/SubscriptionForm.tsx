@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui";
+import { Input } from "@/components/ui/input";
 import Form from "next/form";
 import SubmitButton from "./SubmitButton";
 

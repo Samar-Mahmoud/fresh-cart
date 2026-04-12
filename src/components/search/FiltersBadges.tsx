@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge } from "@/components/ui";
+import { Badge } from "@/components/ui/badge";
 import { SearchFilterBadgesProps } from "@/types/props";
 import { Filter, XIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";

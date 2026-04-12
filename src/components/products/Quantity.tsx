@@ -1,7 +1,8 @@
 "use client";
 
 import CartIcon from "@/components/icons/CartIcon";
-import { Button, Input } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ProductQuantityProps } from "@/types/props";
 import { Heart, Minus, Plus, Share2, Zap } from "lucide-react";
 

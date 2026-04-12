@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui";
+} from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function SortBy() {

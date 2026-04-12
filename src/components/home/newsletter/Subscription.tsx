@@ -4,7 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui";
+} from "@/components/ui/card";
 import MailIcon from "../../icons/MailIcon";
 import VanIcon from "../../icons/VanIcon";
 import MobileApp from "./MobileApp";

@@ -2,7 +2,8 @@ import { Product } from "@/types/products";
 import Image from "next/image";
 import { Eye, Heart, Plus, RotateCcw } from "lucide-react";
 import Link from "next/link";
-import { Badge, Button } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import Rating from "./Rating";
 
 export default function ProductCard({

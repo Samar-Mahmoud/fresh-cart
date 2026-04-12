@@ -8,8 +8,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  Spinner,
-} from "@/components/ui";
+} from "@/components/ui/breadcrumb";
+import { Spinner } from "@/components/ui/spinner";
 import { getBrands } from "@/services/brands";
 import { getCategories } from "@/services/categories";
 import Link from "next/link";
