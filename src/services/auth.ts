@@ -1,4 +1,4 @@
-import { LoginData } from "@/schema/signin";
+import { SignInData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
 import {
   AuthResponse,
@@ -28,7 +28,7 @@ export async function register(
 }
 
 export async function login(
-  userData: LoginData,
+  userData: SignInData,
 ): Promise<LoginResponse | null> {
   const res = await fetch(`${AUTH}/signin`, {
     method: "POST",

@@ -10,35 +10,36 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+} from "@/components/ui/card";
+import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-  Checkbox,
+} from "@/components/ui/field";
+import {
   InputGroup,
   InputGroupInput,
   InputGroupAddon,
-  Spinner,
-} from "@/components/ui";
+} from "@/components/ui/input-group";
+import { Spinner } from "@/components/ui/spinner";
+import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { Eye, EyeOff, Star } from "lucide-react";
-import { schema, LoginData } from "@/schema/login";
+import { schema, SignInData } from "@/schema/signin";
 import MailIcon from "../icons/MailIcon";
 import { useState } from "react";
 import { toast } from "sonner";
-import { loginAction } from "@/actions/auth";
-import { useRouter } from "next/navigation";
+import { signInAction } from "@/actions/auth";
 
-export function LoginForm() {
+export default function SignInForm() {
   const [viewPassword, setViewPassword] = useState(false);
-
-  const router = useRouter();
 
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<LoginData>({
+  } = useForm<SignInData>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: "",
@@ -47,8 +48,8 @@ export function LoginForm() {
     },
   });
 
-  const onSubmit = async (data: LoginData) => {
-    const res = await loginAction(data);
+  const onSubmit = async (data: SignInData) => {
+    const res = await signInAction(data);
 
     if (res.isError) {
       toast.error("Wrong Credentials", {
@@ -59,7 +60,7 @@ export function LoginForm() {
       toast.success("Logged In Successfully", {
         description: "Welcome back!",
       });
-      router.replace("/");
+      window.location.replace("/");
     }
   };
 

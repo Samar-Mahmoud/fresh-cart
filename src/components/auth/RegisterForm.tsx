@@ -30,7 +30,7 @@ import { registerAction } from "@/actions/auth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export function RegisterForm() {
+export default function RegisterForm() {
   const {
     control,
     watch,

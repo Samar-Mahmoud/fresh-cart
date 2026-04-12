@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth";
-import { LoginData, schema } from "./schema/signin";
+import { SignInData, schema } from "./schema/signin";
 import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
@@ -39,7 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        const res = await login(credentials as LoginData);
+        const res = await login(credentials as SignInData);
         if (res) {
           return { ...res.user, token: res.token };
         }
@@ -60,6 +60,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.role = token.role;
       session.user.token = token.token;
       return session;
+    },
+    authorized: async ({ auth }) => {
+      // Logged in users are authenticated, otherwise redirect to login page
+      return !!auth;
     },
   },
 });

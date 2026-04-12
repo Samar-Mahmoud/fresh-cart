@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/auth/LoginForm";
+import SignInForm from "@/components/auth/SignInForm";
 import Image from "next/image";
 import LoginImage from "@/assets/loginImage.png";
 import VanIcon from "@/components/icons/VanIcon";
@@ -59,7 +59,7 @@ export default function Login() {
           </div>
         </div>
 
-        <LoginForm />
+        <SignInForm />
       </div>
     </main>
   );

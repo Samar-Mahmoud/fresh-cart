@@ -1,7 +1,7 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
-import { LoginData } from "@/schema/signin";
+import { SignInData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
 import { register } from "@/services/auth";
 
@@ -9,7 +9,7 @@ export async function registerAction(formData: RegisterData) {
   return await register(formData);
 }
 
-export async function loginAction(formData: LoginData) {
+export async function signInAction(formData: SignInData) {
   try {
     const { email, password } = formData;
 

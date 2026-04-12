@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Avatar from "@/assets/avatar.png";
 import Rating from "@/components/products/Rating";
-import { RegisterForm } from "@/components/auth/RegisterForm";
+import RegisterForm from "@/components/auth/RegisterForm";
 
 const benefits: StoreBenefitProps["benefits"] = [
   {
