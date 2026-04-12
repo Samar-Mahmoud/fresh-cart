@@ -3,7 +3,8 @@
 import { LogOut, User, UserPlus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { Button, Spinner } from "../ui";
+import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
 import { logoutAction } from "@/actions/auth";
 
 export default function Auth() {
@@ -35,7 +36,7 @@ export default function Auth() {
         <>
           <Link
             className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
-            href="/login"
+            href="/signin"
           >
             <User className="size-4" />
             <span className="font-medium">Sign In</span>

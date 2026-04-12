@@ -7,9 +7,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  Separator,
-  Spinner,
-} from "@/components/ui";
+} from "@/components/ui/navigation-menu";
+import { Separator } from "@/components/ui/separator";
+import { Spinner } from "@/components/ui/spinner";
 import { Heart, User } from "lucide-react";
 import Link from "next/link";
 import MobileNavMenu from "./MobileNavMenu";
@@ -164,8 +164,8 @@ export default function NavMenu() {
               <NavigationMenuItem className="hidden xl:block shrink-0">
                 <NavigationMenuLink asChild className="p-0">
                   <Link
-                    href="/login"
-                    className="px-3 py-2.5 text-sm font-semibold flex items-center gap-2 text-white bg-primary-main hover:bg-primary-600 rounded-full shadow-sm"
+                    href="/signin"
+                    className="px-3 py-2.5 text-sm font-semibold flex items-center gap-2 text-white bg-primary-main hover:bg-primary-600 rounded-full shadow-sm focus:bg-primary-main focus:text-white"
                   >
                     <User />
                     Sign In

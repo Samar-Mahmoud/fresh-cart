@@ -8,13 +8,15 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-  Button,
+} from "@/components/ui/drawer";
+import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  Separator,
-} from "@/components/ui";
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Heart, MenuIcon, XIcon } from "lucide-react";
 import Logo from "@/components/shared/Logo";
 import ProductSearch from "@/components/search/SearchForm";
@@ -187,7 +189,7 @@ export default function MobileNavMenu() {
           {/* Login */}
           <Link
             className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold bg-primary-main text-white hover:bg-primary-700 transition-colors"
-            href="/login"
+            href="/signin"
             onClick={handleNavigate}
           >
             Sign In

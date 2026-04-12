@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth";
-import { LoginData, schema } from "./schema/login";
+import { LoginData, schema } from "./schema/signin";
 import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
@@ -47,7 +47,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  pages: { signIn: "/login" },
+  pages: { signIn: "/signin" },
   callbacks: {
     jwt({ token, user }) {
       if (user) {

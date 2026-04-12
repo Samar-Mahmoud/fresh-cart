@@ -43,7 +43,7 @@ const sections: {
       { name: "Order History", href: "/orders" },
       { name: "Wishlist", href: "/wishlist" },
       { name: "Shopping Cart", href: "/cart" },
-      { name: "Sign In", href: "/login" },
+      { name: "Sign In", href: "/signin" },
       { name: "Create Account", href: "/register" },
     ],
   },

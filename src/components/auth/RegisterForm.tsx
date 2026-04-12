@@ -10,16 +10,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+} from "@/components/ui/card";
+import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-  Input,
-  Checkbox,
-  Progress,
   FieldDescription,
-  Spinner,
-} from "@/components/ui";
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { Spinner } from "@/components/ui/spinner";
 import Link from "next/link";
 import { UserPlus } from "lucide-react";
 import { schema, RegisterData } from "@/schema/register";
@@ -61,7 +63,7 @@ export function RegisterForm() {
       toast.success("Account Created Successfully", {
         description: res.message,
       });
-      router.push("/login");
+      router.push("/signin");
     }
   };
 
@@ -331,7 +333,7 @@ export function RegisterForm() {
       <CardFooter className="pt-10 px-0 border-t border-gray-300/30 flex-col">
         <p className="text-base font-medium text-gray-700 text-center">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary-main">
+          <Link href="/signin" className="text-primary-main">
             Sign In
           </Link>
         </p>

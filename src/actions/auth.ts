@@ -1,7 +1,7 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
-import { LoginData } from "@/schema/login";
+import { LoginData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
 import { register } from "@/services/auth";
 

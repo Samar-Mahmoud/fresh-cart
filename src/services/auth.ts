@@ -1,4 +1,4 @@
-import { LoginData } from "@/schema/login";
+import { LoginData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
 import {
   AuthResponse,
