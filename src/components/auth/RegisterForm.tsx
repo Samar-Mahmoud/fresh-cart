@@ -58,8 +58,10 @@ export function RegisterForm() {
         description: res.message,
       });
     } else {
-      toast.success(res.message);
-      router.replace("/");
+      toast.success("Account Created Successfully", {
+        description: res.message,
+      });
+      router.push("/login");
     }
   };
 

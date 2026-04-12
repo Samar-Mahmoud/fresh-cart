@@ -25,8 +25,8 @@ import { Eye, EyeOff, Star } from "lucide-react";
 import { schema, LoginData } from "@/schema/login";
 import MailIcon from "../icons/MailIcon";
 import { useState } from "react";
-import { loginAction } from "@/actions/auth";
 import { toast } from "sonner";
+import { loginAction } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 
 export function LoginForm() {
@@ -49,14 +49,15 @@ export function LoginForm() {
 
   const onSubmit = async (data: LoginData) => {
     const res = await loginAction(data);
+
     if (res.isError) {
-      toast.error(res.message, {
+      toast.error("Wrong Credentials", {
         description:
           "Double-check your details and try again, or reset your password.",
       });
     } else {
-      toast.success("Logged in successfully", {
-        description: res.message,
+      toast.success("Logged In Successfully", {
+        description: "Welcome back!",
       });
       router.replace("/");
     }

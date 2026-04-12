@@ -17,7 +17,12 @@ export interface User {
 
 export type AuthResponse = SuccessResponse | ErrorResponse;
 
-export interface FormResponse {
+export interface LoginResponse {
+  user: User;
+  token: string;
+}
+
+export interface RegisterResponse {
   isError: boolean;
   message: string;
 }
