@@ -5,10 +5,19 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
-import { logoutAction } from "@/actions/auth";
+import { signOutAction } from "@/actions/auth";
+import { useTransition } from "react";
 
 export default function Auth() {
   const { data, status } = useSession();
+
+  const [isPending, startTransition] = useTransition();
+
+  const handleSignOut = () => {
+    startTransition(async () => {
+      await signOutAction();
+    });
+  };
 
   return status === "loading" ? (
     <Spinner />
@@ -24,13 +33,20 @@ export default function Auth() {
             <span className="font-medium">{data.user?.name}</span>
           </Link>
 
-          <Button
-            className="h-auto p-0 bg-transparent text-current gap-1.5 hover:bg-transparent hover:text-red-500"
-            onClick={() => logoutAction()}
-          >
-            <LogOut className="size-4" />
-            Logout
-          </Button>
+          {isPending ? (
+            <span className="flex items-center gap-1.5 text-sm text-red-500 font-medium">
+              <Spinner />
+              Logging out...
+            </span>
+          ) : (
+            <Button
+              className="h-auto p-0 bg-transparent text-current gap-1.5 hover:bg-transparent hover:text-red-500"
+              onClick={() => handleSignOut()}
+            >
+              <LogOut className="size-4" />
+              Logout
+            </Button>
+          )}
         </>
       ) : (
         <>

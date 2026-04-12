@@ -25,6 +25,6 @@ export async function signInAction(formData: SignInData) {
   }
 }
 
-export async function logoutAction() {
+export async function signOutAction() {
   return await signOut();
 }

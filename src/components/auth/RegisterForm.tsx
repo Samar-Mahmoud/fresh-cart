@@ -116,7 +116,11 @@ export default function RegisterForm() {
           <span className="px-4 font-medium text-base text-gray-700">or</span>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-7"
+          noValidate
+        >
           {/* Name */}
           <FieldGroup>
             <Controller

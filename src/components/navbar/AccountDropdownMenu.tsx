@@ -18,10 +18,20 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { logoutAction } from "@/actions/auth";
+import { signOutAction } from "@/actions/auth";
+import { useTransition } from "react";
+import { Spinner } from "../ui/spinner";
 
 export function AccountDropdownMenu() {
   const { data } = useSession();
+
+  const [isPending, startTransition] = useTransition();
+
+  const handleSignOut = () => {
+    startTransition(async () => {
+      await signOutAction();
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -134,10 +144,20 @@ export function AccountDropdownMenu() {
         >
           <Button
             className="gap-3 justify-start h-auto w-full rounded-none text-red-500 bg-transparent focus-visible:ring-0! focus-visible:border-transparent"
-            onClick={() => logoutAction()}
+            onClick={handleSignOut}
+            disabled={isPending}
           >
-            <LogOut />
-            Sign Out
+            {isPending ? (
+              <>
+                <Spinner />
+                Signing Out..
+              </>
+            ) : (
+              <>
+                <LogOut />
+                Sign Out
+              </>
+            )}
           </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
