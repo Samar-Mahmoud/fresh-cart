@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
+import Providers from "@/components/shared/Providers";
 
 const exo = Exo({
   variable: "--font-exo",
@@ -24,20 +25,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-exo", exo.variable)}>
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
 
-        <Toaster
-          toastOptions={{
-            classNames: {
-              toast: "border-none!",
-              success: "bg-primary-main! text-white! text-base! font-medium!",
-              error: "bg-red-500! text-white! text-base! font-medium!",
-              description: "text-white! text-xs! font-medium!",
-            },
-          }}
-        />
+          <Toaster
+            toastOptions={{
+              classNames: {
+                toast: "border-none!",
+                success: "bg-primary-main! text-white!",
+                error: "bg-red-500! text-white! ",
+                title: "text-base! font-bold!",
+                description: "text-white! text-sm! font-medium!",
+              },
+            }}
+          />
+        </Providers>
       </body>
     </html>
   );
