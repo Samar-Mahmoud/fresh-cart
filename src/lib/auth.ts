@@ -1,3 +1,33 @@
+import { auth } from "@/auth";
+import { ErrorResponse } from "@/types/cart";
+
+export async function authFetch<T>(
+  endpoint: string,
+  options: RequestInit = {},
+): Promise<T> {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  const res = await fetch(`${process.env.BASE_URL}${endpoint}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      token: `${session.user.token}`,
+      ...options.headers,
+    },
+  });
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error((data as ErrorResponse).message);
+  }
+
+  return data;
+}
+
 export function getPasswordStrength(password: string): {
   level: "Weak" | "Fair" | "Good" | "Strong";
   value: number;

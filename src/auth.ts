@@ -66,4 +66,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return !!auth;
     },
   },
+  session: { maxAge: 60 * 60 * 24 },
+  jwt: { maxAge: 60 * 60 * 24 },
 });

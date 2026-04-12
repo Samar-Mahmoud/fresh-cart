@@ -2,6 +2,7 @@ import React from "react";
 import { Product } from "./products";
 import { Brand } from "./brands";
 import { Category } from "./categories";
+import { Button } from "@/components/ui/button";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -65,4 +66,11 @@ export interface SearchFilterBadgesProps {
     brand: { value: string; label: string }[];
     price: { value: string };
   }>;
+}
+
+export interface AddToCartButtonProps extends React.ComponentPropsWithoutRef<
+  typeof Button
+> {
+  id: Product["_id"];
+  title: Product["title"];
 }

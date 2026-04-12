@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Rating from "./Rating";
+import AddToCartButton from "@/components/shared/AddToCartButton";
 
 export default function ProductCard({
   _id,
@@ -88,12 +89,14 @@ export default function ProductCard({
             </span>
           )}
 
-          <Button
+          <AddToCartButton
+            id={_id}
+            title={title}
             size="icon-lg"
             className="mt-1 rounded-full bg-primary-main text-white hover:bg-primary-700"
           >
             <Plus className="size-5" strokeWidth={3} />
-          </Button>
+          </AddToCartButton>
         </div>
       </div>
     </div>

@@ -25,6 +25,9 @@ export async function signInAction(formData: SignInData) {
   }
 }
 
-export async function signOutAction() {
-  return await signOut();
+export async function signOutAction(options?: {
+  redirectTo?: string | undefined;
+  redirect?: true | undefined;
+}) {
+  return await signOut(options ?? { redirectTo: "/signin" });
 }
