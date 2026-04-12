@@ -1,7 +1,7 @@
-import { Mail, Phone, User, UserPlus } from "lucide-react";
-import Link from "next/link";
+import { Mail, Phone } from "lucide-react";
 import VanIcon from "@/components/icons/VanIcon";
 import { Separator } from "@/components/ui/separator";
+import UserInfo from "@/components/auth/UserInfo";
 
 export default function TopBar() {
   return (
@@ -56,26 +56,7 @@ export default function TopBar() {
 
           <Separator orientation="vertical" />
 
-          {/* Auth */}
-          <div className="flex items-center gap-4">
-            {/* Login */}
-            <Link
-              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
-              href="/login"
-            >
-              <User width="15" height="12" />
-              <span className="font-medium">Sign In</span>
-            </Link>
-
-            {/* Register */}
-            <Link
-              className="flex items-center gap-1.5 hover:text-primary-main transition-colors"
-              href="/register"
-            >
-              <UserPlus width="15" height="12" />
-              <span className="font-medium">Sign Up</span>
-            </Link>
-          </div>
+          <UserInfo />
         </div>
       </div>
     </div>

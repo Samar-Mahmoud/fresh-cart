@@ -17,6 +17,7 @@ export default function Login() {
               alt="fresh vegetables and fruits shopping cart illustration, modern clean style, green theme"
               src={LoginImage}
               sizes="384"
+              loading="eager"
             />
           </div>
 

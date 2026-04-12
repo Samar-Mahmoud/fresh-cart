@@ -8,12 +8,15 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   Separator,
+  Spinner,
 } from "@/components/ui";
-import { Heart } from "lucide-react";
+import { Heart, User } from "lucide-react";
 import Link from "next/link";
 import MobileNavMenu from "./MobileNavMenu";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
+import { useSession } from "next-auth/react";
+import { AccountDropdownMenu } from "./AccountDropdownMenu";
 
 const items: {
   title: string;
@@ -39,6 +42,8 @@ const items: {
 ];
 
 export default function NavMenu() {
+  const { data, status } = useSession();
+
   return (
     <NavigationMenu viewport={false} className="gap-4 lg:gap-8">
       <NavigationMenuList className="hidden xl:flex gap-6">
@@ -118,9 +123,14 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/wishlist"
-              className="text-gray-500 hover:text-primary-main size-11.25 rounded-full flex hover:bg-gray-100"
+              className="text-gray-500 hover:text-primary-main size-11.25 rounded-full flex hover:bg-gray-100 relative"
             >
               <Heart className="m-auto size-5" width="25" height="20" />
+              {data && (
+                <span className="size-4.5 rounded-full bg-red-500 text-white ring-2 ring-white font-bold text-[10px] absolute top-0.5 right-0.5 flex items-center justify-center">
+                  0
+                </span>
+              )}
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
@@ -130,36 +140,41 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0">
             <Link
               href="/cart"
-              className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-main"
+              className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-main relative"
             >
               <CartIcon className="m-auto size-5" />
+              {data && (
+                <span className="size-4.5 rounded-full bg-primary-main text-white ring-1 ring-white font-bold text-[10px] absolute top-0.5 right-0.5 flex items-center justify-center">
+                  0
+                </span>
+              )}
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
-        {/* Profile */}
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className="p-0">
-            <Link
-              href="/profile"
-              className="text-gray-500 hover:text-primary-main size-11.25 rounded-full hover:bg-gray-100"
-            >
-              <svg
-                className="m-auto size-5"
-                width="25"
-                height="20"
-                viewBox="0 0 25 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3.125 16.25V6.25H21.875V16.25C21.875 16.5938 21.5938 16.875 21.25 16.875H13.75C13.75 15.1484 12.3516 13.75 10.625 13.75H8.125C6.39844 13.75 5 15.1484 5 16.875H3.75C3.40625 16.875 3.125 16.5938 3.125 16.25ZM3.75 1.25C2.37109 1.25 1.25 2.37109 1.25 3.75V16.25C1.25 17.6289 2.37109 18.75 3.75 18.75H21.25C22.6289 18.75 23.75 17.6289 23.75 16.25V3.75C23.75 2.37109 22.6289 1.25 21.25 1.25H3.75ZM9.375 12.1875C9.95516 12.1875 10.5116 11.957 10.9218 11.5468C11.332 11.1366 11.5625 10.5802 11.5625 10C11.5625 9.41984 11.332 8.86344 10.9218 8.4532C10.5116 8.04297 9.95516 7.8125 9.375 7.8125C8.79484 7.8125 8.23844 8.04297 7.8282 8.4532C7.41797 8.86344 7.1875 9.41984 7.1875 10C7.1875 10.5802 7.41797 11.1366 7.8282 11.5468C8.23844 11.957 8.79484 12.1875 9.375 12.1875ZM15.9375 8.125C15.418 8.125 15 8.54297 15 9.0625C15 9.58203 15.418 10 15.9375 10H19.0625C19.582 10 20 9.58203 20 9.0625C20 8.54297 19.582 8.125 19.0625 8.125H15.9375ZM15.9375 11.875C15.418 11.875 15 12.293 15 12.8125C15 13.332 15.418 13.75 15.9375 13.75H19.0625C19.582 13.75 20 13.332 20 12.8125C20 12.293 19.582 11.875 19.0625 11.875H15.9375Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
+        {status === "loading" ? (
+          <Spinner />
+        ) : (
+          <>
+            {data ? (
+              <NavigationMenuItem>
+                <AccountDropdownMenu />
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem className="hidden xl:block shrink-0">
+                <NavigationMenuLink asChild className="p-0">
+                  <Link
+                    href="/login"
+                    className="px-3 py-2.5 text-sm font-semibold flex items-center gap-2 text-white bg-primary-main hover:bg-primary-600 rounded-full shadow-sm"
+                  >
+                    <User />
+                    Sign In
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            )}
+          </>
+        )}
 
         {/* Mobile Navigation Menu */}
         <MobileNavMenu />
