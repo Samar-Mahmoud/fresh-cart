@@ -96,3 +96,19 @@ export async function removeProduct(productId: Product["_id"]): Promise<
     return { isError: true, message: (error as Error).message };
   }
 }
+
+export async function updateProduct(productId: Product["_id"], count: number) {
+  try {
+    await authFetch<SuccessResponse<CartItems>>(`${CART}/${productId}`, {
+      method: "PUT",
+      body: JSON.stringify({ count }),
+    });
+
+    revalidatePath("/cart");
+
+    return { isError: false, message: "Your cart has been updated" };
+  } catch (error) {
+    console.error(error);
+    return { isError: true, message: (error as Error).message };
+  }
+}

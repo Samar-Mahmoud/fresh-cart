@@ -1,11 +1,10 @@
 import { CartItems } from "@/types/cart";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Check, Circle, Minus, Plus, Trash, XCircle } from "lucide-react";
+import { Check, Circle, Trash, XCircle } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import RemoveProductButton from "./RemoveProductButton";
+import ItemQuantity from "./ItemQuantity";
 
 export default function Card({
   product: {
@@ -84,28 +83,7 @@ export default function Card({
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-200">
-              <Button
-                className="w-8 h-8 rounded-lg bg-white shadow-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                disabled
-              >
-                <Minus />
-              </Button>
-              <Input
-                min={1}
-                max={quantity}
-                className="w-12 h-auto text-center text-gray-900 bg-transparent text-lg font-bold focus-visible:border-none focus-visible:ring-none"
-                id="quantity"
-                type="number"
-                defaultValue={count}
-              />
-              <Button
-                className="w-8 h-8 rounded-lg bg-primary-main shadow-sm text-white hover:bg-primary-700"
-                disabled
-              >
-                <Plus />
-              </Button>
-            </div>
+            <ItemQuantity id={_id} count={count} quantity={quantity} />
 
             <div className="flex items-center gap-4">
               <div className="text-right">

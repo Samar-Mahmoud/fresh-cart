@@ -80,3 +80,9 @@ export interface OrderSummaryProps {
   numOfCartItems: number;
   totalCartPrice: number;
 }
+
+export interface CartItemQuantityProps {
+  id: Product["_id"];
+  quantity: number;
+  count: number;
+}
