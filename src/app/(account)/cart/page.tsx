@@ -13,7 +13,6 @@ import {
 import CartIcon from "@/components/icons/CartIcon";
 import ClearCartButton from "@/components/cart/ClearButton";
 import { Separator } from "@/components/ui/separator";
-
 import ItemCard from "@/components/cart/Card";
 import OrderSummary from "@/components/cart/OrderSummary";
 
