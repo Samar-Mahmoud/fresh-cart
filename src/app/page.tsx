@@ -7,11 +7,12 @@ import { ArrowRight, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import Offers from "@/components/home/Offers";
 import CategoryCard from "@/components/home/CategoryCard";
-import ProductCard from "@/components/products/Card";
 import { getCategories } from "@/services/categories";
-import { getProducts } from "@/services/products";
 import Subscription from "@/components/home/newsletter/Subscription";
 import { StoreBenefitProps } from "@/types/props";
+import { Suspense } from "react";
+import Products from "@/components/home/Products";
+import { Spinner } from "@/components/ui/spinner";
 
 const benefits: StoreBenefitProps["benefits"] = [
   {
@@ -51,7 +52,6 @@ const benefits: StoreBenefitProps["benefits"] = [
 
 export default async function Home() {
   const categories = await getCategories();
-  const { data: products } = await getProducts();
 
   return (
     <main>
@@ -112,11 +112,15 @@ export default async function Home() {
             </h2>
           </header>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {products.map((prod) => (
-              <ProductCard key={prod._id} {...prod} />
-            ))}
-          </div>
+          <Suspense
+            fallback={
+              <div className="h-75 flex items-center justify-center">
+                <Spinner className="size-6 text-primary-main" />
+              </div>
+            }
+          >
+            <Products />
+          </Suspense>
         </section>
 
         <section className="py-16">

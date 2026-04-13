@@ -16,7 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { getProduct, getProducts } from "@/services/products";
-import { Circle, RotateCcw } from "lucide-react";
+import { Circle, RotateCcw, XCircle } from "lucide-react";
 import Link from "next/link";
 import VanFastIcon from "@/components/icons/VanFastIcon";
 
@@ -79,7 +79,7 @@ export default async function ProductDetails({
   const { data: products } = await getProducts();
 
   return (
-    <main className="p-4">
+    <main className="p-4 container mx-auto">
       <Breadcrumb className="mb-10">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -141,109 +141,116 @@ export default async function ProductDetails({
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="p-4">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-14 relative">
-          <section className="lg:w-1/4 lg:sticky top-0">
-            <ImagesSlider images={images} title={title} />
-          </section>
-
-          <section className="rounded-xl shadow-sm p-4 flex flex-col flex-1">
-            <div className="flex gap-2 mb-4">
-              <Badge
-                className="px-3 py-1.5 bg-primary-50 text-primary-700 hover:bg-primary-100!"
-                asChild
-              >
-                <Link href={`/categories/${categoryId}`}>{categoryName}</Link>
-              </Badge>
-              <Badge className="px-3 py-1.5 bg-gray-100 text-gray-700">
-                {brandName}
-              </Badge>
-            </div>
-
-            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-              {title}
-            </h1>
-
-            <div className="flex gap-3 items-center mb-4">
-              <Rating rating={rating.average} />
-
-              <div className="text-sm font-medium text-gray-600">
-                (
-                {rating.count > 0
-                  ? `${rating.count} reviews`
-                  : "No Reviews Yet"}
-                )
-              </div>
-            </div>
-
-            <div className="mb-6">
-              {priceAfterDiscount ? (
-                <div className="flex items-center gap-3 flex-wrap">
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className="text-3xl font-bold text-primary-main shrink-0">
-                      {priceAfterDiscount} EGP
-                    </span>
-
-                    <span className="line-through text-lg text-gray-500 shrink-0">
-                      {price} EGP
-                    </span>
-                  </div>
-
-                  <Badge className="bg-red-500 text-white py-1 text-sm">
-                    Save{" "}
-                    {Math.round(((price - priceAfterDiscount) / price) * 100)}%
-                  </Badge>
-                </div>
-              ) : (
-                <span className="text-3xl font-bold text-gray-800">
-                  {price} EGP
-                </span>
-              )}
-            </div>
-
-            <Badge className="px-3 py-1.5 text-sm bg-primary-50 text-green-700 gap-1.5 [&>svg]:size-2! mb-6">
-              <Circle className="fill-current text-primary-500" />
-              In Stock
-            </Badge>
-
-            <Separator className="bg-gray-100" />
-
-            <p className="pt-5 mb-6 text-base font-medium text-gray-600">
-              {description}
-            </p>
-
-            <ProductQuantity
-              id={id}
-              quantity={quantity}
-              price={priceAfterDiscount ?? price}
-            />
-
-            <Separator className="bg-gray-100" />
-
-            <ul className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
-              <StoreBenefits
-                benefits={benefits}
-                iconClasses="size-10 flex rounded-full bg-primary-100 text-primary-main"
-              />
-            </ul>
-          </section>
-        </div>
-
-        <section className="rounded-lg shadow-sm mb-18">
-          <ProductTabs
-            brandName={brandName}
-            categoryName={categoryName}
-            description={description}
-            sold={sold}
-            subcategory={subcategory}
-            reviews={reviews}
-          />
+      <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-14 relative">
+        <section className="lg:w-1/4 lg:sticky top-0">
+          <ImagesSlider images={images} title={title} />
         </section>
 
-        <section className="space-y-6 mb-2">
-          <ProductsSlider products={products} />
+        <section className="rounded-xl shadow-sm p-4 flex flex-col flex-1">
+          <div className="flex gap-2 mb-4">
+            <Badge
+              className="px-3 py-1.5 bg-primary-50 text-primary-700 hover:bg-primary-100!"
+              asChild
+            >
+              <Link href={`/categories/${categoryId}`}>{categoryName}</Link>
+            </Badge>
+            <Badge className="px-3 py-1.5 bg-gray-100 text-gray-700">
+              {brandName}
+            </Badge>
+          </div>
+
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
+            {title}
+          </h1>
+
+          <div className="flex gap-3 items-center mb-4">
+            <Rating rating={rating.average} />
+
+            <div className="text-sm font-medium text-gray-600">
+              ({rating.count > 0 ? `${rating.count} reviews` : "No Reviews Yet"}
+              )
+            </div>
+          </div>
+
+          <div className="mb-6">
+            {priceAfterDiscount ? (
+              <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="text-3xl font-bold text-primary-main shrink-0">
+                    {priceAfterDiscount} EGP
+                  </span>
+
+                  <span className="line-through text-lg text-gray-500 shrink-0">
+                    {price} EGP
+                  </span>
+                </div>
+
+                <Badge className="bg-red-500 text-white py-1 text-sm">
+                  Save{" "}
+                  {Math.round(((price - priceAfterDiscount) / price) * 100)}%
+                </Badge>
+              </div>
+            ) : (
+              <span className="text-3xl font-bold text-gray-800">
+                {price} EGP
+              </span>
+            )}
+          </div>
+
+          <Badge
+            className={`px-3 py-1.5 text-sm gap-1.5  mb-6 ${quantity > 0 ? "bg-primary-50 text-green-700 [&>svg]:size-2!" : "bg-red-50 text-red-700 [&>svg]:size-4!"}`}
+          >
+            {quantity > 0 ? (
+              <>
+                <Circle className="fill-current text-primary-500" />
+                In Stock
+              </>
+            ) : (
+              <>
+                <XCircle />
+                Sold Out
+              </>
+            )}
+          </Badge>
+
+          <Separator className="bg-gray-100" />
+
+          <p className="pt-5 mb-6 text-base font-medium text-gray-600">
+            {description}
+          </p>
+
+          <ProductQuantity
+            id={id}
+            title={title}
+            quantity={quantity}
+            price={priceAfterDiscount ?? price}
+          />
+
+          <Separator className="bg-gray-100" />
+
+          <ul className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+            <StoreBenefits
+              benefits={benefits}
+              iconClasses="size-10 flex rounded-full bg-primary-100 text-primary-main"
+            />
+          </ul>
         </section>
       </div>
+
+      <section className="rounded-lg shadow-sm mb-18">
+        <ProductTabs
+          brandName={brandName}
+          categoryName={categoryName}
+          description={description}
+          sold={sold}
+          subcategory={subcategory}
+          reviews={reviews}
+        />
+      </section>
+
+      <section className="space-y-6 mb-2">
+        <ProductsSlider products={products} />
+      </section>
     </main>
   );
 }

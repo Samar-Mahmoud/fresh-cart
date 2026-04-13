@@ -47,7 +47,9 @@ export default function OrderSummary({
         {totalCartPrice < 500 ? (
           <div className="bg-linear-to-r from-orange-50 to-amber-50 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-2 text-orange-500 ">
-              <VanIcon size="size-5" />
+              <div className="flex">
+                <VanIcon size="size-5" />
+              </div>
               <span className="text-sm font-medium text-gray-700">
                 Add {500 - totalCartPrice} EGP for free shipping
               </span>
