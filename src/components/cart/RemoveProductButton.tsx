@@ -1,6 +1,6 @@
 "use client";
 
-import { addToCartAction } from "@/actions/cart";
+import { removeProductAction } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
 import { AddToCartButtonProps } from "@/types/props";
@@ -10,12 +10,14 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-export default function AddButton({
+type RemoveProductButton = AddToCartButtonProps;
+
+export default function RemoveProductButton({
   id,
   title,
   children,
   ...props
-}: AddToCartButtonProps) {
+}: RemoveProductButton) {
   const [isLoading, setIsLoading] = useState(false);
 
   const { setCount } = useCart();
@@ -24,7 +26,7 @@ export default function AddButton({
 
   const router = useRouter();
 
-  const handleAddToCart = async () => {
+  const handleRemoveProduct = async () => {
     if (!session) {
       router.push("/signin");
       return;
@@ -32,20 +34,20 @@ export default function AddButton({
 
     setIsLoading(true);
 
-    const res = await addToCartAction(id);
+    const res = await removeProductAction(id);
 
     if (!res.isError) {
       setCount(res.data.numOfCartItems);
-      toast.success(`${title} added to cart!`);
+      toast.success(`${title} removed from your cart.`);
     } else {
-      toast.error(`Failed to add ${title} to cart. ${res.message}`);
+      toast.error(`Failed to remove ${title} from your cart. ${res.message}`);
     }
 
     setIsLoading(false);
   };
 
   return (
-    <Button {...props} onClick={handleAddToCart} disabled={isLoading}>
+    <Button {...props} onClick={handleRemoveProduct} disabled={isLoading}>
       {isLoading ? <Spinner /> : children}
     </Button>
   );

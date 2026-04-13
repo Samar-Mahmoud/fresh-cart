@@ -3,9 +3,11 @@ import { CartItems, SuccessResponse } from "@/types/cart";
 import { Product } from "@/types/products";
 import { revalidatePath } from "next/cache";
 
+const CART = "/v2/cart";
+
 export async function getCartItems() {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>("/v2/cart", {
+    const res = await authFetch<SuccessResponse<CartItems>>(CART, {
       method: "GET",
       cache: "force-cache",
     });
@@ -23,9 +25,18 @@ export async function getCartItems() {
   }
 }
 
-export async function addToCart(productId: Product["_id"]) {
+export async function addToCart(productId: Product["_id"]): Promise<
+  | { isError: true; message: string }
+  | {
+      isError: false;
+      data: {
+        numOfCartItems: number;
+        totalCartPrice: number;
+      };
+    }
+> {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>("/v2/cart", {
+    const res = await authFetch<SuccessResponse<CartItems>>(CART, {
       method: "POST",
       body: JSON.stringify({ productId }),
     });
@@ -37,22 +48,49 @@ export async function addToCart(productId: Product["_id"]) {
 
     revalidatePath("/cart");
 
-    return { numOfCartItems, totalCartPrice };
+    return { isError: false, data: { numOfCartItems, totalCartPrice } };
   } catch (error) {
     console.error(error);
-    return { numOfCartItems: 0, totalCartPrice: 0 };
+    return { isError: true, message: (error as Error).message };
   }
 }
 
 export async function clearCart() {
   try {
-    await authFetch<SuccessResponse<CartItems>>("/v2/cart", {
-      method: "DELETE",
-    });
+    await authFetch(CART, { method: "DELETE" });
 
     revalidatePath("/cart");
 
     return { isError: false, message: "Your cart has been cleared!" };
+  } catch (error) {
+    console.error(error);
+    return { isError: true, message: (error as Error).message };
+  }
+}
+
+export async function removeProduct(productId: Product["_id"]): Promise<
+  | { isError: true; message: string }
+  | {
+      isError: false;
+      data: {
+        numOfCartItems: number;
+        totalCartPrice: number;
+      };
+    }
+> {
+  try {
+    const res = await authFetch<SuccessResponse<CartItems>>(
+      `${CART}/${productId}`,
+      { method: "DELETE" },
+    );
+
+    const {
+      numOfCartItems,
+      data: { totalCartPrice },
+    } = res;
+    revalidatePath("/cart");
+
+    return { isError: false, data: { numOfCartItems, totalCartPrice } };
   } catch (error) {
     console.error(error);
     return { isError: true, message: (error as Error).message };

@@ -5,10 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Check, Circle, Minus, Plus, Trash, XCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import RemoveProductButton from "./RemoveProductButton";
 
 export default function Card({
-  _id,
   product: {
+    _id,
     imageCover,
     title,
     quantity,
@@ -18,10 +19,7 @@ export default function Card({
   count,
 }: CartItems["products"][number]) {
   return (
-    <div
-      key={_id}
-      className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
-    >
+    <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
       <div className="flex gap-4 items-stretch">
         <div className="flex flex-col justify-between shrink-0">
           <Link
@@ -75,7 +73,7 @@ export default function Card({
               <Circle className="fill-current text-gray-400 size-0.5" />
 
               <span className="text-xs text-gray-500 font-medium">
-                SKU: 5CA0B3
+                SKU: {_id.slice(-6).toUpperCase()}
               </span>
             </div>
           </div>
@@ -118,9 +116,13 @@ export default function Card({
                 </p>
               </div>
 
-              <Button className="h-10 w-10 rounded-xl border border-red-200 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500">
+              <RemoveProductButton
+                id={_id}
+                title={title}
+                className="h-10 w-10 rounded-xl border border-red-200 bg-red-50 text-red-500 hover:bg-red-500 hover:text-white hover:border-red-500"
+              >
                 <Trash />
-              </Button>
+              </RemoveProductButton>
             </div>
           </div>
         </div>
