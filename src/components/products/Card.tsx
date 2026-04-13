@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Rating from "./Rating";
-import AddToCartButton from "@/components/shared/AddToCartButton";
+import AddToCartButton from "@/components/cart/AddButton";
 
 export default function ProductCard({
   _id,

@@ -32,6 +32,7 @@ export interface ImagesSliderProps {
 
 export interface ProductQuantityProps {
   id: Product["_id"];
+  title: Product["title"];
   quantity: Product["quantity"];
   price: Product["price"];
 }
@@ -73,4 +74,9 @@ export interface AddToCartButtonProps extends React.ComponentPropsWithoutRef<
 > {
   id: Product["_id"];
   title: Product["title"];
+}
+
+export interface OrderSummaryProps {
+  numOfCartItems: number;
+  totalCartPrice: number;
 }

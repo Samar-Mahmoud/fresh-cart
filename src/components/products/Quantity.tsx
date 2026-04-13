@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProductQuantityProps } from "@/types/props";
 import { Heart, Minus, Plus, Share2, Zap } from "lucide-react";
+import AddToCartButton from "@/components/cart/AddButton";
 
 export default function ProductQuantity({
   quantity,
   price,
+  id,
+  title,
 }: ProductQuantityProps) {
   return (
     <>
@@ -55,11 +58,16 @@ export default function ProductQuantity({
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
-        <Button className="flex-1 py-3.5 h-auto bg-primary-main rounded-xl gap-2 text-white text-base font-medium hover:bg-primary-main/90">
+        <AddToCartButton
+          id={id}
+          title={title}
+          className="flex-1 py-3.5 h-auto bg-primary-main rounded-xl gap-2 text-white text-base font-medium hover:bg-primary-main/90"
+        >
           <CartIcon className="size-5" />
           Add to Cart
-        </Button>
+        </AddToCartButton>
 
+        {/* TODO */}
         <Button className="flex-1 py-3.5 h-auto bg-gray-900 rounded-xl gap-2 text-white text-base font-medium hover:bg-gray-900/90">
           <Zap fill="currentColor" />
           Buy Now
@@ -67,11 +75,13 @@ export default function ProductQuantity({
       </div>
 
       <div className="flex gap-3 mb-6">
+        {/* TODO */}
         <Button className="py-3 flex-1 h-auto bg-white border-2 border-gray-200 rounded-xl gap-2 text-gray-700 text-base font-medium hover:bg-transparent hover:text-primary-700">
           <Heart />
           Add to Wishlist
         </Button>
 
+        {/* TODO */}
         <Button className="p-4 h-auto bg-white border-2 border-gray-200 rounded-xl gap-2 text-gray-700 text-base font-medium hover:bg-transparent hover:text-primary-700">
           <Share2 fill="currentColor" />
         </Button>
