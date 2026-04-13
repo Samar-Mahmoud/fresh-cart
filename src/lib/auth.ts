@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { ErrorResponse } from "@/types/cart";
+import { ErrorResponse } from "@/types";
 
 export async function authFetch<T>(
   endpoint: string,

@@ -3,7 +3,7 @@
 import { addToCartAction } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
-import { AddToCartButtonProps } from "@/types/props";
+import { ActionButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function AddButton({
   count = 1,
   children,
   ...props
-}: AddToCartButtonProps) {
+}: ActionButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const { setCount } = useCart();

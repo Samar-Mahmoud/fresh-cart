@@ -23,9 +23,9 @@ export default function Card({
         <div className="flex flex-col justify-between shrink-0">
           <Link
             href={`/products/${_id}`}
-            className="group/img size-28 p-3 overflow-hidden rounded-xl bg-linear-to-br from-gray-50 via-white to-gray-100 relative"
+            className="group/img size-28 flex overflow-hidden rounded-xl bg-linear-to-br from-gray-50 via-white to-gray-100"
           >
-            <div className="relative size-21.5 group-hover/img:scale-[1.05] transition-transform">
+            <div className="m-auto relative size-21.5 group-hover/img:scale-[1.05] transition-transform">
               <Image
                 src={imageCover}
                 alt={title}

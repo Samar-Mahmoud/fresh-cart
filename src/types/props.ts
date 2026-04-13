@@ -69,7 +69,7 @@ export interface SearchFilterBadgesProps {
   }>;
 }
 
-export interface AddToCartButtonProps extends React.ComponentPropsWithoutRef<
+export interface ActionButtonProps extends React.ComponentPropsWithoutRef<
   typeof Button
 > {
   id: Product["_id"];

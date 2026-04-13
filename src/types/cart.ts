@@ -1,17 +1,12 @@
 import { Brand } from "./brands";
 import { Category, SubCategory } from "./categories";
 
-export interface SuccessResponse<T> {
+export interface CartItemsResponse {
   status: "success";
   message: string;
   numOfCartItems: number;
   cartId: string | null;
-  data: T;
-}
-
-export interface ErrorResponse {
-  message: string;
-  statusMsg: "fail";
+  data: CartItems;
 }
 
 export interface CartItems {

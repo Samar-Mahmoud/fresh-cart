@@ -1,12 +1,9 @@
+import { ErrorResponse } from ".";
+
 export interface SuccessResponse {
   message: "success";
   user: User;
   token: string;
-}
-
-export interface ErrorResponse {
-  message: string;
-  statusMsg: "fail";
 }
 
 export interface User {

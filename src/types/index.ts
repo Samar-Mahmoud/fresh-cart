@@ -10,3 +10,8 @@ export interface Metadata {
   limit: number;
   nextPage: number;
 }
+
+export interface ErrorResponse {
+  message: string;
+  statusMsg: "fail";
+}

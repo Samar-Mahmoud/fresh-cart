@@ -1,5 +1,5 @@
 import { authFetch } from "@/lib/auth";
-import { CartActionResponse, CartItems, SuccessResponse } from "@/types/cart";
+import { CartActionResponse, CartItemsResponse } from "@/types/cart";
 import { Product } from "@/types/products";
 import { revalidatePath } from "next/cache";
 
@@ -7,7 +7,7 @@ const CART = "/v2/cart";
 
 export async function getCartItems() {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>(CART, {
+    const res = await authFetch<CartItemsResponse>(CART, {
       method: "GET",
       cache: "force-cache",
     });
@@ -30,7 +30,7 @@ export async function addToCart(
   count: number,
 ): Promise<CartActionResponse> {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>(CART, {
+    const res = await authFetch<CartItemsResponse>(CART, {
       method: "POST",
       body: JSON.stringify({ productId }),
     });
@@ -70,10 +70,9 @@ export async function removeProduct(
   productId: Product["_id"],
 ): Promise<CartActionResponse> {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>(
-      `${CART}/${productId}`,
-      { method: "DELETE" },
-    );
+    const res = await authFetch<CartItemsResponse>(`${CART}/${productId}`, {
+      method: "DELETE",
+    });
 
     const {
       numOfCartItems,
@@ -93,13 +92,10 @@ export async function updateProduct(
   count: number,
 ): Promise<CartActionResponse> {
   try {
-    const res = await authFetch<SuccessResponse<CartItems>>(
-      `${CART}/${productId}`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ count }),
-      },
-    );
+    const res = await authFetch<CartItemsResponse>(`${CART}/${productId}`, {
+      method: "PUT",
+      body: JSON.stringify({ count }),
+    });
 
     const {
       data: { totalCartPrice },

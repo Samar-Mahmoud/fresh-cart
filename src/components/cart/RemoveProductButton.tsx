@@ -3,21 +3,19 @@
 import { removeProductAction } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/useCart";
-import { AddToCartButtonProps } from "@/types/props";
+import { ActionButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-type RemoveProductButton = AddToCartButtonProps;
-
 export default function RemoveProductButton({
   id,
   title,
   children,
   ...props
-}: RemoveProductButton) {
+}: ActionButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const { setCount } = useCart();
