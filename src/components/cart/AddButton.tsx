@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 export default function AddButton({
   id,
   title,
+  count = 1,
   children,
   ...props
 }: AddToCartButtonProps) {
@@ -32,7 +33,7 @@ export default function AddButton({
 
     setIsLoading(true);
 
-    const res = await addToCartAction(id);
+    const res = await addToCartAction(id, count);
 
     if (!res.isError) {
       setCount(res.data.numOfCartItems);

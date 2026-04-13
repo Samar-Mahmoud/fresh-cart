@@ -1,5 +1,5 @@
 import { authFetch } from "@/lib/auth";
-import { CartItems, SuccessResponse } from "@/types/cart";
+import { CartActionResponse, CartItems, SuccessResponse } from "@/types/cart";
 import { Product } from "@/types/products";
 import { revalidatePath } from "next/cache";
 
@@ -25,21 +25,19 @@ export async function getCartItems() {
   }
 }
 
-export async function addToCart(productId: Product["_id"]): Promise<
-  | { isError: true; message: string }
-  | {
-      isError: false;
-      data: {
-        numOfCartItems: number;
-        totalCartPrice: number;
-      };
-    }
-> {
+export async function addToCart(
+  productId: Product["_id"],
+  count: number,
+): Promise<CartActionResponse> {
   try {
     const res = await authFetch<SuccessResponse<CartItems>>(CART, {
       method: "POST",
       body: JSON.stringify({ productId }),
     });
+
+    if (count > 1) {
+      return await updateProduct(productId, count);
+    }
 
     const {
       data: { totalCartPrice },
@@ -68,16 +66,9 @@ export async function clearCart() {
   }
 }
 
-export async function removeProduct(productId: Product["_id"]): Promise<
-  | { isError: true; message: string }
-  | {
-      isError: false;
-      data: {
-        numOfCartItems: number;
-        totalCartPrice: number;
-      };
-    }
-> {
+export async function removeProduct(
+  productId: Product["_id"],
+): Promise<CartActionResponse> {
   try {
     const res = await authFetch<SuccessResponse<CartItems>>(
       `${CART}/${productId}`,
@@ -97,16 +88,27 @@ export async function removeProduct(productId: Product["_id"]): Promise<
   }
 }
 
-export async function updateProduct(productId: Product["_id"], count: number) {
+export async function updateProduct(
+  productId: Product["_id"],
+  count: number,
+): Promise<CartActionResponse> {
   try {
-    await authFetch<SuccessResponse<CartItems>>(`${CART}/${productId}`, {
-      method: "PUT",
-      body: JSON.stringify({ count }),
-    });
+    const res = await authFetch<SuccessResponse<CartItems>>(
+      `${CART}/${productId}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ count }),
+      },
+    );
+
+    const {
+      data: { totalCartPrice },
+      numOfCartItems,
+    } = res;
 
     revalidatePath("/cart");
 
-    return { isError: false, message: "Your cart has been updated" };
+    return { isError: false, data: { numOfCartItems, totalCartPrice } };
   } catch (error) {
     console.error(error);
     return { isError: true, message: (error as Error).message };

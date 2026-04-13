@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { CartItemQuantityProps } from "@/types/props";
 import { updateProductQuantity } from "@/actions/cart";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "../ui/spinner";
 
 export default function ItemQuantity({
@@ -15,7 +15,7 @@ export default function ItemQuantity({
   count: currentCount,
 }: CartItemQuantityProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [itemCount, setItemCount] = useState(currentCount);
+  const [itemCount, setItemCount] = useState(1);
 
   const handleQuantityChange = async (count: number) => {
     if (count < 1) {
@@ -36,6 +36,10 @@ export default function ItemQuantity({
 
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    setItemCount(currentCount);
+  }, [currentCount]);
 
   return (
     <div className="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-200">

@@ -38,3 +38,13 @@ export interface CartItems {
   createdAt: string;
   updatedAt: string;
 }
+
+export type CartActionResponse =
+  | { isError: true; message: string }
+  | {
+      isError: false;
+      data: {
+        numOfCartItems: number;
+        totalCartPrice: number;
+      };
+    };

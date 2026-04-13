@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { ProductQuantityProps } from "@/types/props";
 import { Heart, Minus, Plus, Share2, Zap } from "lucide-react";
 import AddToCartButton from "@/components/cart/AddButton";
+import { useState } from "react";
 
 export default function ProductQuantity({
   quantity,
@@ -13,6 +14,8 @@ export default function ProductQuantity({
   id,
   title,
 }: ProductQuantityProps) {
+  const [count, setCount] = useState(1);
+
   return (
     <>
       <div className="mb-6 flex flex-col gap-2">
@@ -21,22 +24,25 @@ export default function ProductQuantity({
         <div className="flex items-center gap-4">
           <div className="flex items-center border-2 border-gray-200 rounded-lg">
             <Button
-              className="p-4 bg-transparent text-base font-medium text-gray-600 hover:bg-gray-400"
-              disabled
+              className="px-4 pt-3.75 pb-4.25 h-auto bg-transparent rounded-none text-base font-medium text-gray-600 hover:bg-primary-50/50 hover:text-primary-main"
+              disabled={count === 1}
+              onClick={() => setCount(count - 1)}
             >
               <Minus />
             </Button>
             <Input
               min={1}
               max={quantity}
-              className="w-16 h-auto text-center text-gray-700 bg-transparent text-lg font-medium focus-visible:border-none focus-visible:ring-none"
+              className="w-16 h-auto text-center text-gray-700 bg-transparent text-lg font-medium focus-visible:border-none focus-visible:ring-0"
               id="quantity"
               type="number"
-              defaultValue={1}
+              value={count}
+              onChange={(e) => setCount(+e.target.value)}
             />
             <Button
-              className="p-4 bg-transparent text-base font-medium text-gray-600 hover:bg-gray-400"
-              disabled
+              className="px-4 pt-3.75 pb-4.25 h-auto bg-transparent rounded-none text-base font-medium text-gray-600 hover:bg-primary-50/50 hover:text-primary-main"
+              disabled={count === quantity}
+              onClick={() => setCount(count + 1)}
             >
               <Plus />
             </Button>
@@ -53,7 +59,7 @@ export default function ProductQuantity({
           Total Price:
         </span>
         <span className="text-2xl font-bold text-primary-main">
-          {price * 1}
+          {price * count}
         </span>
       </div>
 
@@ -61,6 +67,7 @@ export default function ProductQuantity({
         <AddToCartButton
           id={id}
           title={title}
+          count={count}
           className="flex-1 py-3.5 h-auto bg-primary-main rounded-xl gap-2 text-white text-base font-medium hover:bg-primary-main/90"
         >
           <CartIcon className="size-5" />

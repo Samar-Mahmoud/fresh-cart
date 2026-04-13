@@ -74,6 +74,7 @@ export interface AddToCartButtonProps extends React.ComponentPropsWithoutRef<
 > {
   id: Product["_id"];
   title: Product["title"];
+  count?: number;
 }
 
 export interface OrderSummaryProps {
