@@ -1,11 +1,10 @@
 "use client";
 
 import { schema } from "@/schema/order";
+import { PaymentMethod } from "@/types/orders";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createContext, useState } from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
-
-type PaymentMethod = "cash" | "online";
 
 type AddressFormValues = {
   phone: string;

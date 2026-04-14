@@ -2,6 +2,17 @@ import { OrderData } from "@/schema/order";
 import { Brand } from "./brands";
 import { Category, SubCategory } from "./categories";
 
+export type PaymentMethod = "cash" | "online";
+
+export interface CheckoutSessionResponse {
+  status: "success";
+  session: {
+    url: string;
+    success_url: string;
+    cancel_url: string;
+  };
+}
+
 export interface OrdersResponse {
   status: "success";
   message: string;

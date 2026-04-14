@@ -88,6 +88,12 @@ export interface CheckoutOrderSummaryProps extends OrderSummaryProps {
   cartId: CartItems["_id"];
 }
 
+export interface OrderButtonProps extends React.ComponentPropsWithoutRef<
+  typeof Button
+> {
+  cartId: CartItems["_id"];
+}
+
 export interface CartItemQuantityProps {
   id: Product["_id"];
   quantity: number;

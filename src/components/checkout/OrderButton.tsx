@@ -7,18 +7,13 @@ import { Button } from "../ui/button";
 import useCheckout from "@/hooks/useCheckout";
 import ShieldIcon from "../icons/ShieldIcon";
 import { OrderData } from "@/schema/order";
-import { CartItems } from "@/types/cart";
-import { createCashOrderAction } from "@/actions/order";
+import { createOrderAction } from "@/actions/order";
 import { toast } from "sonner";
 import { useState } from "react";
 import useShopping from "@/hooks/useShopping";
+import { OrderButtonProps } from "@/types/props";
 
-export default function OrderButton({
-  cartId,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof Button> & {
-  cartId: CartItems["_id"];
-}) {
+export default function OrderButton({ cartId, ...props }: OrderButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const { form, paymentMethod } = useCheckout();
@@ -37,17 +32,27 @@ export default function OrderButton({
 
     setIsLoading(true);
 
-    const res = await createCashOrderAction(data, cartId);
+    const { isError, message, url } = await createOrderAction(
+      data,
+      cartId,
+      paymentMethod,
+    );
 
-    if (res.isError) {
-      toast.error(res.message);
+    setIsLoading(false);
+
+    if (isError) {
+      toast.error(message);
+      return;
+    }
+
+    toast.success(message);
+
+    if (url) {
+      window.open(url, "_self");
     } else {
-      toast.success(res.message);
       setCartCount(0);
       router.push("/orders");
     }
-
-    setIsLoading(false);
   };
 
   return (

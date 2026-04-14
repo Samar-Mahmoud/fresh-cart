@@ -41,7 +41,7 @@ export default function AddressForm() {
             <Field data-invalid={fieldState.invalid} className="gap-2">
               <FieldLabel
                 htmlFor="city"
-                className="text-sm font-semibold text-gray-700"
+                className="text-sm font-semibold text-gray-700 gap-0.5"
               >
                 City <span className="text-red-500">*</span>
               </FieldLabel>
@@ -78,7 +78,7 @@ export default function AddressForm() {
             <Field data-invalid={fieldState.invalid} className="gap-2">
               <FieldLabel
                 htmlFor="details"
-                className="text-sm font-semibold text-gray-700"
+                className="text-sm font-semibold text-gray-700 gap-0.5"
               >
                 Street Address
                 <span className="text-red-500">*</span>
@@ -116,7 +116,7 @@ export default function AddressForm() {
             <Field data-invalid={fieldState.invalid} className="gap-2">
               <FieldLabel
                 htmlFor="phone"
-                className="text-sm font-semibold text-gray-700"
+                className="text-sm font-semibold text-gray-700 gap-0.5"
               >
                 Phone Number
                 <span className="text-red-500">*</span>

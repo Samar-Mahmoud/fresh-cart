@@ -13,6 +13,7 @@ import MasterIcon from "@/assets/Mastercard.svg";
 import AmexIcon from "@/assets/Amex.svg";
 import { Label } from "../ui/label";
 import useCheckout from "@/hooks/useCheckout";
+import { PaymentMethod as PaymentMethodT } from "@/types/orders";
 
 const methods: {
   title: string;
@@ -76,7 +77,7 @@ export default function PaymentMethod() {
   return (
     <RadioGroup
       value={value}
-      onValueChange={(v) => setPaymentMethod(v as "cash" | "online")}
+      onValueChange={(v) => setPaymentMethod(v as PaymentMethodT)}
     >
       {methods.map((method) => (
         <Label

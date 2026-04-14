@@ -1,12 +1,18 @@
 "use server";
 
 import { OrderData } from "@/schema/order";
-import { createCashOrder } from "@/services/order";
+import { createCashOrder, createCheckoutSession } from "@/services/order";
 import { CartItems } from "@/types/cart";
+import { PaymentMethod } from "@/types/orders";
 
-export async function createCashOrderAction(
+export async function createOrderAction(
   data: OrderData,
   cartId: CartItems["_id"],
+  method: PaymentMethod,
 ) {
-  return await createCashOrder(data, cartId);
+  if (method === "cash") {
+    const res = await createCashOrder(data, cartId);
+    return { ...res, url: null };
+  }
+  return await createCheckoutSession(data, cartId);
 }

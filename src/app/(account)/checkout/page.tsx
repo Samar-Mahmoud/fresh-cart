@@ -30,7 +30,7 @@ export default async function Checkout() {
   return (
     <main className="bg-gray-50">
       {numOfCartItems === 0 ? (
-        <div className="py-20 min-h-screen">
+        <div className="flex items-center justify-center min-h-screen">
           <EmptyState
             title="Your cart is empty"
             description="Add some items to your cart before checking out."
