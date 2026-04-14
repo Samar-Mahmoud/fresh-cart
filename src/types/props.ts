@@ -3,6 +3,7 @@ import { Product } from "./products";
 import { Brand } from "./brands";
 import { Category } from "./categories";
 import { Button } from "@/components/ui/button";
+import { CartItems } from "./cart";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -80,6 +81,10 @@ export interface ActionButtonProps extends React.ComponentPropsWithoutRef<
 export interface OrderSummaryProps {
   numOfCartItems: number;
   totalCartPrice: number;
+}
+
+export interface CheckoutOrderSummaryProps extends OrderSummaryProps {
+  products: CartItems["products"];
 }
 
 export interface CartItemQuantityProps {
