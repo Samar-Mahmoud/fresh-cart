@@ -1,19 +1,19 @@
 "use client";
 
-import { removeProductAction } from "@/actions/wishlist";
 import { Button } from "@/components/ui/button";
 import { ActionButtonProps } from "@/types/props";
 import { toast } from "sonner";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "../ui/spinner";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toggleItemAction } from "@/actions/wishlist";
 import useShopping from "@/hooks/useShopping";
+import { Heart } from "lucide-react";
 
-export default function RemoveProductButton({
+export default function ToggleButton({
   id,
   title,
-  children,
   ...props
 }: ActionButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +22,9 @@ export default function RemoveProductButton({
 
   const router = useRouter();
 
-  const { setWishlist } = useShopping();
+  const { wishlist, setWishlist } = useShopping();
 
-  const handleRemoveProduct = async () => {
+  const handleToggleItem = async () => {
     if (!session) {
       router.push("/signin");
       return;
@@ -32,23 +32,27 @@ export default function RemoveProductButton({
 
     setIsLoading(true);
 
-    const res = await removeProductAction(id);
+    const res = await toggleItemAction(id, wishlist, title);
 
     if (!res.isError) {
       setWishlist(res.data);
-      toast.success(`${title} removed from your wishlist.`);
+      toast.success(res.toastMessage);
     } else {
-      toast.error(
-        `Failed to remove ${title} from your wishlist. ${res.message}`,
-      );
+      toast.error(res.toastMessage);
     }
 
     setIsLoading(false);
   };
 
   return (
-    <Button {...props} onClick={handleRemoveProduct} disabled={isLoading}>
-      {isLoading ? <Spinner /> : children}
+    <Button {...props} onClick={handleToggleItem} disabled={isLoading}>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Heart
+          className={`size-4 ${wishlist.includes(id) ? "fill-red-500 text-red-500" : ""}`}
+        />
+      )}
     </Button>
   );
 }

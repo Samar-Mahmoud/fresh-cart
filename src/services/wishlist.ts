@@ -33,7 +33,7 @@ export async function addToWishlist(productId: Product["_id"]): Promise<
   | { isError: true; message: string }
   | {
       isError: false;
-      numOfWishlistItems: number;
+      data: string[];
     }
 > {
   try {
@@ -44,7 +44,7 @@ export async function addToWishlist(productId: Product["_id"]): Promise<
 
     revalidatePath("/wishlist");
 
-    return { isError: false, numOfWishlistItems: res.data.length };
+    return { isError: false, data: res.data };
   } catch (error) {
     console.error(error);
     return { isError: true, message: (error as Error).message };
@@ -55,7 +55,7 @@ export async function removeProduct(productId: Product["_id"]): Promise<
   | { isError: true; message: string }
   | {
       isError: false;
-      numOfWishlistItems: number;
+      data: string[];
     }
 > {
   try {
@@ -66,7 +66,7 @@ export async function removeProduct(productId: Product["_id"]): Promise<
 
     revalidatePath("/wishlist");
 
-    return { isError: false, numOfWishlistItems: res.data.length };
+    return { isError: false, data: res.data };
   } catch (error) {
     console.error(error);
     return { isError: true, message: (error as Error).message };

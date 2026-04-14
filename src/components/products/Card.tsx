@@ -1,12 +1,12 @@
 import { Product } from "@/types/products";
 import Image from "next/image";
-import { Eye, Heart, Plus, RotateCcw } from "lucide-react";
+import { Eye, Plus, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Rating from "./Rating";
 import AddToCartButton from "@/components/cart/AddButton";
-import AddToWishlistButton from "@/components/wishlist/AddButton";
+import ToggleWishlisItemtButton from "@/components/wishlist/ToggleButton";
 
 export default function ProductCard({
   _id,
@@ -36,14 +36,12 @@ export default function ProductCard({
         )}
 
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <AddToWishlistButton
+          <ToggleWishlisItemtButton
             id={_id}
             title={title}
             size="icon-sm"
             className="bg-white rounded-full shadow-sm text-gray-600 hover:bg-white hover:text-red-500"
-          >
-            <Heart className="size-4" />
-          </AddToWishlistButton>
+          />
 
           <Button
             size="icon-sm"

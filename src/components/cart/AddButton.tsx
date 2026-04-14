@@ -2,7 +2,7 @@
 
 import { addToCartAction } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
-import useCart from "@/hooks/useCart";
+import useShopping from "@/hooks/useShopping";
 import { ActionButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
@@ -19,7 +19,7 @@ export default function AddButton({
 }: ActionButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setCount } = useCart();
+  const { setCartCount } = useShopping();
 
   const session = useSession();
 
@@ -36,7 +36,7 @@ export default function AddButton({
     const res = await addToCartAction(id, count);
 
     if (!res.isError) {
-      setCount(res.data.numOfCartItems);
+      setCartCount(res.data.numOfCartItems);
       toast.success(`${title} added to cart!`);
     } else {
       toast.error(`Failed to add ${title} to cart. ${res.message}`);

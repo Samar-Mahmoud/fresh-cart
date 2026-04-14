@@ -2,7 +2,7 @@
 
 import { removeProductAction } from "@/actions/cart";
 import { Button } from "@/components/ui/button";
-import useCart from "@/hooks/useCart";
+import useShopping from "@/hooks/useShopping";
 import { ActionButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
@@ -18,7 +18,7 @@ export default function RemoveProductButton({
 }: ActionButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setCount } = useCart();
+  const { setCartCount } = useShopping();
 
   const session = useSession();
 
@@ -35,7 +35,7 @@ export default function RemoveProductButton({
     const res = await removeProductAction(id);
 
     if (!res.isError) {
-      setCount(res.data.numOfCartItems);
+      setCartCount(res.data.numOfCartItems);
       toast.success(`${title} removed from your cart.`);
     } else {
       toast.error(`Failed to remove ${title} from your cart. ${res.message}`);

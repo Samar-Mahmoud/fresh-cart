@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import useCart from "@/hooks/useCart";
+import useShopping from "@/hooks/useShopping";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import React, { useState } from "react";
@@ -15,7 +15,7 @@ export default function ClearButton({
 }: React.ComponentPropsWithoutRef<typeof Button>) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setCount } = useCart();
+  const { setCartCount } = useShopping();
 
   const session = useSession();
 
@@ -34,7 +34,7 @@ export default function ClearButton({
     if (res.isError) {
       toast.error(res.message);
     } else {
-      setCount(0);
+      setCartCount(0);
       toast.success(res.message);
     }
 

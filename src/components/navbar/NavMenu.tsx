@@ -17,6 +17,7 @@ import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
 import { useSession } from "next-auth/react";
 import { AccountDropdownMenu } from "./AccountDropdownMenu";
+import useShopping from "@/hooks/useShopping";
 
 const items: {
   title: string;
@@ -43,6 +44,8 @@ const items: {
 
 export default function NavMenu() {
   const { data, status } = useSession();
+
+  const { cartCount, wishlist } = useShopping();
 
   return (
     <NavigationMenu viewport={false} className="gap-4 lg:gap-8">
@@ -126,9 +129,9 @@ export default function NavMenu() {
               className="text-gray-500 hover:text-primary-main size-11.25 rounded-full flex hover:bg-gray-100 relative"
             >
               <Heart className="m-auto size-5" width="25" height="20" />
-              {data && (
+              {data && wishlist.length > 0 && (
                 <span className="size-4.5 rounded-full bg-red-500 text-white ring-2 ring-white font-bold text-[10px] absolute top-0.5 right-0.5 flex items-center justify-center">
-                  0
+                  {wishlist.length}
                 </span>
               )}
             </Link>
@@ -143,9 +146,9 @@ export default function NavMenu() {
               className="size-11.25 rounded-full flex hover:bg-gray-100 text-gray-500 hover:text-primary-main relative"
             >
               <CartIcon className="m-auto size-5" />
-              {data && (
+              {data && cartCount > 0 && (
                 <span className="size-4.5 rounded-full bg-primary-main text-white ring-1 ring-white font-bold text-[10px] absolute top-0.5 right-0.5 flex items-center justify-center">
-                  0
+                  {cartCount}
                 </span>
               )}
             </Link>
@@ -153,7 +156,9 @@ export default function NavMenu() {
         </NavigationMenuItem>
 
         {status === "loading" ? (
-          <Spinner />
+          <NavigationMenuItem>
+            <Spinner />
+          </NavigationMenuItem>
         ) : (
           <>
             {data ? (

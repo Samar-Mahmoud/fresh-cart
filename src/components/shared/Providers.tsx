@@ -1,13 +1,20 @@
 "use client";
 
-import { CartProvider } from "@/context/Cart";
+import { ShoppingProvider } from "@/context/Shopping";
+import { ProvidersProps } from "@/types/props";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+  children,
+  wishlist,
+  cart,
+}: ProvidersProps) {
   return (
     <SessionProvider>
-      <CartProvider>{children}</CartProvider>
+      <ShoppingProvider wishlist={wishlist} cart={cart}>
+        {children}
+      </ShoppingProvider>
     </SessionProvider>
   );
 }

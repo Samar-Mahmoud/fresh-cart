@@ -87,3 +87,9 @@ export interface CartItemQuantityProps {
   quantity: number;
   count: number;
 }
+
+export interface ProvidersProps {
+  children: React.ReactNode;
+  wishlist: string[];
+  cart: number;
+}
