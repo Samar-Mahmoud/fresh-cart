@@ -19,7 +19,7 @@ export default function OrderSummary({
   totalCartPrice,
 }: OrderSummaryProps) {
   return (
-    <Card className="p-0 rounded-2xl gap-0">
+    <Card className="p-0 rounded-2xl gap-0 lg:sticky top-20">
       <CardHeader className="px-6 py-4 rounded-none gap-1 bg-linear-to-r from-primary-600 to-primary-700">
         <CardTitle className="text-lg font-bold text-white">
           <h2 className="flex items-center gap-2">

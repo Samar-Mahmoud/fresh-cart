@@ -3,12 +3,14 @@
 import { ProvidersProps } from "@/types/props";
 import { createContext, useState } from "react";
 
-export const ShoppingContext = createContext<{
+type ShoppingContextT = {
   cartCount: number;
   setCartCount: (c: number) => void;
   wishlist: string[];
   setWishlist: (p: string[]) => void;
-}>({
+};
+
+export const ShoppingContext = createContext<ShoppingContextT>({
   cartCount: 0,
   setCartCount: () => {},
   wishlist: [],
@@ -20,8 +22,10 @@ export function ShoppingProvider({
   wishlist: wishlistProducts,
   cart,
 }: ProvidersProps) {
-  const [cartCount, setCartCount] = useState<number>(cart);
-  const [wishlist, setWishlist] = useState<string[]>(wishlistProducts);
+  const [cartCount, setCartCount] =
+    useState<ShoppingContextT["cartCount"]>(cart);
+  const [wishlist, setWishlist] =
+    useState<ShoppingContextT["wishlist"]>(wishlistProducts);
 
   return (
     <ShoppingContext

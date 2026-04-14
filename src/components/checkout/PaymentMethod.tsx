@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Image from "next/image";
-import { useState } from "react";
 import VisaIcon from "@/assets/Visa.svg";
 import MasterIcon from "@/assets/Mastercard.svg";
 import AmexIcon from "@/assets/Amex.svg";
 import { Label } from "../ui/label";
+import useCheckout from "@/hooks/useCheckout";
 
 const methods: {
   title: string;
@@ -71,12 +71,12 @@ const methods: {
 ];
 
 export default function PaymentMethod() {
-  const [value, setValue] = useState<"cash" | "online">("cash");
+  const { paymentMethod: value, setPaymentMethod } = useCheckout();
 
   return (
     <RadioGroup
       value={value}
-      onValueChange={(v) => setValue(v as "cash" | "online")}
+      onValueChange={(v) => setPaymentMethod(v as "cash" | "online")}
     >
       {methods.map((method) => (
         <Label

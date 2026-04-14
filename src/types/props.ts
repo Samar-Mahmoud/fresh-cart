@@ -85,6 +85,7 @@ export interface OrderSummaryProps {
 
 export interface CheckoutOrderSummaryProps extends OrderSummaryProps {
   products: CartItems["products"];
+  cartId: CartItems["_id"];
 }
 
 export interface CartItemQuantityProps {

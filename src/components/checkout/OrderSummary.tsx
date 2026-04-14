@@ -1,5 +1,4 @@
 import VanIcon from "@/components/icons/VanIcon";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,11 +12,13 @@ import { CheckoutOrderSummaryProps } from "@/types/props";
 import Image from "next/image";
 import Link from "next/link";
 import ShieldIcon from "../icons/ShieldIcon";
+import OrderButton from "./OrderButton";
 
 export default function OrderSummary({
   numOfCartItems,
   products,
   totalCartPrice,
+  cartId,
 }: CheckoutOrderSummaryProps) {
   return (
     <Card className="p-0 rounded-2xl gap-0 lg:sticky top-20">
@@ -124,21 +125,7 @@ export default function OrderSummary({
           </div>
         </div>
 
-        <Button className="py-4 h-auto gap-2 w-full rounded-xl bg-linear-to-r from-primary-600 to-primary-700 text-white font-semibold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm">
-          <svg
-            width="20"
-            height="16"
-            viewBox="0 0 20 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.5437 4L13.4719 2.5H6.53125L5.45937 4H14.5437ZM3 4.64062C3 4.225 3.13125 3.81875 3.37187 3.47813L4.90313 1.3375C5.27813 0.8125 5.88438 0.5 6.52813 0.5H13.4688C14.1156 0.5 14.7219 0.8125 15.0969 1.3375L16.625 3.47813C16.8687 3.81875 16.9969 4.225 16.9969 4.64062L17 13C17 14.1031 16.1031 15 15 15H5C3.89688 15 3 14.1031 3 13V4.64062Z"
-              fill="white"
-            />
-          </svg>
-          Place Order
-        </Button>
+        <OrderButton cartId={cartId} />
       </CardContent>
 
       <CardFooter className="p-5 pt-0 gap-4">

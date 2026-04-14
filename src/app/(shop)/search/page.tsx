@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import ProductSearchInput from "@/components/search/SearchInput";
 import ProductSearchFilters from "@/components/search/SearchFilters";
 import {

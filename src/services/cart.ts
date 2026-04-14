@@ -13,15 +13,21 @@ export async function getCartItems() {
     });
 
     const {
-      data: { products, totalCartPrice },
+      data: { products, totalCartPrice, _id: cartId, cartOwner },
       numOfCartItems,
     } = res;
 
-    return { totalCartPrice, numOfCartItems, products };
+    return { totalCartPrice, numOfCartItems, products, cartId, cartOwner };
   } catch (error) {
     console.error(error);
 
-    return { totalCartPrice: 0, numOfCartItems: 0, products: [] };
+    return {
+      totalCartPrice: 0,
+      numOfCartItems: 0,
+      products: [],
+      cartId: null,
+      cartOwner: null,
+    };
   }
 }
 

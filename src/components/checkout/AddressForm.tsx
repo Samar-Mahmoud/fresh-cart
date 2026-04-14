@@ -12,17 +12,23 @@ import {
   InputGroupInput,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import useCheckout from "@/hooks/useCheckout";
+import { OrderData, schema } from "@/schema/order";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Building2, MapPin, Phone } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 
 export default function AddressForm() {
-  const { control } = useForm({
+  const { form: checkoutForm } = useCheckout();
+  const addressForm = useForm<OrderData>({
     defaultValues: {
       city: "",
-      address: "",
+      details: "",
       phone: "",
     },
+    resolver: zodResolver(schema),
   });
+  const { control } = checkoutForm || addressForm;
 
   return (
     <form className="space-y-5" noValidate>
@@ -66,12 +72,12 @@ export default function AddressForm() {
       {/* Address */}
       <FieldGroup>
         <Controller
-          name="address"
+          name="details"
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid} className="gap-2">
               <FieldLabel
-                htmlFor="address"
+                htmlFor="details"
                 className="text-sm font-semibold text-gray-700"
               >
                 Street Address
@@ -80,8 +86,8 @@ export default function AddressForm() {
               <InputGroup className="h-13 rounded-xl bg-transparent border-2 border-gray-200 has-[>[data-align=inline-start]]:[&>input]:pl-4 has-[>[data-align=inline-end]]:[&>input]:pr-4">
                 <InputGroupTextarea
                   {...field}
-                  id="address"
-                  name="address"
+                  id="details"
+                  name="details"
                   aria-invalid={fieldState.invalid}
                   placeholder="Street name, building number, floor, apartment..."
                   className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
@@ -92,6 +98,10 @@ export default function AddressForm() {
                   </div>
                 </InputGroupAddon>
               </InputGroup>
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
             </Field>
           )}
         />
@@ -131,6 +141,10 @@ export default function AddressForm() {
                   </span>
                 </InputGroupAddon>
               </InputGroup>
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
             </Field>
           )}
         />
