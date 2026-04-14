@@ -6,6 +6,14 @@ import Image from "next/image";
 import Avatar from "@/assets/avatar.png";
 import Rating from "@/components/products/Rating";
 import RegisterForm from "@/components/auth/RegisterForm";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
 
 const benefits: StoreBenefitProps["benefits"] = [
   {
@@ -80,7 +88,27 @@ export default function Register() {
           </div>
         </div>
 
-        <RegisterForm />
+        <Card className="px-6 pt-10 pb-14 gap-2 rounded-2xl">
+          <CardHeader className="p-0 text-center gap-2">
+            <CardTitle className="text-3xl font-semibold text-gray-700">
+              Create Your Account
+            </CardTitle>
+            <CardDescription className="text-base text-gray-700 font-medium">
+              Start your fresh journey with us today
+            </CardDescription>
+          </CardHeader>
+
+          <RegisterForm />
+
+          <CardFooter className="pt-10 px-0 border-t border-gray-300/30 flex-col">
+            <p className="text-base font-medium text-gray-700 text-center">
+              Already have an account?{" "}
+              <Link href="/signin" className="text-primary-main">
+                Sign In
+              </Link>
+            </p>
+          </CardFooter>
+        </Card>
       </div>
     </main>
   );

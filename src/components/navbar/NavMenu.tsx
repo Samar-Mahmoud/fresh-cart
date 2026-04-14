@@ -164,7 +164,7 @@ export default function NavMenu() {
         ) : (
           <>
             {data ? (
-              <NavigationMenuItem>
+              <NavigationMenuItem className="hidden xl:block">
                 <AccountDropdownMenu />
               </NavigationMenuItem>
             ) : (
