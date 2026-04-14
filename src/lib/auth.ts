@@ -1,14 +1,15 @@
 import { auth } from "@/auth";
 import { ErrorResponse } from "@/types";
+import { redirect } from "next/navigation";
 
 export async function authFetch<T>(
   endpoint: string,
   options: RequestInit = {},
-): Promise<T> {
+): Promise<{ isError: false; data: T } | { isError: true; message: string }> {
   const session = await auth();
 
   if (!session) {
-    throw new Error("Unauthorized");
+    redirect("/signin");
   }
 
   const res = await fetch(`${process.env.BASE_URL}${endpoint}`, {
@@ -22,10 +23,10 @@ export async function authFetch<T>(
   const data = await res.json();
 
   if (!res.ok) {
-    throw new Error((data as ErrorResponse).message);
+    return { isError: true, message: (data as ErrorResponse).message };
   }
 
-  return data;
+  return { isError: false, data };
 }
 
 export function getPasswordStrength(password: string): {

@@ -13,20 +13,19 @@ export async function getWishlistItems(): Promise<{
   count: 0;
   data: WishlistItem[];
 }> {
-  try {
-    const res = await authFetch<WishlistItemsResponse>(WISHLIST, {
-      method: "GET",
-      cache: "force-cache",
-    });
+  const res = await authFetch<WishlistItemsResponse>(WISHLIST, {
+    method: "GET",
+    cache: "force-cache",
+  });
 
-    const { count, data } = res;
-
-    return { count, data };
-  } catch (error) {
-    console.error(error);
-
+  if (res.isError) {
+    console.error(res.message);
     return { count: 0, data: [] };
   }
+
+  const { count, data } = res.data;
+
+  return { count, data };
 }
 
 export async function addToWishlist(productId: Product["_id"]): Promise<
@@ -36,19 +35,19 @@ export async function addToWishlist(productId: Product["_id"]): Promise<
       data: string[];
     }
 > {
-  try {
-    const res = await authFetch<WishlistActionResponse>(WISHLIST, {
-      method: "POST",
-      body: JSON.stringify({ productId }),
-    });
+  const res = await authFetch<WishlistActionResponse>(WISHLIST, {
+    method: "POST",
+    body: JSON.stringify({ productId }),
+  });
 
-    revalidatePath("/wishlist");
-
-    return { isError: false, data: res.data };
-  } catch (error) {
-    console.error(error);
-    return { isError: true, message: (error as Error).message };
+  if (res.isError) {
+    console.error(res.message);
+    return res;
   }
+
+  revalidatePath("/wishlist");
+
+  return { isError: false, data: res.data.data };
 }
 
 export async function removeProduct(productId: Product["_id"]): Promise<
@@ -58,17 +57,17 @@ export async function removeProduct(productId: Product["_id"]): Promise<
       data: string[];
     }
 > {
-  try {
-    const res = await authFetch<WishlistActionResponse>(
-      `${WISHLIST}/${productId}`,
-      { method: "DELETE" },
-    );
+  const res = await authFetch<WishlistActionResponse>(
+    `${WISHLIST}/${productId}`,
+    { method: "DELETE" },
+  );
 
-    revalidatePath("/wishlist");
-
-    return { isError: false, data: res.data };
-  } catch (error) {
-    console.error(error);
-    return { isError: true, message: (error as Error).message };
+  if (res.isError) {
+    console.error(res.message);
+    return res;
   }
+
+  revalidatePath("/wishlist");
+
+  return { isError: false, data: res.data.data };
 }
