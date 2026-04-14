@@ -6,8 +6,7 @@ import { cn } from "@/lib/utils";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "sonner";
 import Providers from "@/components/shared/Providers";
-import { getCartItems } from "@/services/cart";
-import { getWishlistItems } from "@/services/wishlist";
+import { checkUserData } from "@/actions/auth";
 
 const exo = Exo({
   variable: "--font-exo",
@@ -24,15 +23,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { numOfCartItems } = await getCartItems();
-
-  const { data } = await getWishlistItems();
-  const wishlistProducts = data.map((p) => p._id);
+  const data = await checkUserData();
 
   return (
     <html lang="en" className={cn("font-exo", exo.variable)}>
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        <Providers wishlist={wishlistProducts} cart={numOfCartItems}>
+        <Providers {...data}>
           <Navbar />
           {children}
           <Footer />

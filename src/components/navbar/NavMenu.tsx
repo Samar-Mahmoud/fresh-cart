@@ -157,7 +157,9 @@ export default function NavMenu() {
 
         {status === "loading" ? (
           <NavigationMenuItem>
-            <Spinner />
+            <div className="size-11.5 flex">
+              <Spinner className="size-4 m-auto" />
+            </div>
           </NavigationMenuItem>
         ) : (
           <>
@@ -182,7 +184,9 @@ export default function NavMenu() {
         )}
 
         {/* Mobile Navigation Menu */}
-        <MobileNavMenu />
+        <NavigationMenuItem>
+          <MobileNavMenu />
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

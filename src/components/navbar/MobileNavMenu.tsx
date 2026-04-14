@@ -17,19 +17,36 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Heart, MenuIcon, XIcon } from "lucide-react";
+import { Heart, LogOut, MenuIcon, UserRound, XIcon } from "lucide-react";
 import Logo from "@/components/shared/Logo";
 import ProductSearch from "@/components/search/SearchForm";
 import Link from "next/link";
 import HeadsetIcon from "@/components/icons/HeadsetIcon";
 import CartIcon from "@/components/icons/CartIcon";
 import useDrawerHandler from "@/hooks/useDrawerHandler";
+import { useSession } from "next-auth/react";
+import useShopping from "@/hooks/useShopping";
+import { Spinner } from "../ui/spinner";
+import { signOutAction } from "@/actions/auth";
+import { useTransition } from "react";
 
 export default function MobileNavMenu() {
   const { isOpen, setIsOpen } = useDrawerHandler();
 
+  const [isPending, startTransition] = useTransition();
+
+  const { data, status } = useSession();
+
+  const { cartCount, wishlist } = useShopping();
+
   const handleNavigate = () => {
     setIsOpen(false);
+  };
+
+  const handleSignOut = () => {
+    startTransition(async () => {
+      await signOutAction();
+    });
   };
 
   return (
@@ -144,19 +161,27 @@ export default function MobileNavMenu() {
                 className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link
-                  className="flex items-center gap-3"
+                  className="flex items-center justify-between"
                   href="/wishlist"
                   onClick={handleNavigate}
                 >
-                  <div className="size-9 rounded-full bg-red-50 flex">
-                    <Heart
-                      className="text-red-500 m-auto"
-                      width="15"
-                      height="12"
-                    />
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 rounded-full bg-red-50 flex">
+                      <Heart
+                        className="text-red-500 m-auto"
+                        width="15"
+                        height="12"
+                      />
+                    </div>
+
+                    <span className="font-medium text-gray-700">Wishlist</span>
                   </div>
 
-                  <span className="font-medium text-gray-700">Wishlist</span>
+                  {data && wishlist.length > 0 && (
+                    <span className="px-2.5 py-1 bg-red-500 rounded-full flex items-center justify-center text-white font-medium text-xs">
+                      {wishlist.length}
+                    </span>
+                  )}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -168,41 +193,99 @@ export default function MobileNavMenu() {
                 className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
               >
                 <Link
-                  className="flex items-center gap-3"
+                  className="flex items-center justify-between"
                   href="/cart"
                   onClick={handleNavigate}
                 >
-                  <div className="size-9 rounded-full bg-primary-50 flex text-primary-main">
-                    <CartIcon className="m-auto size-5" />
+                  <div className="flex items-center gap-3">
+                    <div className="size-9 rounded-full bg-primary-50 flex text-primary-main">
+                      <CartIcon className="m-auto size-5" />
+                    </div>
+
+                    <span className="font-medium text-gray-700">Cart</span>
                   </div>
 
-                  <span className="font-medium text-gray-700">Cart</span>
+                  {data && cartCount > 0 && (
+                    <span className="px-2.5 py-1 bg-primary-main rounded-full flex items-center justify-center text-white font-medium text-xs">
+                      {cartCount}
+                    </span>
+                  )}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
+
+          <Separator />
+
+          {status === "loading" ? (
+            <div className="py-5 flex items-center justify-center">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              {data ? (
+                <NavigationMenuList className="p-4 flex-col items-stretch gap-1">
+                  {/* Profile */}
+                  <NavigationMenuItem>
+                    <NavigationMenuLink
+                      asChild
+                      className="text-base gap-3 px-4 py-3 rounded-xl font-medium text-gray-700 hover:text-primary-main hover:bg-primary-50"
+                    >
+                      <Link
+                        className="flex items-center gap-3"
+                        href="/profile"
+                        onClick={handleNavigate}
+                      >
+                        <div className="size-9 rounded-full bg-gray-100 text-gray-500 flex">
+                          <UserRound className="m-auto" />
+                        </div>
+
+                        <span className="font-medium text-gray-700">
+                          {data.user.name}
+                        </span>
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+
+                  {/* Logout */}
+                  <NavigationMenuItem>
+                    <Button
+                      className="text-base gap-3 px-4 py-3 justify-start h-auto w-full rounded-xl font-medium bg-transparent text-red-600 hover:text-red-700 hover:bg-red-50"
+                      disabled={isPending}
+                      onClick={handleSignOut}
+                    >
+                      <div className="size-9 rounded-full bg-red-50 flex text-red-600">
+                        {isPending ? (
+                          <Spinner className="m-auto" />
+                        ) : (
+                          <LogOut className="m-auto" />
+                        )}
+                      </div>
+                      {isPending ? "Signing Out" : "Sign Out"}
+                    </Button>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              ) : (
+                <div className="px-4 pb-4 pt-6 flex gap-3">
+                  <Link
+                    className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold bg-primary-main text-white hover:bg-primary-700 transition-colors"
+                    href="/signin"
+                    onClick={handleNavigate}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold border-2 border-primary-main text-primary-main hover:bg-primary-50 transition-colors"
+                    href="/register"
+                    onClick={handleNavigate}
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
         </NavigationMenu>
-
-        <Separator />
-
-        <div className="px-4 pb-4 pt-6 flex gap-3">
-          {/* Login */}
-          <Link
-            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold bg-primary-main text-white hover:bg-primary-700 transition-colors"
-            href="/signin"
-            onClick={handleNavigate}
-          >
-            Sign In
-          </Link>
-          {/* Register */}
-          <Link
-            className="text-base flex-1 text-center px-4 py-3 rounded-xl font-semibold border-2 border-primary-main text-primary-main hover:bg-primary-50 transition-colors"
-            href="/register"
-            onClick={handleNavigate}
-          >
-            Sign Up
-          </Link>
-        </div>
 
         {/* Support */}
         <Link

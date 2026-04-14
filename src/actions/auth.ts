@@ -1,9 +1,11 @@
 "use server";
 
-import { signIn, signOut } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 import { SignInData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
 import { register } from "@/services/auth";
+import { getCartItems } from "@/services/cart";
+import { getWishlistItems } from "@/services/wishlist";
 
 export async function registerAction(formData: RegisterData) {
   return await register(formData);
@@ -30,4 +32,19 @@ export async function signOutAction(options?: {
   redirect?: true | undefined;
 }) {
   return await signOut(options ?? { redirectTo: "/signin" });
+}
+
+export async function checkUserData(): Promise<{
+  cart: number;
+  wishlist: string[];
+}> {
+  const session = await auth();
+  if (!session) {
+    return { cart: 0, wishlist: [] };
+  }
+
+  const { numOfCartItems } = await getCartItems();
+  const { data } = await getWishlistItems();
+
+  return { cart: numOfCartItems, wishlist: data.map((p) => p._id) };
 }
