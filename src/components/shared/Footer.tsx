@@ -73,7 +73,7 @@ const benefits: StoreBenefitProps["benefits"] = [
   {
     title: "Free Shipping",
     description: "On orders over 500 EGP",
-    icon: { node: <VanIcon size="size-6" /> },
+    icon: { node: <VanIcon className="m-auto size-6" /> },
   },
   {
     title: "Easy Returns",
@@ -86,13 +86,13 @@ const benefits: StoreBenefitProps["benefits"] = [
     title: "Secure Payment",
     description: "100% secure checkout",
     icon: {
-      node: <ShieldIcon size="size-6" />,
+      node: <ShieldIcon className="m-auto size-6" />,
     },
   },
   {
     title: "24/7 Support",
     description: "Contact us anytime",
-    icon: { node: <HeadSetIcon size="size-6" /> },
+    icon: { node: <HeadSetIcon className="m-auto size-6" /> },
   },
 ];
 
@@ -142,7 +142,7 @@ export default function Footer() {
                 href="mailto:support@freshcart.com"
                 className="group/link-group flex items-center gap-3 text-primary-600"
               >
-                <MailIcon size="size-4.5" />
+                <MailIcon className="size-4.5" />
                 <span className="text-sm font-medium text-gray-400 group-hover/link-group:text-primary-600 transition-colors">
                   support@freshcart.com
                 </span>

@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import useShopping from "@/hooks/useShopping";
 import { OrderButtonProps } from "@/types/props";
+import ShoppingBagIcon from "../icons/ShoppingBagIcon";
 
 export default function OrderButton({ cartId, ...props }: OrderButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -66,25 +67,12 @@ export default function OrderButton({ cartId, ...props }: OrderButtonProps) {
         <Spinner />
       ) : paymentMethod === "cash" ? (
         <>
-          <svg
-            width="20"
-            height="16"
-            viewBox="0 0 20 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.5437 4L13.4719 2.5H6.53125L5.45937 4H14.5437ZM3 4.64062C3 4.225 3.13125 3.81875 3.37187 3.47813L4.90313 1.3375C5.27813 0.8125 5.88438 0.5 6.52813 0.5H13.4688C14.1156 0.5 14.7219 0.8125 15.0969 1.3375L16.625 3.47813C16.8687 3.81875 16.9969 4.225 16.9969 4.64062L17 13C17 14.1031 16.1031 15 15 15H5C3.89688 15 3 14.1031 3 13V4.64062Z"
-              fill="white"
-            />
-          </svg>
+          <ShoppingBagIcon className="text-white" />
           Place Order
         </>
       ) : (
         <>
-          <div className="flex">
-            <ShieldIcon size="size-5" />
-          </div>
+          <ShieldIcon className="size-5" />
           Proceed to Payment
         </>
       )}

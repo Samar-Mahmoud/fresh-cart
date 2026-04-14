@@ -1,9 +1,9 @@
 import { IconProps } from "@/types/props";
 
-export default function BrandIcon({ size }: IconProps) {
+export default function BrandIcon({ className }: IconProps) {
   return (
     <svg
-      className={`m-auto ${size}`}
+      className={className}
       width="38"
       height="30"
       viewBox="0 0 38 30"

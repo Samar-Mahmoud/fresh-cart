@@ -42,7 +42,7 @@ export default function ProductTabs({
         </TabsTrigger>
 
         <TabsTrigger value="shipping" className="cursor-pointer">
-          <VanIcon size="size-4" />
+          <VanIcon className="size-4" />
           Shipping & Returns
         </TabsTrigger>
       </TabsList>
@@ -123,7 +123,7 @@ export default function ProductTabs({
           <div className="bg-linear-to-br from-primary-50 to-primary-100 rounded-lg p-4 space-y-4">
             <h4 className="flex items-center gap-3 text-base font-semibold text-gray-900">
               <div className="size-12 bg-primary-main text-white flex rounded-full shrink-0">
-                <VanIcon size="size-6" />
+                <VanIcon className="m-auto size-6" />
               </div>
               Shipping Information
             </h4>
@@ -201,7 +201,7 @@ export default function ProductTabs({
 
         <div className="bg-gray-50 rounded-lg p-6 flex items-center gap-4">
           <div className="size-14 bg-gray-200 text-gray-600 rounded-full flex shrink-0">
-            <ShieldIcon size="size-7" />
+            <ShieldIcon className="m-auto size-7" />
           </div>
           <div className="space-y-1">
             <h4 className="font-semibold text-gray-900">

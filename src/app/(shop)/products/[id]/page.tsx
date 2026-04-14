@@ -43,7 +43,7 @@ const benefits: {
     title: "Secure Payment",
     description: "100% Protected",
     icon: {
-      node: <ShieldIcon size="size-5" />,
+      node: <ShieldIcon className="m-auto size-5" />,
     },
   },
 ];

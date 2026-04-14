@@ -16,7 +16,7 @@ export default async function Wishlist() {
   const { count, data } = await getWishlistItems();
 
   return (
-    <main className="bg-gray-50/50">
+    <main className="bg-gray-50/50 min-h-screen">
       <div className="px-4 py-8 bg-white">
         <div className="container mx-auto">
           <Breadcrumb className="mb-4">

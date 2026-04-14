@@ -108,7 +108,7 @@ export default function NavMenu() {
           <NavigationMenuLink asChild className="p-0 hover:bg-transparent">
             <Link className="flex items-center gap-2" href="/contact">
               <div className="size-10 rounded-full text-primary-main bg-primary-50 flex">
-                <HeadsetIcon size="size-5" />
+                <HeadsetIcon className="m-auto size-5" />
               </div>
 
               <div className="text-xs">

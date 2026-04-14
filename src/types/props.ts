@@ -12,8 +12,7 @@ export interface SearchInputProps {
 }
 
 export interface IconProps {
-  size?: string;
-  className?: string;
+  className: string;
 }
 
 export interface StoreBenefitProps {

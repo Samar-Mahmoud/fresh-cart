@@ -1,9 +1,9 @@
 import { IconProps } from "@/types/props";
 
-export default function VanIcon({ size }: IconProps) {
+export default function VanIcon({ className }: IconProps) {
   return (
     <svg
-      className={`m-auto ${size}`}
+      className={className}
       width="15"
       height="12"
       viewBox="0 0 15 12"

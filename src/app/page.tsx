@@ -19,7 +19,7 @@ const benefits: StoreBenefitProps["benefits"] = [
     title: "Free Shipping",
     description: "On orders over 500 EGP",
     icon: {
-      node: <VanIcon size="size-6" />,
+      node: <VanIcon className="m-auto size-6" />,
       style: "bg-red-50 text-blue-500",
     },
   },
@@ -27,7 +27,7 @@ const benefits: StoreBenefitProps["benefits"] = [
     title: "Secure Payment",
     description: "100% secure transactions",
     icon: {
-      node: <ShieldIcon size="size-6" />,
+      node: <ShieldIcon className="m-auto size-6" />,
       style: "bg-emerald-50 text-emerald-500",
     },
   },
@@ -44,7 +44,7 @@ const benefits: StoreBenefitProps["benefits"] = [
     title: "24/7 Support",
     description: "Dedicated support team",
     icon: {
-      node: <HeadSetIcon size="size-6" />,
+      node: <HeadSetIcon className="m-auto size-6" />,
       style: "bg-gray-50 text-purple-500",
     },
   },

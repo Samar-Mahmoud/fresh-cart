@@ -10,7 +10,7 @@ export default function TopBar() {
         <div className="flex items-center gap-6 text-gray-500">
           {/* Free Shipping */}
           <span className="flex items-center text-primary-main gap-2">
-            <VanIcon size="size-4" />
+            <VanIcon className="size-4" />
             <span className="font-medium">Free Shipping on Orders 500 EGP</span>
           </span>
 

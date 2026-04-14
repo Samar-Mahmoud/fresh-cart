@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { OrderSummaryProps } from "@/types/props";
+import ShoppingBagIcon from "../icons/ShoppingBagIcon";
 
 export default function OrderSummary({
   numOfCartItems,
@@ -23,18 +24,7 @@ export default function OrderSummary({
       <CardHeader className="px-6 py-4 rounded-none gap-1 bg-linear-to-r from-primary-600 to-primary-700">
         <CardTitle className="text-lg font-bold text-white">
           <h2 className="flex items-center gap-2">
-            <svg
-              width="23"
-              height="20"
-              viewBox="0 0 23 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 3.9375C9 2.69648 10.009 1.6875 11.25 1.6875C12.491 1.6875 13.5 2.69648 13.5 3.9375V5.625H9V3.9375ZM7.3125 5.625H5.0625C4.13086 5.625 3.375 6.38086 3.375 7.3125V14.625C3.375 16.4883 4.88672 18 6.75 18H15.75C17.6133 18 19.125 16.4883 19.125 14.625V7.3125C19.125 6.38086 18.3691 5.625 17.4375 5.625H15.1875V3.9375C15.1875 1.76133 13.4262 0 11.25 0C9.07383 0 7.3125 1.76133 7.3125 3.9375V5.625ZM8.15625 7.3125C8.26705 7.3125 8.37677 7.33432 8.47914 7.37673C8.58151 7.41913 8.67452 7.48128 8.75287 7.55963C8.83122 7.63798 8.89337 7.73099 8.93577 7.83336C8.97818 7.93573 9 8.04545 9 8.15625C9 8.26705 8.97818 8.37677 8.93577 8.47914C8.89337 8.58151 8.83122 8.67452 8.75287 8.75287C8.67452 8.83122 8.58151 8.89337 8.47914 8.93577C8.37677 8.97818 8.26705 9 8.15625 9C8.04545 9 7.93573 8.97818 7.83336 8.93577C7.73099 8.89337 7.63798 8.83122 7.55963 8.75287C7.48128 8.67452 7.41913 8.58151 7.37673 8.47914C7.33432 8.37677 7.3125 8.26705 7.3125 8.15625C7.3125 8.04545 7.33432 7.93573 7.37673 7.83336C7.41913 7.73099 7.48128 7.63798 7.55963 7.55963C7.63798 7.48128 7.73099 7.41913 7.83336 7.37673C7.93573 7.33432 8.04545 7.3125 8.15625 7.3125ZM13.5 8.15625C13.5 7.93247 13.5889 7.71786 13.7471 7.55963C13.9054 7.40139 14.12 7.3125 14.3438 7.3125C14.5675 7.3125 14.7821 7.40139 14.9404 7.55963C15.0986 7.71786 15.1875 7.93247 15.1875 8.15625C15.1875 8.38003 15.0986 8.59464 14.9404 8.75287C14.7821 8.91111 14.5675 9 14.3438 9C14.12 9 13.9054 8.91111 13.7471 8.75287C13.5889 8.59464 13.5 8.38003 13.5 8.15625Z"
-                fill="white"
-              />
-            </svg>
+            <ShoppingBagIcon className="text-white" />
             Order Summary
           </h2>
         </CardTitle>
@@ -47,9 +37,7 @@ export default function OrderSummary({
         {totalCartPrice < 500 ? (
           <div className="bg-linear-to-r from-orange-50 to-amber-50 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-2 text-orange-500 ">
-              <div className="flex">
-                <VanIcon size="size-5" />
-              </div>
+              <VanIcon className="size-5" />
               <span className="text-sm font-medium text-gray-700">
                 Add {500 - totalCartPrice} EGP for free shipping
               </span>
@@ -66,7 +54,7 @@ export default function OrderSummary({
         ) : (
           <div className="bg-linear-to-r from-green-50 to-emerald-50 rounded-xl p-4 flex items-center gap-3">
             <div className="shrink-0 size-10 rounded-full bg-green-100 text-primary-main flex">
-              <VanIcon size="size-4" />
+              <VanIcon className="m-auto size-4" />
             </div>
             <div>
               <p className="font-semibold tex-base text-green-700">
@@ -149,9 +137,7 @@ export default function OrderSummary({
       <CardFooter className="pb-6 flex-col gap-5">
         <div className="flex items-center justify-center gap-4 py-2">
           <div className="flex items-center gap-1.5">
-            <div className="text-primary-main">
-              <ShieldIcon size="size-4" />
-            </div>
+            <ShieldIcon className="size-4 text-primary-main" />
             <span className="font-medium text-xs text-gray-500">
               Secure Payment
             </span>
@@ -160,9 +146,7 @@ export default function OrderSummary({
           <Separator orientation="vertical" className="bg-gray-200" />
 
           <div className="flex items-center gap-1.5">
-            <div className="text-blue-500">
-              <VanIcon size="size-4" />
-            </div>
+            <VanIcon className="text-blue-500 size-4" />
             <span className="font-medium text-xs text-gray-500">
               Fast Delivery
             </span>

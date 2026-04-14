@@ -76,7 +76,7 @@ export default async function Products({
               href="/products"
             >
               {brand ? (
-                <BrandIcon size="size-5" />
+                <BrandIcon className="m-auto size-5" />
               ) : (
                 <FolderOpen className="fill-current size-3.5" />
               )}

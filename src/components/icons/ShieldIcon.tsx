@@ -1,9 +1,9 @@
 import { IconProps } from "@/types/props";
 
-export default function ShieldIcon({ size }: IconProps) {
+export default function ShieldIcon({ className }: IconProps) {
   return (
     <svg
-      className={`m-auto ${size}`}
+      className={className}
       width="23"
       height="18"
       viewBox="0 0 23 18"

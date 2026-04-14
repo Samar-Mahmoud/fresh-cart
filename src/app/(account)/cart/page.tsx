@@ -20,7 +20,7 @@ export default async function Cart() {
   const { numOfCartItems, products, totalCartPrice } = await getCartItems();
 
   return (
-    <main className="bg-gray-50">
+    <main className="bg-gray-50 min-h-screen">
       <div className="container py-8 px-4 mx-auto">
         <Breadcrumb className="mb-4">
           <BreadcrumbList>

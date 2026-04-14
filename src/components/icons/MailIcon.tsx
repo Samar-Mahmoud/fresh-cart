@@ -1,9 +1,9 @@
 import { IconProps } from "@/types/props";
 
-export default function MailIcon({ size }: IconProps) {
+export default function MailIcon({ className }: IconProps) {
   return (
     <svg
-      className={`${size}`}
+      className={className}
       width="18"
       height="14"
       viewBox="0 0 18 14"

@@ -1,9 +1,9 @@
 import { IconProps } from "@/types/props";
 
-export default function HeadSetIcon({ size }: IconProps) {
+export default function HeadSetIcon({ className }: IconProps) {
   return (
     <svg
-      className={`m-auto ${size}`}
+      className={className}
       width="20"
       height="16"
       viewBox="0 0 20 16"

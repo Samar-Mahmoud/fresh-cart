@@ -32,7 +32,7 @@ const benefits: StoreBenefitProps["benefits"] = [
     title: "Secure Shopping",
     description: "Your data and payments are completely secure",
     icon: {
-      node: <ShieldIcon size="size-6" />,
+      node: <ShieldIcon className="m-auto size-6" />,
     },
   },
 ];

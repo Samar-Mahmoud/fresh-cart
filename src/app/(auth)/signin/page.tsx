@@ -40,17 +40,13 @@ export default function Login() {
 
             <div className="flex items-center justify-center gap-8">
               <div className="flex items-center gap-2">
-                <div className="text-primary-main">
-                  <VanIcon size="size-4.5" />
-                </div>
+                <VanIcon className="size-4.5 text-primary-main" />
                 <span className="text-sm text-gray-500 font-medium">
                   Free Delivery
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="text-primary-main">
-                  <ShieldIcon size="size-4.5" />
-                </div>
+                <ShieldIcon className="text-primary-main m-auto size-4.5" />
                 <span className="text-sm text-gray-500 font-medium">
                   Secure Payment
                 </span>

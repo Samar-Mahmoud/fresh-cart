@@ -127,7 +127,7 @@ export default function SignInForm() {
                     className="p-0 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                   />
                   <InputGroupAddon className="text-gray-400">
-                    <MailIcon size="size-5" />
+                    <MailIcon className="size-5" />
                   </InputGroupAddon>
                 </InputGroup>
                 <FieldError

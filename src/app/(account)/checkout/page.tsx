@@ -28,7 +28,7 @@ export default async function Checkout() {
     await getCartItems();
 
   return (
-    <main className="bg-gray-50">
+    <main className="bg-gray-50 min-h-screen">
       {numOfCartItems === 0 ? (
         <div className="flex items-center justify-center min-h-screen">
           <EmptyState
@@ -186,7 +186,7 @@ export default async function Checkout() {
 
                     <div className="flex items-center gap-3 p-4 bg-linear-to-r from-green-50 to-gray-100 rounded-xl border border-green-100 mt-4">
                       <div className="size-10 rounded-full bg-green-100 text-primary-main flex shrink-0">
-                        <ShieldIcon />
+                        <ShieldIcon className="m-auto" />
                       </div>
                       <div className="space-y-0.5">
                         <p className="text-sm font-medium text-green-800">

@@ -19,7 +19,7 @@ export default function Subscription() {
         <CardHeader className="px-0 gap-0">
           <div className="flex gap-4 items-center mb-6">
             <div className="size-14 rounded-2xl text-white bg-linear-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-              <MailIcon size="size-6" />
+              <MailIcon className="size-6" />
             </div>
 
             <div className="">
@@ -68,7 +68,7 @@ export default function Subscription() {
 
             <div className="flex gap-2.5 items-center bg-white/80 rounded-full border border-emerald-100 shadow-sm px-4 py-2.5">
               <div className="size-7 rounded-full bg-emerald-100 text-primary-800 flex">
-                <VanIcon size="size-4" />
+                <VanIcon className="m-auto size-4" />
               </div>
               <span className="text-sm font-medium text-gray-700">
                 Free Delivery Codes

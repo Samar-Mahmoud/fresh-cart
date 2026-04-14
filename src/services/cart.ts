@@ -19,15 +19,16 @@ export async function getCartItems() {
       numOfCartItems: 0,
       products: [],
       cartId: null,
+      cartOwner: null,
     };
   }
 
   const {
-    data: { products, totalCartPrice, _id: cartId },
+    data: { products, totalCartPrice, _id: cartId, cartOwner },
     numOfCartItems,
   } = res.data;
 
-  return { totalCartPrice, numOfCartItems, products, cartId };
+  return { totalCartPrice, numOfCartItems, products, cartId, cartOwner };
 }
 
 export async function addToCart(

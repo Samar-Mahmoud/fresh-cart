@@ -16,9 +16,7 @@ export default async function Brands() {
         title="Top Brands"
         description="Shop from your favorite brands"
       >
-        <span className="text-white m-auto">
-          <BrandIcon size="size-8" />
-        </span>
+        <BrandIcon className="m-auto size-8 text-white" />
       </Header>
 
       <div className="container mx-auto px-4 py-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-5">

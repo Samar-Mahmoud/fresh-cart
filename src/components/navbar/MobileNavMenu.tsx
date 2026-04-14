@@ -294,7 +294,7 @@ export default function MobileNavMenu() {
           onClick={handleNavigate}
         >
           <div className="size-10 rounded-full text-primary-main bg-primary-100 flex">
-            <HeadsetIcon size="size-6" />
+            <HeadsetIcon className="m-auto size-6" />
           </div>
 
           <div className="text-sm font-semibold ">
