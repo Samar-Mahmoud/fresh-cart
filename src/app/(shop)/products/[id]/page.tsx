@@ -15,10 +15,17 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { getProduct, getProducts } from "@/services/products";
+import { getProduct } from "@/services/products";
 import { Circle, RotateCcw, XCircle } from "lucide-react";
 import Link from "next/link";
 import VanFastIcon from "@/components/icons/VanFastIcon";
+import { Suspense } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  Carousel,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const benefits: {
   title: string;
@@ -75,8 +82,6 @@ export default async function ProductDetails({
     average: reviews.length > 0 ? ratingsAverage : 0,
     count: reviews.length > 0 ? ratingsQuantity : 0,
   };
-
-  const { data: products } = await getProducts();
 
   return (
     <main className="p-4 container mx-auto">
@@ -248,8 +253,37 @@ export default async function ProductDetails({
         />
       </section>
 
-      <section className="space-y-6 mb-2">
-        <ProductsSlider products={products} />
+      <section className="mb-2">
+        <Carousel className="**:data-[slot=carousel-content]:h-max space-y-4">
+          <header className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-1.5 bg-linear-to-r from-emerald-500 to-emerald-700 rounded-full"></div>
+              <h2 className="text-2xl font-bold text-gray-800">
+                You May Also
+                <span className="bg-primary-800 bg-clip-text text-transparent">
+                  {" "}
+                  Like
+                </span>
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <CarouselPrevious className="relative inset-0 translate-none active:not-aria-[haspopup]:translate-none! size-10 cursor-pointer border-none bg-gray-100 text-gray-600 hover:text-gray-400 hover:bg-gray-100 [&_svg:not([class*='size-'])]:size-4" />
+
+              <CarouselNext className="relative inset-0 translate-none active:not-aria-[haspopup]:translate-none! size-10 cursor-pointer border-none bg-gray-100 text-gray-600 hover:text-gray-400 hover:bg-gray-100 [&_svg:not([class*='size-'])]:size-4" />
+            </div>
+          </header>
+
+          <Suspense
+            fallback={
+              <div className="h-75 flex items-center justify-center">
+                <Spinner className="size-6 text-primary-main" />
+              </div>
+            }
+          >
+            <ProductsSlider />
+          </Suspense>
+        </Carousel>
       </section>
     </main>
   );

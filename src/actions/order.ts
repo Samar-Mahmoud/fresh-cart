@@ -1,7 +1,7 @@
 "use server";
 
 import { OrderData } from "@/schema/order";
-import { createCashOrder, createCheckoutSession } from "@/services/order";
+import { createCashOrder, createCheckoutSession } from "@/services/orders";
 import { CartItems } from "@/types/cart";
 import { PaymentMethod } from "@/types/orders";
 

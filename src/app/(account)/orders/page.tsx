@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getCartItems } from "@/services/cart";
-import { getOrders } from "@/services/order";
+import { getOrders } from "@/services/orders";
 import Link from "next/link";
 import OrderCard from "@/components/orders/Card";
 
