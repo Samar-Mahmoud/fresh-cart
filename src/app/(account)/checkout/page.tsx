@@ -1,3 +1,4 @@
+import Addresses from "@/components/checkout/Addresses";
 import AddressForm from "@/components/checkout/AddressForm";
 import OrderSummary from "@/components/checkout/OrderSummary";
 import PaymentMethod from "@/components/checkout/PaymentMethod";
@@ -18,14 +19,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { CheckoutProvider } from "@/context/Checkout";
+import { getAddresses } from "@/services/addresses";
 import { getCartItems } from "@/services/cart";
-import { ArrowLeft, Box, Info, ReceiptText } from "lucide-react";
+import { ArrowLeft, Bookmark, Box, Info, ReceiptText } from "lucide-react";
 import Link from "next/link";
 
 export default async function Checkout() {
   const { numOfCartItems, products, totalCartPrice, cartId } =
     await getCartItems();
+
+  const addresses = await getAddresses();
 
   return (
     <main className="bg-gray-50 min-h-screen">
@@ -104,7 +109,7 @@ export default async function Checkout() {
             </Link>
           </div>
 
-          <CheckoutProvider>
+          <CheckoutProvider addresses={addresses}>
             <div className="grid grid-col-1 lg:grid-cols-12 gap-8">
               <div className="space-y-6 lg:col-span-8">
                 {/* Address */}
@@ -133,9 +138,24 @@ export default async function Checkout() {
                   </CardHeader>
 
                   <CardContent className="p-6 space-y-5">
-                    {/* TODO: Saved Address */}
-                    {/* <div className=""></div> */}
-                    {/* <Separator className="bg-gray-100" /> */}
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Bookmark className="text-primary-500 fill-primary-500 size-4" />
+                        <span className="font-semibold text-gray-800">
+                          Saved Addresses
+                        </span>
+                      </div>
+
+                      <div className="space-y-3">
+                        <p className="text-sm font-medium text-gray-600">
+                          Select a saved address or enter a new one below
+                        </p>
+
+                        <Addresses addresses={addresses} />
+                      </div>
+                    </div>
+
+                    <Separator className="bg-gray-100" />
 
                     <div className="flex gap-3 p-4 bg-blue-50 rounded-xl border border-blue-100">
                       <div className="size-8 rounded-full bg-blue-100 flex shrink-0">

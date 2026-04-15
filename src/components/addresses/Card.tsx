@@ -4,9 +4,21 @@ import EditAddressDialog from "@/components/addresses/Dialog";
 import { Building2, Phone, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 
-export default function Card({ _id, city, details, phone, name }: Address) {
+export default function Card({
+  _id,
+  city,
+  details,
+  phone,
+  name,
+  wrapperClasses,
+}: Address & { wrapperClasses?: string }) {
   return (
-    <div className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm flex gap-4">
+    <div
+      className={
+        wrapperClasses ??
+        "p-5 rounded-2xl bg-white border border-gray-200 shadow-sm flex gap-4"
+      }
+    >
       <div className="shrink-0 size-11 rounded-xl bg-primary-50 text-primary-main flex">
         <svg
           className="m-auto size-5"
