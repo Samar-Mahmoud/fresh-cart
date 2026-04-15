@@ -17,7 +17,7 @@ export default async function Settings() {
     <div className="space-y-6">
       <div className="space-y-1">
         <h2 className="text-gray-900 text-xl font-bold">Account Settings</h2>
-        <p className="text-gray-500 font-medium tect-sm">
+        <p className="text-gray-500 font-medium text-sm">
           Update your profile information and change your password
         </p>
       </div>

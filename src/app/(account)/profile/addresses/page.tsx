@@ -13,7 +13,7 @@ export default async function Addresses() {
       <div className="flex items-center justify-between gap-4">
         <div className="space-y-1">
           <h2 className="text-gray-900 text-xl font-bold">My Addresses</h2>
-          <p className="text-gray-500 font-medium tect-sm">
+          <p className="text-gray-500 font-medium text-sm">
             Manage your saved delivery addresses
           </p>
         </div>
