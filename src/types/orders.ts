@@ -13,12 +13,12 @@ export interface CheckoutSessionResponse {
   };
 }
 
-export interface OrdersResponse {
+export interface OrderResponse {
   status: "success";
   message: string;
   user: User;
   pricing: Pricing;
-  data: Data;
+  data: OrderItem;
 }
 
 export interface User {
@@ -34,12 +34,12 @@ export interface Pricing {
   totalOrderPrice: number;
 }
 
-export interface Data {
+export interface OrderItem {
   shippingAddress: OrderData;
   taxPrice: number;
   shippingPrice: number;
   totalOrderPrice: number;
-  paymentMethodType: string;
+  paymentMethodType: "cash" | "card";
   isPaid: boolean;
   isDelivered: boolean;
   _id: string;
@@ -49,23 +49,22 @@ export interface Data {
   updatedAt: string;
   id: number;
   __v: number;
+  paidAt?: string;
 }
 
 export interface CartItem {
   count: number;
   _id: string;
-  product: Product;
+  product: {
+    subcategory: SubCategory[];
+    ratingsQuantity: number;
+    _id: string;
+    title: string;
+    imageCover: string;
+    category: Category;
+    brand: Brand;
+    ratingsAverage: number;
+    id: string;
+  };
   price: number;
-}
-
-export interface Product {
-  subcategory: SubCategory[];
-  ratingsQuantity: number;
-  _id: string;
-  title: string;
-  imageCover: string;
-  category: Category;
-  brand: Brand;
-  ratingsAverage: number;
-  id: string;
 }

@@ -1,8 +1,21 @@
 import { authFetch } from "@/lib/auth";
 import { OrderData } from "@/schema/order";
 import { CartItems } from "@/types/cart";
-import { CheckoutSessionResponse } from "@/types/orders";
+import { CheckoutSessionResponse, OrderItem } from "@/types/orders";
 import { revalidatePath } from "next/cache";
+
+export async function getOrders(cartOwner: CartItems["cartOwner"]) {
+  const res = await authFetch<OrderItem[]>(`/v1/orders/user/${cartOwner}`, {
+    method: "GET",
+  });
+
+  if (res.isError) {
+    console.error(res.message);
+    return [];
+  }
+
+  return res.data;
+}
 
 export async function createCashOrder(
   data: OrderData,
