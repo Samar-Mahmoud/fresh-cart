@@ -1,4 +1,5 @@
 import AddressCard from "@/components/addresses/Card";
+import AddAddressDialog from "@/components/addresses/Dialog";
 import EmptyState from "@/components/shared/Empty";
 import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
@@ -19,9 +20,11 @@ export default async function Addresses() {
             </p>
           </div>
 
-          <Button className="shrink-0 rounded-xl py-2.5 px-5 h-auto text-sm font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white">
-            <Plus className="size-4" /> Add Address
-          </Button>
+          <AddAddressDialog>
+            <Button className="rounded-xl py-2.5 px-5 h-auto text-sm font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white">
+              <Plus className="size-4" /> Add Address
+            </Button>
+          </AddAddressDialog>
         </div>
 
         {addresses.length === 0 ? (

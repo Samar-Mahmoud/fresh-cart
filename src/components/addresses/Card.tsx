@@ -1,7 +1,8 @@
 import { Address } from "@/types/addresses";
-import RemoveButton from "@/components/addresses/RemoveButton";
-import { Button } from "@/components/ui/button";
+import RemoveAddressButton from "@/components/addresses/RemoveButton";
+import EditAddressDialog from "@/components/addresses/Dialog";
 import { Building2, Phone, Trash2 } from "lucide-react";
+import { Button } from "../ui/button";
 
 export default function Card({ _id, city, details, phone, name }: Address) {
   return (
@@ -43,26 +44,32 @@ export default function Card({ _id, city, details, phone, name }: Address) {
       </div>
 
       <div className="flex gap-2 shrink-0">
-        <Button className="size-9 rounded-lg flex bg-gray-100 text-gray-600 hover:bg-primary-100 hover:text-primary-700">
-          <svg
-            width="18"
-            height="14"
-            viewBox="0 0 18 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.3989 0.579688L10.1712 1.80742L13.9419 5.57812L15.1696 4.35039C15.5415 3.98125 15.7493 3.47813 15.7493 2.95312C15.7493 2.42812 15.5415 1.925 15.1696 1.55586L14.1934 0.579688C13.8243 0.207813 13.3212 0 12.7962 0C12.2712 0 11.768 0.207813 11.3989 0.579688ZM9.2442 2.73438L3.35983 8.61602C3.06725 8.90859 2.85397 9.275 2.74186 9.67422L1.77389 13.1687C1.711 13.3957 1.77389 13.6418 1.94342 13.8086C2.11295 13.9754 2.35631 14.041 2.58327 13.9781L6.0778 13.0074C6.47702 12.8953 6.84069 12.6848 7.136 12.3895L13.0149 6.50508L9.2442 2.73438Z"
-              fill="#4A5565"
-            />
-          </svg>
-        </Button>
-        <RemoveButton
+        <EditAddressDialog
+          data={{ city, details, phone, name }}
+          addressId={_id}
+        >
+          <Button className="size-9 rounded-lg flex bg-gray-100 text-gray-600 hover:bg-primary-100 hover:text-primary-700">
+            <svg
+              width="18"
+              height="14"
+              viewBox="0 0 18 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.3989 0.579688L10.1712 1.80742L13.9419 5.57812L15.1696 4.35039C15.5415 3.98125 15.7493 3.47813 15.7493 2.95312C15.7493 2.42812 15.5415 1.925 15.1696 1.55586L14.1934 0.579688C13.8243 0.207813 13.3212 0 12.7962 0C12.2712 0 11.768 0.207813 11.3989 0.579688ZM9.2442 2.73438L3.35983 8.61602C3.06725 8.90859 2.85397 9.275 2.74186 9.67422L1.77389 13.1687C1.711 13.3957 1.77389 13.6418 1.94342 13.8086C2.11295 13.9754 2.35631 14.041 2.58327 13.9781L6.0778 13.0074C6.47702 12.8953 6.84069 12.6848 7.136 12.3895L13.0149 6.50508L9.2442 2.73438Z"
+                fill="#4A5565"
+              />
+            </svg>
+          </Button>
+        </EditAddressDialog>
+
+        <RemoveAddressButton
           id={_id}
           className="size-9 rounded-lg flex bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-700"
         >
           <Trash2 className="size-3.5" />
-        </RemoveButton>
+        </RemoveAddressButton>
       </div>
     </div>
   );

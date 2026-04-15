@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/profile",
-        destination: "/profile/settings",
+        destination: "/profile/addresses",
         permanent: false,
       },
     ];
