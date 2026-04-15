@@ -5,7 +5,9 @@ import {
   LoginResponse,
   RegisterResponse,
   SuccessResponse,
+  VerifyTokenResponse,
 } from "@/types/auth";
+import { authFetch } from "@/lib/auth";
 
 const AUTH = `${process.env.BASE_URL}/v1/auth`;
 
@@ -43,4 +45,17 @@ export async function login(
 
   const { user, token } = data as SuccessResponse;
   return { user, token };
+}
+
+export async function getUserId() {
+  const res = await authFetch<VerifyTokenResponse>("/v1/auth/verifyToken", {
+    method: "GET",
+  });
+
+  if (res.isError) {
+    console.error(res.message);
+    return { id: null };
+  }
+
+  return { id: res.data.decoded.id };
 }

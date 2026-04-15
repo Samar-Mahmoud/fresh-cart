@@ -1,11 +1,15 @@
 import { auth } from "@/auth";
 import { ErrorResponse } from "@/types";
+import { ErrorResponse as SettingsErrorResponse } from "@/types/settings";
 import { redirect } from "next/navigation";
 
 export async function authFetch<T>(
   endpoint: string,
   options: RequestInit = {},
-): Promise<{ isError: false; data: T } | { isError: true; message: string }> {
+): Promise<
+  | { isError: false; data: T }
+  | { isError: true; message: string; errors?: SettingsErrorResponse["errors"] }
+> {
   const session = await auth();
 
   if (!session) {
@@ -23,7 +27,12 @@ export async function authFetch<T>(
   const data = await res.json();
 
   if (!res.ok) {
-    return { isError: true, message: (data as ErrorResponse).message };
+    console.log(data);
+    return {
+      isError: true,
+      message: (data as ErrorResponse).message,
+      errors: data.errors,
+    };
   }
 
   return { isError: false, data };

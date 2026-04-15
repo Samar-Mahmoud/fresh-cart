@@ -23,3 +23,19 @@ export interface RegisterResponse {
   isError: boolean;
   message: string;
 }
+
+export interface VerifyTokenResponse {
+  message: "verified";
+  decoded: {
+    id: string;
+    name: string;
+    role: string;
+  };
+}
+
+export interface CurrentUserData {
+  role: string;
+  email?: string | null;
+  id?: string;
+  name?: string | null;
+}

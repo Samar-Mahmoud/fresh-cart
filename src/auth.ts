@@ -26,7 +26,13 @@ declare module "next-auth/jwt" {
   }
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const {
+  handlers,
+  signIn,
+  signOut,
+  auth,
+  unstable_update: update,
+} = NextAuth({
   providers: [
     Credentials({
       credentials: {
@@ -40,6 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         const res = await login(credentials as SignInData);
+
         if (res) {
           return { ...res.user, token: res.token };
         }
@@ -49,7 +56,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   pages: { signIn: "/signin" },
   callbacks: {
-    jwt({ token, user }) {
+    jwt({ token, user, session, trigger }) {
+      if (trigger === "update" && session) {
+        token.name = session.user.name;
+        token.email = session.user.email;
+      }
+
       if (user) {
         token.role = user.role;
         token.token = user.token;
