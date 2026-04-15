@@ -1,13 +1,12 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Spinner } from "../ui/spinner";
 import { Button } from "../ui/button";
 import useCheckout from "@/hooks/useCheckout";
 import ShieldIcon from "../icons/ShieldIcon";
-import { OrderData } from "@/schema/order";
-import { createOrderAction } from "@/actions/order";
+import { AddressData } from "@/schema/address";
+import { createOrderAction } from "@/actions/orders";
 import { toast } from "sonner";
 import { useState } from "react";
 import useShopping from "@/hooks/useShopping";
@@ -21,16 +20,9 @@ export default function OrderButton({ cartId, ...props }: OrderButtonProps) {
 
   const { setCartCount } = useShopping();
 
-  const session = useSession();
-
   const router = useRouter();
 
-  const onSubmit = async (data: OrderData) => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
-
+  const onSubmit = async (data: AddressData) => {
     setIsLoading(true);
 
     const { isError, message, url } = await createOrderAction(

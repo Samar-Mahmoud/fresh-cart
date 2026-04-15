@@ -1,12 +1,12 @@
 "use server";
 
-import { OrderData } from "@/schema/order";
+import { AddressData } from "@/schema/address";
 import { createCashOrder, createCheckoutSession } from "@/services/orders";
 import { CartItems } from "@/types/cart";
 import { PaymentMethod } from "@/types/orders";
 
 export async function createOrderAction(
-  data: OrderData,
+  data: AddressData,
   cartId: CartItems["_id"],
   method: PaymentMethod,
 ) {

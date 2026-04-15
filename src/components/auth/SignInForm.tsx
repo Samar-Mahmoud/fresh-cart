@@ -4,12 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   InputGroup,
   InputGroupInput,
@@ -104,127 +99,123 @@ export default function SignInForm() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         {/* Email */}
-        <FieldGroup>
-          <Controller
-            name="email"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="email"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Email Address
-                </FieldLabel>
-                <InputGroup className="h-13 rounded-xl bg-transparent border-gray-400/40 has-[>[data-align=inline-start]]:[&>input]:pl-4 has-[>[data-align=inline-end]]:[&>input]:pr-4">
-                  <InputGroupInput
-                    {...field}
-                    id="email"
-                    name="email"
-                    type="email"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Enter your email"
-                    className="p-0 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                  />
-                  <InputGroupAddon className="text-gray-400">
-                    <MailIcon className="size-5" />
-                  </InputGroupAddon>
-                </InputGroup>
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
+        <Controller
+          name="email"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="email"
+                className="text-sm font-medium text-gray-700"
+              >
+                Email Address
+              </FieldLabel>
+              <InputGroup className="h-13 rounded-xl bg-transparent border-gray-400/40 has-[>[data-align=inline-start]]:[&>input]:pl-4 has-[>[data-align=inline-end]]:[&>input]:pr-4">
+                <InputGroupInput
+                  {...field}
+                  id="email"
+                  name="email"
+                  type="email"
+                  aria-invalid={fieldState.invalid}
+                  placeholder="Enter your email"
+                  className="p-0 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                 />
-              </Field>
-            )}
-          />
-        </FieldGroup>
+                <InputGroupAddon className="text-gray-400">
+                  <MailIcon className="size-5" />
+                </InputGroupAddon>
+              </InputGroup>
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
+
         {/* Password */}
-        <FieldGroup>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="password"
-                  className="text-sm font-medium text-gray-700 justify-between"
-                >
-                  Password
-                  <Link href="/forget-password" className="text-primary-main">
-                    Forgot Password?
-                  </Link>
-                </FieldLabel>
-                <InputGroup className="h-13 rounded-xl bg-transparent border-gray-400/40 has-[>[data-align=inline-start]]:[&>input]:pl-4 has-[>[data-align=inline-end]]:[&>input]:pr-4">
-                  <InputGroupInput
-                    {...field}
-                    id="password"
-                    name="password"
-                    type={viewPassword ? "text" : "password"}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Enter your password"
-                    className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                  />
-                  <InputGroupAddon className="text-gray-400">
-                    <svg
-                      className="size-4.5"
-                      width="20"
-                      height="17"
-                      viewBox="0 0 20 17"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8 4V6H12V4C12 2.89687 11.1031 2 10 2C8.89687 2 8 2.89687 8 4ZM6 6V4C6 1.79063 7.79063 0 10 0C12.2094 0 14 1.79063 14 4V6C15.1031 6 16 6.89687 16 8V15C16 16.1031 15.1031 17 14 17H6C4.89688 17 4 16.1031 4 15V8C4 6.89687 4.89688 6 6 6Z"
-                        fill="#99A1AF"
-                      />
-                    </svg>
-                  </InputGroupAddon>
-                  <InputGroupAddon
-                    className="text-gray-400 cursor-pointer hover:text-gray-500"
-                    align="inline-end"
-                    onClick={() => setViewPassword(!viewPassword)}
-                  >
-                    {viewPassword ? (
-                      <EyeOff className="size-5" />
-                    ) : (
-                      <Eye className="size-5" />
-                    )}
-                  </InputGroupAddon>
-                </InputGroup>
-              </Field>
-            )}
-          />
-        </FieldGroup>
-        {/*  Keep signed in */}
-        <FieldGroup>
-          <Controller
-            name="signed"
-            control={control}
-            render={({ field: { value, onChange }, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <div className="flex items-center gap-3">
-                  <Checkbox
-                    checked={value}
-                    onCheckedChange={onChange}
-                    id="signed"
-                    name="signed"
-                    className="size-4 rounded-[2.5px] bg-white border-[#767676]"
-                  />
-                  <FieldLabel
-                    htmlFor="signed"
-                    className="inline-block text-gray-700 text-base font-medium"
-                  >
-                    Keep me signed in
-                  </FieldLabel>
-                </div>
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
+        <Controller
+          name="password"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="password"
+                className="text-sm font-medium text-gray-700 justify-between"
+              >
+                Password
+                <Link href="/forget-password" className="text-primary-main">
+                  Forgot Password?
+                </Link>
+              </FieldLabel>
+              <InputGroup className="h-13 rounded-xl bg-transparent border-gray-400/40 has-[>[data-align=inline-start]]:[&>input]:pl-4 has-[>[data-align=inline-end]]:[&>input]:pr-4">
+                <InputGroupInput
+                  {...field}
+                  id="password"
+                  name="password"
+                  type={viewPassword ? "text" : "password"}
+                  aria-invalid={fieldState.invalid}
+                  placeholder="Enter your password"
+                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
                 />
-              </Field>
-            )}
-          />
-        </FieldGroup>
+                <InputGroupAddon className="text-gray-400">
+                  <svg
+                    className="size-4.5"
+                    width="20"
+                    height="17"
+                    viewBox="0 0 20 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 4V6H12V4C12 2.89687 11.1031 2 10 2C8.89687 2 8 2.89687 8 4ZM6 6V4C6 1.79063 7.79063 0 10 0C12.2094 0 14 1.79063 14 4V6C15.1031 6 16 6.89687 16 8V15C16 16.1031 15.1031 17 14 17H6C4.89688 17 4 16.1031 4 15V8C4 6.89687 4.89688 6 6 6Z"
+                      fill="#99A1AF"
+                    />
+                  </svg>
+                </InputGroupAddon>
+                <InputGroupAddon
+                  className="text-gray-400 cursor-pointer hover:text-gray-500"
+                  align="inline-end"
+                  onClick={() => setViewPassword(!viewPassword)}
+                >
+                  {viewPassword ? (
+                    <EyeOff className="size-5" />
+                  ) : (
+                    <Eye className="size-5" />
+                  )}
+                </InputGroupAddon>
+              </InputGroup>
+            </Field>
+          )}
+        />
+
+        {/*  Keep signed in */}
+        <Controller
+          name="signed"
+          control={control}
+          render={({ field: { value, onChange }, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <div className="flex items-center gap-3">
+                <Checkbox
+                  checked={value}
+                  onCheckedChange={onChange}
+                  id="signed"
+                  name="signed"
+                  className="size-4 rounded-[2.5px] bg-white border-[#767676]"
+                />
+                <FieldLabel
+                  htmlFor="signed"
+                  className="inline-block text-gray-700 text-base font-medium"
+                >
+                  Keep me signed in
+                </FieldLabel>
+              </div>
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
 
         <Button
           className="h-auto w-full py-3 rounded-xl bg-primary-main text-white font-semibold text-lg"

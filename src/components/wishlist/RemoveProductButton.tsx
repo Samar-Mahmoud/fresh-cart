@@ -6,8 +6,6 @@ import { ProductButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import useShopping from "@/hooks/useShopping";
 
 export default function RemoveProductButton({
@@ -18,18 +16,9 @@ export default function RemoveProductButton({
 }: ProductButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const session = useSession();
-
-  const router = useRouter();
-
   const { setWishlist } = useShopping();
 
   const handleRemoveProduct = async () => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
-
     setIsLoading(true);
 
     const res = await removeProductAction(id);

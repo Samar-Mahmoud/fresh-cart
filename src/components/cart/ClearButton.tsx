@@ -5,8 +5,6 @@ import useShopping from "@/hooks/useShopping";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { clearCartAction } from "@/actions/cart";
 
 export default function ClearButton({
@@ -17,16 +15,7 @@ export default function ClearButton({
 
   const { setCartCount } = useShopping();
 
-  const session = useSession();
-
-  const router = useRouter();
-
   const handleClearCart = async () => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
-
     setIsLoading(true);
 
     const res = await clearCartAction();

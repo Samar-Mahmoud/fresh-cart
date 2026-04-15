@@ -1,4 +1,4 @@
-import { OrderData } from "@/schema/order";
+import { AddressData } from "@/schema/address";
 import { Brand } from "./brands";
 import { Category, SubCategory } from "./categories";
 
@@ -35,7 +35,7 @@ export interface Pricing {
 }
 
 export interface OrderItem {
-  shippingAddress: OrderData;
+  shippingAddress: AddressData;
   taxPrice: number;
   shippingPrice: number;
   totalOrderPrice: number;

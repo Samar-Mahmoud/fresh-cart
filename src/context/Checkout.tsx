@@ -1,6 +1,6 @@
 "use client";
 
-import { schema } from "@/schema/order";
+import { schema } from "@/schema/address";
 import { PaymentMethod } from "@/types/orders";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createContext, useState } from "react";

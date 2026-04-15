@@ -9,6 +9,7 @@ export const schema = z.object({
       /^(\+20|0020|0)?1[0125]\d{8}$/,
       "Please enter a valid Egyptian phone number",
     ),
+  name: z.string().optional(),
 });
 
-export type OrderData = z.infer<typeof schema>;
+export type AddressData = z.infer<typeof schema>;

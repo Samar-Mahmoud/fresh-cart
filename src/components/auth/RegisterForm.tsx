@@ -7,7 +7,6 @@ import { CardContent } from "@/components/ui/card";
 import {
   Field,
   FieldError,
-  FieldGroup,
   FieldLabel,
   FieldDescription,
 } from "@/components/ui/field";
@@ -101,207 +100,200 @@ export default function RegisterForm() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-7" noValidate>
         {/* Name */}
-        <FieldGroup>
-          <Controller
-            name="name"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="name"
-                  className="text-base font-medium text-gray-700"
-                >
-                  Name*
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="name"
-                  name="name"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="Ali"
-                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                />
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
-                />
-              </Field>
-            )}
-          />
-        </FieldGroup>
+        <Controller
+          name="name"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="name"
+                className="text-base font-medium text-gray-700"
+              >
+                Name*
+              </FieldLabel>
+              <Input
+                {...field}
+                id="name"
+                name="name"
+                aria-invalid={fieldState.invalid}
+                placeholder="Ali"
+                className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
+              />
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
+
         {/* Email */}
-        <FieldGroup>
-          <Controller
-            name="email"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="email"
-                  className="text-base font-medium text-gray-700"
-                >
-                  Email*
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="email"
-                  name="email"
-                  type="email"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="ali@example.com"
-                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                />
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
-                />
-              </Field>
-            )}
-          />
-        </FieldGroup>
+        <Controller
+          name="email"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="email"
+                className="text-base font-medium text-gray-700"
+              >
+                Email*
+              </FieldLabel>
+              <Input
+                {...field}
+                id="email"
+                name="email"
+                type="email"
+                aria-invalid={fieldState.invalid}
+                placeholder="ali@example.com"
+                className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
+              />
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
+
         {/* Password */}
-        <FieldGroup>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="password"
-                  className="text-base font-medium text-gray-700"
-                >
-                  Password*
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="password"
-                  name="password"
-                  type="password"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="create a strong password"
-                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                />
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
-                />
-                <div>
-                  <div className="flex gap-2 items-center">
-                    <Progress
-                      value={strength.value}
-                      className="h-1 flex-1 bg-gray-200"
-                      bgColor={strength.color}
-                    />
-                    <span className="txet-sm font-medium text-gray-700">
-                      {strength.level}
-                    </span>
-                  </div>
-                  <FieldDescription className="text-xs font-medium text-gray-500">
-                    Must be at least 8 characters with numbers and symbols
-                  </FieldDescription>
-                </div>
-              </Field>
-            )}
-          />
-        </FieldGroup>
-        {/* Confirm Password */}
-        <FieldGroup>
-          <Controller
-            name="rePassword"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="rePassword"
-                  className="text-base font-medium text-gray-700"
-                >
-                  Confirm Password*
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="rePassword"
-                  name="rePassword"
-                  type="password"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="confirm your password"
-                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                />
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
-                />
-              </Field>
-            )}
-          />
-        </FieldGroup>
-        {/* Phone Number */}
-        <FieldGroup>
-          <Controller
-            name="phone"
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <FieldLabel
-                  htmlFor="phone"
-                  className="text-base font-medium text-gray-700"
-                >
-                  Phone Number*
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  aria-invalid={fieldState.invalid}
-                  placeholder="+20 123 456 7890"
-                  className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
-                />
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
-                />
-              </Field>
-            )}
-          />
-        </FieldGroup>
-        {/*  Terms of Service & Privacy Policy */}
-        <FieldGroup>
-          <Controller
-            name="terms"
-            control={control}
-            render={({ field: { value, onChange }, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className="gap-2">
-                <div className="flex items-center gap-3">
-                  <Checkbox
-                    checked={value}
-                    onCheckedChange={onChange}
-                    id="terms"
-                    name="terms"
-                    className="size-3.25 rounded-[2.5px] bg-white border-[#767676]"
+        <Controller
+          name="password"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="password"
+                className="text-base font-medium text-gray-700"
+              >
+                Password*
+              </FieldLabel>
+              <Input
+                {...field}
+                id="password"
+                name="password"
+                type="password"
+                aria-invalid={fieldState.invalid}
+                placeholder="create a strong password"
+                className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
+              />
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+              <div>
+                <div className="flex gap-2 items-center">
+                  <Progress
+                    value={strength.value}
+                    className="h-1 flex-1 bg-gray-200"
+                    bgColor={strength.color}
                   />
-                  <FieldLabel
-                    htmlFor="terms"
-                    className="inline-block text-gray-700 text-base font-medium"
-                  >
-                    I agree to the{" "}
-                    <Link href="/terms" className="text-primary-main">
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link href="/privacy" className="text-primary-main">
-                      Privacy Policy
-                    </Link>{" "}
-                    *
-                  </FieldLabel>
+                  <span className="txet-sm font-medium text-gray-700">
+                    {strength.level}
+                  </span>
                 </div>
-                <FieldError
-                  errors={[fieldState.error]}
-                  className="font-medium text-xs"
+                <FieldDescription className="text-xs font-medium text-gray-500">
+                  Must be at least 8 characters with numbers and symbols
+                </FieldDescription>
+              </div>
+            </Field>
+          )}
+        />
+
+        {/* Confirm Password */}
+        <Controller
+          name="rePassword"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="rePassword"
+                className="text-base font-medium text-gray-700"
+              >
+                Confirm Password*
+              </FieldLabel>
+              <Input
+                {...field}
+                id="rePassword"
+                name="rePassword"
+                type="password"
+                aria-invalid={fieldState.invalid}
+                placeholder="confirm your password"
+                className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
+              />
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
+
+        {/* Phone Number */}
+        <Controller
+          name="phone"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <FieldLabel
+                htmlFor="phone"
+                className="text-base font-medium text-gray-700"
+              >
+                Phone Number*
+              </FieldLabel>
+              <Input
+                {...field}
+                id="phone"
+                name="phone"
+                type="tel"
+                aria-invalid={fieldState.invalid}
+                placeholder="+20 123 456 7890"
+                className="py-2.5 rounded-md bg-transparent border-gray-400/40 text-gray-700 placeholder:text-gray-700/50 placeholder:font-medium"
+              />
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
+
+        {/*  Terms of Service & Privacy Policy */}
+        <Controller
+          name="terms"
+          control={control}
+          render={({ field: { value, onChange }, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className="gap-2">
+              <div className="flex items-center gap-3">
+                <Checkbox
+                  checked={value}
+                  onCheckedChange={onChange}
+                  id="terms"
+                  name="terms"
+                  className="size-3.25 rounded-[2.5px] bg-white border-[#767676]"
                 />
-              </Field>
-            )}
-          />
-        </FieldGroup>
+                <FieldLabel
+                  htmlFor="terms"
+                  className="inline-block text-gray-700 text-base font-medium"
+                >
+                  I agree to the{" "}
+                  <Link href="/terms" className="text-primary-main">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/privacy" className="text-primary-main">
+                    Privacy Policy
+                  </Link>{" "}
+                  *
+                </FieldLabel>
+              </div>
+              <FieldError
+                errors={[fieldState.error]}
+                className="font-medium text-xs"
+              />
+            </Field>
+          )}
+        />
 
         <Button
           className="h-10 w-full gap-2 rounded-lg bg-primary-main text-white font-semibold text-base"

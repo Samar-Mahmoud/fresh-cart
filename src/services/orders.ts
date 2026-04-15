@@ -1,5 +1,5 @@
 import { authFetch } from "@/lib/auth";
-import { OrderData } from "@/schema/order";
+import { AddressData } from "@/schema/address";
 import { CartItems } from "@/types/cart";
 import { CheckoutSessionResponse, OrderItem } from "@/types/orders";
 import { revalidatePath } from "next/cache";
@@ -20,7 +20,7 @@ export async function getOrders(cartOwner: CartItems["cartOwner"]) {
 }
 
 export async function createCashOrder(
-  data: OrderData,
+  data: AddressData,
   cartId: CartItems["_id"],
 ): Promise<{
   isError: boolean;
@@ -43,7 +43,7 @@ export async function createCashOrder(
 }
 
 export async function createCheckoutSession(
-  data: OrderData,
+  data: AddressData,
   cartId: CartItems["_id"],
 ): Promise<{
   isError: boolean;

@@ -5,8 +5,6 @@ import { AddressButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { removeAddressAction } from "@/actions/addresses";
 
 export default function RemoveButton({
@@ -16,16 +14,7 @@ export default function RemoveButton({
 }: AddressButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const session = useSession();
-
-  const router = useRouter();
-
   const handleRemoveAddress = async () => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
-
     setIsLoading(true);
 
     const res = await removeAddressAction(id);

@@ -7,8 +7,6 @@ import { ProductButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 export default function AddButton({
   id,
@@ -21,16 +19,7 @@ export default function AddButton({
 
   const { setCartCount } = useShopping();
 
-  const session = useSession();
-
-  const router = useRouter();
-
   const handleAddToCart = async () => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
-
     setIsLoading(true);
 
     const res = await addToCartAction(id, count);
