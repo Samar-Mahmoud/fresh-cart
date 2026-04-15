@@ -30,6 +30,7 @@ export async function removeAddress(addressId: Address["_id"]) {
   }
 
   revalidatePath("/profile/addresses");
+  revalidatePath("/checkout");
 
   return { isError: false, message: `Address deleted successfully!` };
 }
@@ -46,6 +47,7 @@ export async function addAddress(data: AddressData) {
   }
 
   revalidatePath("/profile/addresses");
+  revalidatePath("/checkout");
 
   return { isError: false, message: `Address added successfully!` };
 }
