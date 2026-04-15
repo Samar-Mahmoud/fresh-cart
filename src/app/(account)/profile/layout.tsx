@@ -1,10 +1,5 @@
+import { Sidebar } from "@/components/settings/Sidebar";
 import Header from "@/components/shared/Header";
-import { Separator } from "@/components/ui/separator";
-import { Spinner } from "@/components/ui/spinner";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronRight, Settings } from "lucide-react";
-import Link from "next/link";
-import { Suspense } from "react";
 
 export default function ProfileLayout({
   children,
@@ -35,79 +30,11 @@ export default function ProfileLayout({
       </Header>
 
       <div className="py-8 px-4 container mx-auto">
-        <Tabs
-          defaultValue="addresses"
-          className="gap-6 flex-col lg:flex-row"
-          orientation="vertical"
-        >
-          <TabsList className="lg:max-w-72 w-full rounded-2xl shadow-md border border-gray-200 bg-white items-start">
-            <h2 className="p-4 text-base font-bold text-gray-900">
-              My Account
-            </h2>
+        <div className="gap-6 flex flex-col lg:flex-row">
+          <Sidebar />
 
-            <Separator className="bg-gray-200" />
-
-            <div className="p-2 space-y-1 w-full">
-              <TabsTrigger
-                value="addresses"
-                className="group/trigger px-4 py-3 rounded-lg text-left"
-              >
-                <Link
-                  href="/profile/addresses"
-                  className="flex gap-3 items-center w-full"
-                >
-                  <div className="group-data-[state=active]/trigger:bg-primary-600 group-data-[state=active]/trigger:text-white bg-gray-200 text-gray-600 size-9 rounded-lg flex transition-colors">
-                    <svg
-                      className="m-auto size-4.5"
-                      width="18"
-                      height="15"
-                      viewBox="0 0 18 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3.49883 5.15703C3.49883 2.30781 5.85039 0 8.74883 0C11.6473 0 13.9988 2.30781 13.9988 5.15703C13.9988 8.41914 10.7121 12.3293 9.33945 13.8195C9.0168 14.1695 8.47813 14.1695 8.15547 13.8195C6.78281 12.3293 3.49609 8.41914 3.49609 5.15703H3.49883ZM8.74883 7C9.21296 7 9.65808 6.81563 9.98627 6.48744C10.3145 6.15925 10.4988 5.71413 10.4988 5.25C10.4988 4.78587 10.3145 4.34075 9.98627 4.01256C9.65808 3.68437 9.21296 3.5 8.74883 3.5C8.2847 3.5 7.83958 3.68437 7.51139 4.01256C7.1832 4.34075 6.99883 4.78587 6.99883 5.25C6.99883 5.71413 7.1832 6.15925 7.51139 6.48744C7.83958 6.81563 8.2847 7 8.74883 7Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="font-medium text-base flex-1 min-w-0">
-                    My Addresses
-                  </h3>
-                  <ChevronRight className="size-4" strokeWidth={2} />
-                </Link>
-              </TabsTrigger>
-
-              <TabsTrigger
-                value="settings"
-                className="group/trigger px-4 py-3 rounded-lg text-left"
-              >
-                <Link
-                  href="/profile/settings"
-                  className="flex gap-3 items-center w-full"
-                >
-                  <div className="group-data-[state=active]/trigger:bg-primary-600 group-data-[state=active]/trigger:text-white bg-gray-200 text-gray-600 size-9 rounded-lg flex">
-                    <Settings className="m-auto size-4" />
-                  </div>
-                  <h3 className="font-medium text-base flex-1 min-w-0">
-                    Settings
-                  </h3>
-                  <ChevronRight className="size-4" strokeWidth={2} />
-                </Link>
-              </TabsTrigger>
-            </div>
-          </TabsList>
-
-          <Suspense
-            fallback={
-              <div className="h-75 flex items-center justify-center flex-1">
-                <Spinner className="size-6 text-primary-main" />
-              </div>
-            }
-          >
-            {children}
-          </Suspense>
-        </Tabs>
+          <div className="flex-1 min-w-0">{children}</div>
+        </div>
       </div>
     </main>
   );
