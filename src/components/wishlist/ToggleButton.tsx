@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ActionButtonProps } from "@/types/props";
+import { ProductButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function ToggleButton({
   id,
   title,
   ...props
-}: ActionButtonProps) {
+}: ProductButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const session = useSession();

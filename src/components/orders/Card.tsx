@@ -141,7 +141,7 @@ export default function Card({
             </span>
 
             <CollapsibleTrigger asChild>
-              <Button className="px-4 py-2.5 h-auto gap-2 rounded-xl bg-gray-100 text-gray-700 group-data-[state=open]/item-card:bg-primary-main group-data-[state=open]/item-card:text-white font-semibold hover:bg-gray-200 hover:text-gray-700 group-data-[state=open]/item-card:hover:bg-primary-700 group-data-[state=open]/item-card:hover:text-white">
+              <Button className="px-4 py-2.5 h-auto gap-2 rounded-xl bg-gray-100 text-gray-700 group-data-[state=open]/item-card:bg-primary-main group-data-[state=open]/item-card:text-white group-data-[state=open]/item-card:shadow-lg font-semibold hover:bg-gray-200 hover:text-gray-700 group-data-[state=open]/item-card:hover:bg-primary-700 group-data-[state=open]/item-card:hover:text-white">
                 Details
                 <ChevronDown className="size-4 group-data-[state=open]/item-card:rotate-180 transition-transform" />
               </Button>

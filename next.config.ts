@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
         destination: "/orders",
         permanent: false,
       },
+      {
+        source: "/profile",
+        destination: "/profile/settings",
+        permanent: false,
+      },
     ];
   },
 };

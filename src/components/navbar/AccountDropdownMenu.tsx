@@ -127,7 +127,7 @@ export function AccountDropdownMenu() {
           className="rounded-none cursor-pointer py-2.5 px-4 text-gray-600 hover:text-primary-600 hover:bg-primary-50"
         >
           <Link
-            href="/settings"
+            href="/profile/settings"
             className="flex items-center gap-3 text-sm font-medium"
           >
             <Settings className="text-gray-400" />

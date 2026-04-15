@@ -2,7 +2,7 @@
 
 import { removeProductAction } from "@/actions/wishlist";
 import { Button } from "@/components/ui/button";
-import { ActionButtonProps } from "@/types/props";
+import { ProductButtonProps } from "@/types/props";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function RemoveProductButton({
   title,
   children,
   ...props
-}: ActionButtonProps) {
+}: ProductButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const session = useSession();

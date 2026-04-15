@@ -4,6 +4,7 @@ import { Brand } from "./brands";
 import { Category } from "./categories";
 import { Button } from "@/components/ui/button";
 import { CartItems } from "./cart";
+import { Address } from "./addresses";
 
 export interface SearchInputProps {
   placeholder: string;
@@ -69,7 +70,7 @@ export interface SearchFilterBadgesProps {
   }>;
 }
 
-export interface ActionButtonProps extends React.ComponentPropsWithoutRef<
+export interface ProductButtonProps extends React.ComponentPropsWithoutRef<
   typeof Button
 > {
   id: Product["_id"];
@@ -103,4 +104,10 @@ export interface ProvidersProps {
   children: React.ReactNode;
   wishlist: string[];
   cart: number;
+}
+
+export interface AddressButtonProps extends React.ComponentPropsWithoutRef<
+  typeof Button
+> {
+  id: Address["_id"];
 }
