@@ -1,3 +1,5 @@
+"use client";
+
 import { useCarousel } from "@/components/ui/carousel";
 import { ImagesSliderProps } from "@/types/props";
 import Image from "next/image";

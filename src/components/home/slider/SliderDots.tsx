@@ -1,3 +1,5 @@
+"use client";
+
 import { useCarousel } from "@/components/ui/carousel";
 
 export default function SliderDots() {

@@ -3,7 +3,6 @@
 import { ShoppingProvider } from "@/context/Shopping";
 import { ProvidersProps } from "@/types/props";
 import { SessionProvider } from "next-auth/react";
-import React from "react";
 
 export default function Providers({
   children,

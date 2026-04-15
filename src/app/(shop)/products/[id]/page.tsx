@@ -142,7 +142,7 @@ export default async function ProductDetails({
       </Breadcrumb>
 
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-14 relative">
-        <section className="lg:w-1/4 lg:sticky top-0">
+        <section className="lg:w-1/4 lg:sticky top-22">
           <ImagesSlider images={images} title={title} />
         </section>
 
