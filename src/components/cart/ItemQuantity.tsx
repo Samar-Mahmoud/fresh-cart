@@ -19,7 +19,6 @@ export default function ItemQuantity({
 
   const handleQuantityChange = async (count: number) => {
     if (count < 1) {
-      console.log(count);
       setItemCount(currentCount);
       return;
     }

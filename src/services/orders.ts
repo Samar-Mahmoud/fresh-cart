@@ -14,8 +14,6 @@ export async function getOrders(cartOwner: CartItems["cartOwner"]) {
     return [];
   }
 
-  revalidatePath("/cart");
-
   return res.data;
 }
 

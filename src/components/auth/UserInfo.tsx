@@ -5,19 +5,12 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
-import { signOutAction } from "@/actions/auth";
-import { useTransition } from "react";
+import useSignOut from "@/hooks/useSignOut";
 
 export default function Auth() {
   const { data, status } = useSession();
 
-  const [isPending, startTransition] = useTransition();
-
-  const handleSignOut = () => {
-    startTransition(async () => {
-      await signOutAction();
-    });
-  };
+  const { isPending, handleSignOut } = useSignOut();
 
   return status === "loading" ? (
     <Spinner />

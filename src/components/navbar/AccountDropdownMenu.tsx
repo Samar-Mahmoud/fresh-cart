@@ -18,20 +18,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { signOutAction } from "@/actions/auth";
-import { useTransition } from "react";
 import { Spinner } from "../ui/spinner";
+import useSignOut from "@/hooks/useSignOut";
 
 export function AccountDropdownMenu() {
   const { data } = useSession();
 
-  const [isPending, startTransition] = useTransition();
-
-  const handleSignOut = () => {
-    startTransition(async () => {
-      await signOutAction();
-    });
-  };
+  const { isPending, handleSignOut } = useSignOut();
 
   return (
     <DropdownMenu>

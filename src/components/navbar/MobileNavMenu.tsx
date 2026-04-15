@@ -27,13 +27,12 @@ import useDrawerHandler from "@/hooks/useDrawerHandler";
 import { useSession } from "next-auth/react";
 import useShopping from "@/hooks/useShopping";
 import { Spinner } from "../ui/spinner";
-import { signOutAction } from "@/actions/auth";
-import { useTransition } from "react";
+import useSignOut from "@/hooks/useSignOut";
 
 export default function MobileNavMenu() {
   const { isOpen, setIsOpen } = useDrawerHandler();
 
-  const [isPending, startTransition] = useTransition();
+  const { isPending, handleSignOut } = useSignOut();
 
   const { data, status } = useSession();
 
@@ -41,12 +40,6 @@ export default function MobileNavMenu() {
 
   const handleNavigate = () => {
     setIsOpen(false);
-  };
-
-  const handleSignOut = () => {
-    startTransition(async () => {
-      await signOutAction();
-    });
   };
 
   return (
