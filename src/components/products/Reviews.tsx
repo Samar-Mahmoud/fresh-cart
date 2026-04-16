@@ -1,14 +1,17 @@
 import Rating from "@/components/products/Rating";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { Product } from "@/types/products";
+import { Review } from "@/types/products";
 import { Star } from "lucide-react";
 import EmptyState from "../shared/Empty";
+import ReviewsList from "./reviews/List";
 
 export default async function ProductReviews({
   reviews,
+  userId,
 }: {
-  reviews: Product["reviews"];
+  reviews: Review[];
+  userId: string | null;
 }) {
   const ratings = reviews.reduce(
     (acc, review) => {
@@ -84,23 +87,7 @@ export default async function ProductReviews({
           }
         />
       ) : (
-        <div className="p-4 space-y-4">
-          {reviews.map(({ user: { name }, review, rating }, index) => (
-            <div
-              key={index}
-              className="p-5 flex items-center justify-between gap-3 bg-primary-100/50 rounded-xl"
-            >
-              <div className="space-y-2">
-                <h5 className="text-lg font-semibold text-gray-700">{name}</h5>
-                <p className="text-base font-medium text-gray-500">{review}</p>
-              </div>
-
-              <Rating rating={rating} />
-            </div>
-          ))}
-
-          {/* TODO: Add Review  */}
-        </div>
+        <ReviewsList reviews={reviews} userId={userId} />
       )}
     </>
   );

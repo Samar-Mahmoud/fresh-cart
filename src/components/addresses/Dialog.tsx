@@ -39,10 +39,13 @@ export default function AddressDialog({
   data?: AddressData;
   addressId?: Address["_id"];
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { handleSubmit, control } = useForm<AddressData>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting },
+  } = useForm<AddressData>({
     defaultValues: data ?? {
       name: "",
       city: "",
@@ -53,8 +56,6 @@ export default function AddressDialog({
   });
 
   const handleAddressAction = async (data: AddressData) => {
-    setIsLoading(true);
-
     const res = await addressAction(data, {
       isEdit: !!addressId,
       addressId,
@@ -66,7 +67,6 @@ export default function AddressDialog({
       toast.success(res.message);
     }
 
-    setIsLoading(false);
     setIsOpen(false);
   };
 
@@ -219,9 +219,9 @@ export default function AddressDialog({
             <Button
               type="submit"
               className="px-4 py-2.5 gap-2 bg-primary-main text-white rounded-lg hover:bg-primary-700 hover:text-white"
-              disabled={isLoading}
+              disabled={isSubmitting}
             >
-              {isLoading ? (
+              {isSubmitting ? (
                 <Spinner />
               ) : addressId ? (
                 "Update"

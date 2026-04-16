@@ -243,14 +243,22 @@ export default async function ProductDetails({
       </div>
 
       <section className="rounded-lg shadow-sm mb-18">
-        <ProductTabs
-          brandName={brandName}
-          categoryName={categoryName}
-          description={description}
-          sold={sold}
-          subcategory={subcategory}
-          reviews={reviews}
-        />
+        <Suspense
+          fallback={
+            <div className="h-75 flex items-center justify-center">
+              <Spinner className="size-6 text-primary-main" />
+            </div>
+          }
+        >
+          <ProductTabs
+            id={id}
+            brandName={brandName}
+            categoryName={categoryName}
+            description={description}
+            sold={sold}
+            subcategory={subcategory}
+          />
+        </Suspense>
       </section>
 
       <section className="mb-2">

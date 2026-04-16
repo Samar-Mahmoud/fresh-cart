@@ -4,15 +4,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductTabsProps } from "@/types/props";
 import { Check, RotateCcw, Star } from "lucide-react";
 import ProductReviews from "./Reviews";
+import { getProductReviews } from "@/services/products";
+import { getUserId } from "@/services/auth";
 
-export default function ProductTabs({
+export default async function ProductTabs({
   description,
   subcategory,
   categoryName,
   brandName,
   sold,
-  reviews,
+  id,
 }: ProductTabsProps) {
+  const reviews = await getProductReviews(id);
+  const { id: userId } = await getUserId();
+
   return (
     <Tabs defaultValue="details" className="gap-0">
       <TabsList
@@ -115,7 +120,7 @@ export default function ProductTabs({
       </TabsContent>
 
       <TabsContent value="reviews" className="p-6 space-y-6">
-        <ProductReviews reviews={reviews} />
+        <ProductReviews reviews={reviews} userId={userId} />
       </TabsContent>
 
       <TabsContent value="shipping" className="p-6 space-y-6">

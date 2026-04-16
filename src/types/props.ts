@@ -44,7 +44,7 @@ export interface ProductTabsProps {
   categoryName: Product["category"]["name"];
   brandName: Product["brand"]["name"];
   sold: Product["sold"];
-  reviews: Product["reviews"];
+  id: Product["_id"];
 }
 
 export interface HeaderProps {

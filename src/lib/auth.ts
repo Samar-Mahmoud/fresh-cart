@@ -24,17 +24,32 @@ export async function authFetch<T>(
       ...options.headers,
     },
   });
-  const data = await res.json();
 
-  if (!res.ok) {
+  try {
+    const data = await res.json();
+
+    if (!res.ok) {
+      return {
+        isError: true,
+        message: (data as ErrorResponse).message,
+        errors: data.errors,
+      };
+    }
+
+    return { isError: false, data };
+  } catch {
+    if (!res.ok) {
+      return {
+        isError: true,
+        message: "Something went wrong",
+      };
+    }
+
     return {
-      isError: true,
-      message: (data as ErrorResponse).message,
-      errors: data.errors,
+      isError: false,
+      data: {} as T,
     };
   }
-
-  return { isError: false, data };
 }
 
 export function getPasswordStrength(password: string): {
