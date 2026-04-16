@@ -122,6 +122,7 @@ export default function VerifcationCode({
           <p className="text-sm text-center font-medium text-gray-600">
             Didn&apos;t receive the code?{" "}
             <Button
+              type="button"
               className="text-primary-main font-medium bg-transparent p-0 h-auto hover:bg-transparent hover:text-primary-700"
               onClick={handleResend}
               disabled={isResending}
@@ -131,6 +132,7 @@ export default function VerifcationCode({
           </p>
 
           <Button
+            type="submit"
             className="px-4 py-3 h-auto w-full rounded-xl text-lg font-semibold shadow-sm bg-primary-main text-white hover:bg-primary-700 hover:text-white"
             disabled={isSubmitting}
           >
@@ -138,6 +140,7 @@ export default function VerifcationCode({
           </Button>
 
           <Button
+            type="button"
             className="text-sm font-medium text-gray-500 bg-transparent p-0 h-auto flex w-full items-center justify-center gap-2 hover:text-primary-main hover:bg-transparent transition-colors"
             onClick={onBack}
           >

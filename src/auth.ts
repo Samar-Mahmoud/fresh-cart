@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
+import Facebook from "next-auth/providers/facebook";
 import { login, providerSignIn } from "./services/auth";
 import { SignInData, schema } from "./schema/signin";
 import { DefaultSession } from "next-auth";
@@ -19,7 +21,6 @@ declare module "next-auth" {
 }
 
 import {} from "next-auth/jwt";
-import Google from "next-auth/providers/google";
 declare module "next-auth/jwt" {
   interface JWT {
     role?: string;
@@ -55,6 +56,7 @@ export const {
       },
     }),
     Google,
+    Facebook,
   ],
   pages: { signIn: "/signin" },
   callbacks: {
@@ -64,7 +66,7 @@ export const {
         token.email = session.user.email;
       }
 
-      if (account?.provider === "google" && user) {
+      if (account && account.provider !== "credentials" && user) {
         const { email, name } = user;
 
         const res = await providerSignIn({

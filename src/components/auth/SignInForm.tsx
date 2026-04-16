@@ -76,7 +76,10 @@ export default function SignInForm() {
           </svg>
           Continue with Google
         </Button>
-        <Button className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50">
+        <Button
+          className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50"
+          onClick={() => signIn("facebook", { redirectTo: "/" })}
+        >
           <svg
             className="size-5"
             data-icon="inline-start"
