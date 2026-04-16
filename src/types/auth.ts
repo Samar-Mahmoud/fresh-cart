@@ -22,6 +22,8 @@ export interface LoginResponse {
 export interface RegisterResponse {
   isError: boolean;
   message: string;
+  user?: User;
+  token?: string;
 }
 
 export interface VerifyTokenResponse {

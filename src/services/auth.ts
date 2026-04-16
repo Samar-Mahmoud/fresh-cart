@@ -27,12 +27,18 @@ export async function register(
   });
   const data: AuthResponse = await res.json();
 
-  const isError = data.message !== "success";
-  const message = isError
-    ? data.message
-    : "Welcome! You can now log in with your email and password.";
+  if (!res.ok) {
+    return { isError: true, message: data.message };
+  }
 
-  return { message, isError };
+  const { token, user } = data as SuccessResponse;
+
+  return {
+    isError: false,
+    message: "Welcome! You can now log in with your email and password.",
+    token,
+    user,
+  };
 }
 
 export async function login(
@@ -53,13 +59,28 @@ export async function login(
   return { user, token };
 }
 
+export async function providerSignIn(data: RegisterData) {
+  const registerRes = await register(data);
+
+  if (registerRes.isError) {
+    const loginRes = await login({
+      email: data.email,
+      password: data.password,
+    });
+
+    return { isError: !loginRes, ...(loginRes ?? {}) };
+  }
+
+  const { token, user } = registerRes;
+  return { isError: false, token, user };
+}
+
 export async function getUserId() {
   const res = await authFetch<VerifyTokenResponse>("/v1/auth/verifyToken", {
     method: "GET",
   });
 
   if (res.isError) {
-    console.error(res.message);
     return { id: null };
   }
 

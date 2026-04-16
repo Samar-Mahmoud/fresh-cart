@@ -1,28 +1,29 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { login } from "./services/auth";
+import { login, providerSignIn } from "./services/auth";
 import { SignInData, schema } from "./schema/signin";
 import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   interface User {
-    role: string;
-    token: string;
+    role?: string;
+    token?: string;
   }
 
   interface Session {
     user: {
-      role: string;
-      token: string;
+      role?: string;
+      token?: string;
     } & DefaultSession["user"];
   }
 }
 
 import {} from "next-auth/jwt";
+import Google from "next-auth/providers/google";
 declare module "next-auth/jwt" {
   interface JWT {
-    role: string;
-    token: string;
+    role?: string;
+    token?: string;
   }
 }
 
@@ -53,19 +54,35 @@ export const {
         return null;
       },
     }),
+    Google,
   ],
   pages: { signIn: "/signin" },
   callbacks: {
-    jwt({ token, user, session, trigger }) {
+    async jwt({ token, user, session, trigger, account }) {
       if (trigger === "update" && session) {
         token.name = session.user.name;
         token.email = session.user.email;
       }
 
-      if (user) {
+      if (account?.provider === "google" && user) {
+        const { email, name } = user;
+
+        const res = await providerSignIn({
+          name: name!,
+          email: email!,
+          password: `${email}${account.provider}`,
+          rePassword: `${email}${account.provider}`,
+          phone: "01234567890",
+          terms: true,
+        });
+
+        token.role = res.user?.role;
+        token.token = res.token;
+      } else if (user) {
         token.role = user.role;
         token.token = user.token;
       }
+
       return token;
     },
     session({ session, token }) {

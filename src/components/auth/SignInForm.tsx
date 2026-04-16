@@ -19,6 +19,7 @@ import MailIcon from "../icons/MailIcon";
 import { useState } from "react";
 import { toast } from "sonner";
 import { signInAction } from "@/actions/auth";
+import { signIn } from "next-auth/react";
 
 export default function SignInForm() {
   const [viewPassword, setViewPassword] = useState(false);
@@ -55,7 +56,10 @@ export default function SignInForm() {
   return (
     <CardContent className="px-0 pt-0 pb-2 space-y-6">
       <div className="px-8 flex flex-col gap-3 mb-6">
-        <Button className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50">
+        <Button
+          className="h-auto px-4 py-3 bg-transparent border-gray-300 rounded-lg gap-3 text-gray-900 text-base hover:bg-primary-50/50"
+          onClick={() => signIn("google", { redirectTo: "/" })}
+        >
           <svg
             className="size-5"
             data-icon="inline-start"

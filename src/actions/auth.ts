@@ -17,7 +17,8 @@ import {
 } from "@/schema/forgot-password";
 
 export async function registerAction(formData: RegisterData) {
-  return await register(formData);
+  const { isError, message } = await register(formData);
+  return { isError, message };
 }
 
 export async function signInAction(formData: SignInData) {
