@@ -35,7 +35,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <nav className="self-start lg:max-w-72 w-full rounded-2xl shadow-md border border-gray-200 bg-white">
+    <nav className="sticky top-20 self-start lg:max-w-72 w-full rounded-2xl shadow-md border border-gray-200 bg-white">
       <h2 className="p-4 text-base font-bold text-gray-900">My Account</h2>
 
       <Separator className="bg-gray-200" />

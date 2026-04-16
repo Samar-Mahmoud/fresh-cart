@@ -33,9 +33,7 @@ export interface VerifyTokenResponse {
   };
 }
 
-export interface CurrentUserData {
-  role: string;
-  email?: string | null;
-  id?: string;
-  name?: string | null;
+export interface ForgotPasswordResponse {
+  statusMsg: "success";
+  message: string;
 }

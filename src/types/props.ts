@@ -111,3 +111,15 @@ export interface AddressButtonProps extends React.ComponentPropsWithoutRef<
 > {
   id: Address["_id"];
 }
+
+export interface ForgotPasswordProps {
+  onNext: (email: string) => void;
+}
+export interface VerifcationCodeProps {
+  email: string;
+  onNext: () => void;
+  onBack: () => void;
+}
+export interface ResetPasswordProps {
+  email: string;
+}

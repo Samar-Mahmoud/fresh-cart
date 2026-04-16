@@ -143,7 +143,7 @@ export default function SignInForm() {
                 className="text-sm font-medium text-gray-700 justify-between"
               >
                 Password
-                <Link href="/forget-password" className="text-primary-main">
+                <Link href="/forgot-password" className="text-primary-main">
                   Forgot Password?
                 </Link>
               </FieldLabel>

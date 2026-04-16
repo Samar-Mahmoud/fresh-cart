@@ -27,7 +27,6 @@ export async function authFetch<T>(
   const data = await res.json();
 
   if (!res.ok) {
-    console.log(data);
     return {
       isError: true,
       message: (data as ErrorResponse).message,

@@ -3,9 +3,18 @@
 import { auth, signIn, signOut } from "@/auth";
 import { SignInData } from "@/schema/signin";
 import { RegisterData } from "@/schema/register";
-import { register } from "@/services/auth";
+import {
+  register,
+  requestResetPasswordCode,
+  resetPassword,
+  verifyResetCode,
+} from "@/services/auth";
 import { getCartItems } from "@/services/cart";
 import { getWishlistItems } from "@/services/wishlist";
+import {
+  CodeVerificationData,
+  ForgotPasswordData,
+} from "@/schema/forgot-password";
 
 export async function registerAction(formData: RegisterData) {
   return await register(formData);
@@ -47,4 +56,19 @@ export async function checkUserData(): Promise<{
   const { data } = await getWishlistItems();
 
   return { cart: numOfCartItems, wishlist: data.map((p) => p._id) };
+}
+
+export async function forgotPasswordAction(data: ForgotPasswordData) {
+  return await requestResetPasswordCode(data);
+}
+
+export async function verifyResetCodeAction(data: CodeVerificationData) {
+  return await verifyResetCode(data);
+}
+
+export async function resetPasswordAction(data: {
+  email: string;
+  newPassword: string;
+}) {
+  return await resetPassword(data);
 }
