@@ -31,9 +31,11 @@ export default async function Addresses() {
           description="Add your first delivery address to make checkout faster and easier."
           icon={<MapPin className="m-auto size-8" />}
           action={
-            <Button className="py-2.5 px-5 rounded-xl h-auto text-sm font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white">
-              <Plus className="size-4" /> Add Your First Address
-            </Button>
+            <AddAddressDialog>
+              <Button className="py-2.5 px-5 rounded-xl h-auto text-sm font-semibold bg-primary-main text-white hover:bg-primary-700 hover:text-white">
+                <Plus className="size-4" /> Add Your First Address
+              </Button>
+            </AddAddressDialog>
           }
         />
       ) : (
