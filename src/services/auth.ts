@@ -67,10 +67,11 @@ export async function providerSignIn(data: RegisterData) {
       email: data.email,
       password: data.password,
     });
+    console.log("login", loginRes);
 
     return { isError: !loginRes, ...(loginRes ?? {}) };
   }
-
+  console.log("register", registerRes);
   const { token, user } = registerRes;
   return { isError: false, token, user };
 }

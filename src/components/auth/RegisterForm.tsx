@@ -84,6 +84,7 @@ export default function RegisterForm() {
         <Button
           className="h-auto px-4 py-2 flex-1 bg-transparent border-gray-300 rounded-lg gap-2 text-gray-900 font-semibold text-base hover:bg-primary-50/50"
           onClick={() => signIn("facebook", { redirectTo: "/" })}
+          disabled
         >
           <svg
             width="20"
