@@ -2,10 +2,11 @@
 
 import { Product } from "@/types/products";
 import ProductCard from "../products/Card";
-import useSearchView from "@/hooks/useSearchView";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function ProductsView({ products }: { products: Product[] }) {
-  const { view } = useSearchView();
+  const { view } = useSelector((state: RootState) => state.search);
 
   return (
     <div

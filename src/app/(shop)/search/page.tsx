@@ -19,7 +19,6 @@ import MobileSearchFilters from "@/components/search/MobileSearchFilters";
 import SortBy from "@/components/products/SortBy";
 import ViewButtons from "@/components/search/ViewButtons";
 import FiltersBadges from "@/components/search/FiltersBadges";
-import { ViewProvider } from "@/context/SearchView";
 import Products from "@/components/search/Products";
 
 export default async function Search({
@@ -98,41 +97,39 @@ export default async function Search({
 
       <div className="bg-gray-50/50 py-8 px-4 ">
         <div className="container mx-auto flex gap-8">
-          <aside className="hidden lg:block bg-white rounded-xl p-6 w-[256px] h-fit srink-0 border border-gray-100">
+          <aside className="hidden lg:block bg-white sticky top-20 rounded-xl p-6 w-[256px] h-fit srink-0 border border-gray-100">
             <ProductSearchFilters categories={categories} brands={brands} />
           </aside>
 
-          <ViewProvider>
-            <main className="space-y-6 flex-1">
-              <div className="flex items-center justify-between gap-4 flex-wrap">
-                <div className="flex items-center gap-4">
-                  <div className="lg:hidden">
-                    <MobileSearchFilters
-                      categories={categories}
-                      brands={brands}
-                    />
-                  </div>
-
-                  <ViewButtons />
+          <main className="space-y-6 flex-1">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-4">
+                <div className="lg:hidden">
+                  <MobileSearchFilters
+                    categories={categories}
+                    brands={brands}
+                  />
                 </div>
 
-                <SortBy />
+                <ViewButtons />
               </div>
 
-              <FiltersBadges badges={badges} />
+              <SortBy />
+            </div>
 
-              <Suspense
-                key={filtersKey}
-                fallback={
-                  <div className="h-75 flex items-center justify-center">
-                    <Spinner className="size-6 text-primary-main" />
-                  </div>
-                }
-              >
-                <Products filters={filters} />
-              </Suspense>
-            </main>
-          </ViewProvider>
+            <FiltersBadges badges={badges} />
+
+            <Suspense
+              key={filtersKey}
+              fallback={
+                <div className="h-75 flex items-center justify-center">
+                  <Spinner className="size-6 text-primary-main" />
+                </div>
+              }
+            >
+              <Products filters={filters} />
+            </Suspense>
+          </main>
         </div>
       </div>
     </div>

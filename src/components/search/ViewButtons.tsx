@@ -1,17 +1,21 @@
 "use client";
 
-import useSearchView from "@/hooks/useSearchView";
 import { Button } from "@/components/ui/button";
 import { List } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setView } from "@/redux/slices/search";
 
 export default function ViewButtons() {
-  const { view, setView } = useSearchView();
+  const { view } = useSelector((state: RootState) => state.search);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="flex gap-1 items-stretch border border-gray-200 rounded-lg p-1">
       <Button
         className={`px-2 py-3 h-auto flex rounded-md ${view === "grid" ? "bg-primary-main text-white" : "bg-white text-gray-700 hover:bg-primary-50/50"}`}
-        onClick={() => setView("grid")}
+        onClick={() => dispatch(setView("grid"))}
       >
         <svg
           className="m-auto size-5"
@@ -29,7 +33,7 @@ export default function ViewButtons() {
       </Button>
       <Button
         className={`px-2 py-3 h-auto flex rounded-md ${view === "rows" ? "bg-primary-main text-white" : "bg-white text-gray-700 hover:bg-primary-50/50"}`}
-        onClick={() => setView("rows")}
+        onClick={() => dispatch(setView("rows"))}
       >
         <List className="m-auto size-5" strokeWidth={3} />
       </Button>
