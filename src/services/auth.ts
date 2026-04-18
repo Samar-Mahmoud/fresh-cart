@@ -8,7 +8,7 @@ import {
   SuccessResponse,
   VerifyTokenResponse,
 } from "@/types/auth";
-import { authFetch } from "@/lib/auth";
+import { auth } from "@/auth";
 import {
   CodeVerificationData,
   ForgotPasswordData,
@@ -67,25 +67,31 @@ export async function providerSignIn(data: RegisterData) {
       email: data.email,
       password: data.password,
     });
-    console.log("login", loginRes);
 
     return { isError: !loginRes, ...(loginRes ?? {}) };
   }
-  console.log("register", registerRes);
+
   const { token, user } = registerRes;
   return { isError: false, token, user };
 }
 
 export async function getUserId() {
-  const res = await authFetch<VerifyTokenResponse>("/v1/auth/verifyToken", {
+  const session = await auth();
+
+  const res = await fetch(`${AUTH}/verifyToken`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: `${session?.user.token}`,
+    },
   });
 
-  if (res.isError) {
+  if (!res.ok) {
     return { id: null };
   }
 
-  return { id: res.data.decoded.id };
+  const data: VerifyTokenResponse = await res.json();
+  return { id: data.decoded.id };
 }
 
 export async function requestResetPasswordCode(
