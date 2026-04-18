@@ -1,10 +1,10 @@
 import Rating from "@/components/products/Rating";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import { Review } from "@/types/products";
 import { Star } from "lucide-react";
 import EmptyState from "../shared/Empty";
 import ReviewsList from "./reviews/List";
+import { ReviewForm } from "./reviews/Form";
 
 export default async function ProductReviews({
   reviews,
@@ -80,11 +80,8 @@ export default async function ProductReviews({
           icon={<Star />}
           title="No Reviews Yet"
           description="Customer reviews will be displayed here."
-          action={
-            <Button className="bg-primary-main text-white hover:bg-primary-700 rounded-lg">
-              Write a Review
-            </Button>
-          }
+          action={<ReviewForm />}
+          className="self-stretch items-stretch max-w-none pt-3"
         />
       ) : (
         <ReviewsList reviews={reviews} userId={userId} />

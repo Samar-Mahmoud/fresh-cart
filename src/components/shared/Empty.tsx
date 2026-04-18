@@ -12,11 +12,13 @@ export default function EmptyState({
   description,
   action,
   icon,
+  className,
 }: {
   title: string;
   description: string;
   icon: React.ReactNode;
   action: React.ReactNode;
+  className?: string;
 }) {
   return (
     <Empty>
@@ -32,7 +34,7 @@ export default function EmptyState({
           {description}
         </EmptyDescription>
       </EmptyHeader>
-      <EmptyContent>{action}</EmptyContent>
+      <EmptyContent className={className}>{action}</EmptyContent>
     </Empty>
   );
 }
