@@ -4,9 +4,10 @@ import CartIcon from "@/components/icons/CartIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProductQuantityProps } from "@/types/props";
-import { Heart, Minus, Plus, Share2, Zap } from "lucide-react";
+import { Minus, Plus, Share2, Zap } from "lucide-react";
 import AddToCartButton from "@/components/cart/AddButton";
 import { useState } from "react";
+import ToggleWishlisItemtButton from "@/components/wishlist/ToggleButton";
 
 export default function ProductQuantity({
   quantity,
@@ -82,11 +83,12 @@ export default function ProductQuantity({
       </div>
 
       <div className="flex gap-3 mb-6">
-        {/* TODO */}
-        <Button className="py-3 flex-1 h-auto bg-white border-2 border-gray-200 rounded-xl gap-2 text-gray-700 text-base font-medium hover:bg-transparent hover:text-primary-700">
-          <Heart />
-          Add to Wishlist
-        </Button>
+        <ToggleWishlisItemtButton
+          id={id}
+          title={title}
+          description
+          className="py-3 flex-1 h-auto bg-white border-2 border-gray-200 rounded-xl gap-2 text-gray-700 text-base font-medium hover:bg-transparent hover:text-primary-700"
+        />
 
         {/* TODO */}
         <Button className="p-4 h-auto bg-white border-2 border-gray-200 rounded-xl gap-2 text-gray-700 text-base font-medium hover:bg-transparent hover:text-primary-700">

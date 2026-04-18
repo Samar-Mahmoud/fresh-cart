@@ -12,6 +12,7 @@ import { Heart } from "lucide-react";
 export default function ToggleButton({
   id,
   title,
+  description = false,
   ...props
 }: ProductButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,9 +39,15 @@ export default function ToggleButton({
       {isLoading ? (
         <Spinner />
       ) : (
-        <Heart
-          className={`size-4 ${wishlist.includes(id) ? "fill-red-500 text-red-500" : ""}`}
-        />
+        <>
+          <Heart
+            className={`${description ? "size-5" : "size-4"} ${wishlist.includes(id) ? "fill-red-500 text-red-500" : ""}`}
+          />
+          {description &&
+            (wishlist.includes(id)
+              ? "Remove from Wishlist"
+              : "Add to Wishlist")}
+        </>
       )}
     </Button>
   );

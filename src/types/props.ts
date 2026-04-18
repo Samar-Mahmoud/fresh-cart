@@ -76,6 +76,7 @@ export interface ProductButtonProps extends React.ComponentPropsWithoutRef<
   id: Product["_id"];
   title: Product["title"];
   count?: number;
+  description?: boolean;
 }
 
 export interface OrderSummaryProps {
