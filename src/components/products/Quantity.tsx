@@ -8,6 +8,11 @@ import { Minus, Plus, Share2, Zap } from "lucide-react";
 import AddToCartButton from "@/components/cart/AddButton";
 import { useState } from "react";
 import ToggleWishlisItemtButton from "@/components/wishlist/ToggleButton";
+import { addToCartAction } from "@/actions/cart";
+import useShopping from "@/hooks/useShopping";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Spinner } from "../ui/spinner";
 
 export default function ProductQuantity({
   quantity,
@@ -16,6 +21,26 @@ export default function ProductQuantity({
   title,
 }: ProductQuantityProps) {
   const [count, setCount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { setCartCount } = useShopping();
+
+  const router = useRouter();
+
+  const handleCheckout = async () => {
+    setIsLoading(true);
+
+    const res = await addToCartAction(id, count);
+
+    if (!res.isError) {
+      setCartCount(res.data.numOfCartItems);
+      router.push("/checkout");
+    } else {
+      toast.error(`Failed to add ${title} to cart. ${res.message}`);
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <>
@@ -75,10 +100,19 @@ export default function ProductQuantity({
           Add to Cart
         </AddToCartButton>
 
-        {/* TODO */}
-        <Button className="flex-1 py-3.5 h-auto bg-gray-900 rounded-xl gap-2 text-white text-base font-medium hover:bg-gray-900/90">
-          <Zap fill="currentColor" />
-          Buy Now
+        <Button
+          className="flex-1 py-3.5 h-auto bg-gray-900 rounded-xl gap-2 text-white text-base font-medium hover:bg-gray-900/90"
+          onClick={handleCheckout}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <>
+              <Zap fill="currentColor" />
+              Buy Now
+            </>
+          )}
         </Button>
       </div>
 

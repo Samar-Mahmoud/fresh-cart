@@ -41,7 +41,7 @@ export default function Card({
     <Collapsible className="group/item-card rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 data-[state=open]:border-primary-200 data-[state=open]:shadow-lg transition-all">
       <div className="flex gap-5 p-5">
         <Link
-          href={`/products/${_id}`}
+          href={`/products/${cartItem._id}`}
           className="group/img size-24 flex rounded-2xl bg-linear-to-br from-gray-50 via-white to-gray-100 relative"
         >
           <div className="m-auto relative size-19 group-hover/img:scale-[1.05] transition-transform">
