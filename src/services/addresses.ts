@@ -1,7 +1,7 @@
 import { authFetch } from "@/lib/auth";
 import { AddressData } from "@/schema/address";
 import { Address, AddressResponse } from "@/types/addresses";
-import { revalidatePath } from "next/cache";
+import { updateTag } from "next/cache";
 
 const ADDRESS = "/v1/addresses";
 
@@ -9,6 +9,7 @@ export async function getAddresses() {
   const res = await authFetch<AddressResponse>(ADDRESS, {
     method: "GET",
     cache: "force-cache",
+    next: { tags: ["addresses"] },
   });
 
   if (res.isError) {
@@ -29,8 +30,7 @@ export async function removeAddress(addressId: Address["_id"]) {
     return res;
   }
 
-  revalidatePath("/profile/addresses");
-  revalidatePath("/checkout");
+  updateTag("addresses");
 
   return { isError: false, message: `Address deleted successfully!` };
 }
@@ -46,8 +46,7 @@ export async function addAddress(data: AddressData) {
     return res;
   }
 
-  revalidatePath("/profile/addresses");
-  revalidatePath("/checkout");
+  updateTag("addresses");
 
   return { isError: false, message: `Address added successfully!` };
 }

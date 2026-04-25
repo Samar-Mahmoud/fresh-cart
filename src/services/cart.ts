@@ -1,7 +1,7 @@
 import { authFetch } from "@/lib/auth";
 import { CartActionResponse, CartItemsResponse } from "@/types/cart";
 import { Product } from "@/types/products";
-import { revalidatePath } from "next/cache";
+import { updateTag } from "next/cache";
 
 const CART = "/v2/cart";
 
@@ -9,6 +9,7 @@ export async function getCartItems() {
   const res = await authFetch<CartItemsResponse>(CART, {
     method: "GET",
     cache: "force-cache",
+    next: { tags: ["cart"] },
   });
 
   if (res.isError) {
@@ -19,16 +20,15 @@ export async function getCartItems() {
       numOfCartItems: 0,
       products: [],
       cartId: null,
-      cartOwner: null,
     };
   }
 
   const {
-    data: { products, totalCartPrice, _id: cartId, cartOwner },
+    data: { products, totalCartPrice, _id: cartId },
     numOfCartItems,
   } = res.data;
 
-  return { totalCartPrice, numOfCartItems, products, cartId, cartOwner };
+  return { totalCartPrice, numOfCartItems, products, cartId };
 }
 
 export async function addToCart(
@@ -54,7 +54,7 @@ export async function addToCart(
     numOfCartItems,
   } = res.data;
 
-  revalidatePath("/cart");
+  updateTag("cart");
 
   return { isError: false, data: { numOfCartItems, totalCartPrice } };
 }
@@ -67,7 +67,7 @@ export async function clearCart() {
     return res;
   }
 
-  revalidatePath("/cart");
+  updateTag("cart");
 
   return { isError: false, message: "Your cart has been cleared!" };
 }
@@ -88,7 +88,7 @@ export async function removeProduct(
     data: { totalCartPrice },
   } = res.data;
 
-  revalidatePath("/cart");
+  updateTag("cart");
 
   return { isError: false, data: { numOfCartItems, totalCartPrice } };
 }
@@ -112,7 +112,7 @@ export async function updateProduct(
     numOfCartItems,
   } = res.data;
 
-  revalidatePath("/cart");
+  updateTag("cart");
 
   return { isError: false, data: { numOfCartItems, totalCartPrice } };
 }

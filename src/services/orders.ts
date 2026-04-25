@@ -2,7 +2,7 @@ import { authFetch } from "@/lib/auth";
 import { AddressData } from "@/schema/address";
 import { CartItems } from "@/types/cart";
 import { CheckoutSessionResponse, OrderItem } from "@/types/orders";
-import { revalidatePath } from "next/cache";
+import { updateTag } from "next/cache";
 
 export async function getOrders(cartOwner: CartItems["cartOwner"]) {
   const res = await authFetch<OrderItem[]>(`/v1/orders/user/${cartOwner}`, {
@@ -34,8 +34,7 @@ export async function createCashOrder(
     return res;
   }
 
-  revalidatePath("/cart");
-  revalidatePath("/checkout");
+  updateTag("cart");
 
   return { isError: false, message: "Your order created sucessfully!" };
 }

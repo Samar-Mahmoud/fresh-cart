@@ -8,13 +8,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { getCartItems } from "@/services/cart";
+import { getUserId } from "@/services/auth";
 import { getOrders } from "@/services/orders";
 import Link from "next/link";
 import OrderCard from "@/components/orders/Card";
 
 export default async function Orders() {
-  const { cartOwner } = await getCartItems();
+  const { id: cartOwner } = await getUserId();
   const orders = cartOwner ? await getOrders(cartOwner) : [];
 
   return (

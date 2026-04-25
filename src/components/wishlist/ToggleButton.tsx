@@ -41,7 +41,7 @@ export default function ToggleButton({
       ) : (
         <>
           <Heart
-            className={`${description ? "size-5" : "size-4"} ${wishlist.includes(id) ? "fill-red-500 text-red-500" : ""}`}
+            className={`size-4 ${wishlist.includes(id) ? "fill-red-500 text-red-500" : ""}`}
           />
           {description &&
             (wishlist.includes(id)

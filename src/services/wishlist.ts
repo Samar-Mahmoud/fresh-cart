@@ -5,7 +5,7 @@ import {
   WishlistItem,
   WishlistItemsResponse,
 } from "@/types/wishlist";
-import { revalidatePath } from "next/cache";
+import { updateTag } from "next/cache";
 
 const WISHLIST = "/v1/wishlist";
 
@@ -16,6 +16,7 @@ export async function getWishlistItems(): Promise<{
   const res = await authFetch<WishlistItemsResponse>(WISHLIST, {
     method: "GET",
     cache: "force-cache",
+    next: { tags: ["wishlist"] },
   });
 
   if (res.isError) {
@@ -45,7 +46,7 @@ export async function addToWishlist(productId: Product["_id"]): Promise<
     return res;
   }
 
-  revalidatePath("/wishlist");
+  updateTag("wishlist");
 
   return { isError: false, data: res.data.data };
 }
@@ -67,7 +68,7 @@ export async function removeProduct(productId: Product["_id"]): Promise<
     return res;
   }
 
-  revalidatePath("/wishlist");
+  updateTag("wishlist");
 
   return { isError: false, data: res.data.data };
 }
